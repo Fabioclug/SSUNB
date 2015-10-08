@@ -1,13 +1,18 @@
 package mds.ufscar.br.ssunb;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.PopupMenu;
+import android.view.View.OnClickListener;
+import android.widget.Toast;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickListener {
 
     private ListView book_list;
 
@@ -18,10 +23,21 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //setTheme(R.style.AppTheme);
         setContentView(R.layout.activity_main);
 
         book_list = (ListView) findViewById(R.id.book_list_view);
         book_list.setAdapter(new BookListAdapter(this));
+        //findViewById(R.id.action_settings)
+        findViewById(R.id.menu_button).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popupMenu = new PopupMenu(MainActivity.this, v);
+                popupMenu.setOnMenuItemClickListener(MainActivity.this);
+                popupMenu.inflate(R.menu.menu_main);
+                popupMenu.show();
+            }
+        });
     }
 
     @Override
@@ -44,5 +60,15 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.menu_profile:
+                Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show();
+                return true;
+        }
+        return false;
     }
 }

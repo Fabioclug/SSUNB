@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -25,9 +26,18 @@ public class BookListAdapter extends BaseAdapter{
 
         Book b1 = new Book("Lord of The Rings", "J. R. R. Tolkien");
         Book b2 = new Book("Fight Club", "Chuck Palahniuk");
+        Book b3 = new Book("The Da Vinci Code", "Dan Brown");
+        Book b4 = new Book("Frankenstein", "Mary Shelley");
+        Book b5 = new Book("A Game of Thrones", "George R. R. Martin");
+        Book b6 = new Book("The Divine Comedy", "Dante Alighieri");
 
         BookList.add(b1);
         BookList.add(b2);
+        BookList.add(b3);
+        BookList.add(b4);
+        BookList.add(b5);
+        BookList.add(b6);
+
     }
 
     @Override
@@ -50,6 +60,9 @@ public class BookListAdapter extends BaseAdapter{
         LayoutInflater inflater = (LayoutInflater)
                 context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View root = inflater.inflate(R.layout.book_list_row, null);
+
+        //ImageButton ib = (ImageButton) root.findViewById(R.id.book_list_row_icon);
+        //ib.setImageResource(R.drawable.);
 
         TextView name = (TextView) root.findViewById(R.id.book_list_row_name);
         name.setText(BookList.get(position).getName());
