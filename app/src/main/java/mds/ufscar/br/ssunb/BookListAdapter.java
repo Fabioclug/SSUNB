@@ -65,7 +65,7 @@ public class BookListAdapter extends BaseAdapter{
         //ib.setImageResource(R.drawable.);
 
         TextView name = (TextView) root.findViewById(R.id.book_list_row_name);
-        name.setText(BookList.get(position).getName());
+        name.setText(BookList.get(position).getTitle());
 
         TextView author = (TextView) root.findViewById(R.id.book_list_row_author);
         author.setText(BookList.get(position).getAuthor());

@@ -2,6 +2,9 @@ package mds.ufscar.br.ssunb;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Context;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -17,7 +20,6 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
     private ListView book_list;
 
     public MainActivity() {
-
     }
 
     @Override
@@ -25,6 +27,10 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
         super.onCreate(savedInstanceState);
         //setTheme(R.style.AppTheme);
         setContentView(R.layout.activity_main);
+
+        //LocationManager mlocManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+        //LocationListener mlocListener = new MyLocationListener(getApplicationContext());
+        //mlocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, mlocListener);
 
         book_list = (ListView) findViewById(R.id.book_list_view);
         book_list.setAdapter(new BookListAdapter(this));
