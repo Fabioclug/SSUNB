@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">SSUNB</string>
 
+    <string name="book_page">Book Page</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="menu_profile">Profile</string>

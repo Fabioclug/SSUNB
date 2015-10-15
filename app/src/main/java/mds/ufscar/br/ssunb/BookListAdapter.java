@@ -1,6 +1,7 @@
 package mds.ufscar.br.ssunb;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import mds.ufscar.br.ssunb.model.Book;
 
-/**
- * Created by Fabioclug on 2015-10-03.
- */
 public class BookListAdapter extends BaseAdapter{
 
     private Context context;
@@ -56,10 +54,21 @@ public class BookListAdapter extends BaseAdapter{
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, final View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater)
                 context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View root = inflater.inflate(R.layout.book_list_row, null);
+
+        root.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(context, BookPage.class);
+                intent.putExtra("book_id", Integer.toString(position));
+                System.out.println(position);
+                context.startActivity(intent);
+            }
+        });
 
         //ImageButton ib = (ImageButton) root.findViewById(R.id.book_list_row_icon);
         //ib.setImageResource(R.drawable.);
@@ -69,6 +78,7 @@ public class BookListAdapter extends BaseAdapter{
 
         TextView author = (TextView) root.findViewById(R.id.book_list_row_author);
         author.setText(BookList.get(position).getAuthor());
+
         return root;
     }
 }

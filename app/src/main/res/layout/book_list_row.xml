@@ -9,8 +9,8 @@
 
         <ImageButton
             android:id="@+id/book_list_row_icon"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="@dimen/book_list_icon"
+            android:layout_height="@dimen/book_list_icon"
             android:src="@android:drawable/ic_menu_agenda"
             />
 

@@ -6,6 +6,7 @@ public class Book {
     private String title;
     private String author;
     private String cathegory;
+    private String synopsis;
     private String code;
     private Date publication;
     private int edition;
@@ -39,6 +40,14 @@ public class Book {
 
     public void setCathegory(String cathegory) {
         this.cathegory = cathegory;
+    }
+
+    public String getSynopsis() {
+        return synopsis;
+    }
+
+    public void setSynopsis(String synopsis) {
+        this.synopsis = synopsis;
     }
 
     public String getCode() {

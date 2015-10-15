@@ -3,6 +3,7 @@ package mds.ufscar.br.ssunb;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.support.v7.app.AppCompatActivity;
@@ -15,11 +16,14 @@ import android.widget.PopupMenu;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
 
+import mds.ufscar.br.ssunb.model.Book;
+
 public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickListener {
 
     private ListView book_list;
 
     public MainActivity() {
+
     }
 
     @Override
@@ -45,6 +49,12 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
             }
         });
     }
+
+//    public void enterBookPage(View v) {
+//        //Book book = (Book) v.getTag();
+//        Intent intent = new Intent(MainActivity.this, BookPage.class);
+//        startActivity(intent);
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
