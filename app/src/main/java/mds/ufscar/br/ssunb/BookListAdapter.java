@@ -11,6 +11,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import mds.ufscar.br.ssunb.database.BookDao;
+import mds.ufscar.br.ssunb.database.DatabaseHandler;
 import mds.ufscar.br.ssunb.model.Book;
 
 public class BookListAdapter extends BaseAdapter{
@@ -22,20 +25,24 @@ public class BookListAdapter extends BaseAdapter{
         this.context = context;
         BookList = new ArrayList<Book>();
 
-        Book b1 = new Book("Lord of The Rings", "J. R. R. Tolkien");
-        Book b2 = new Book("Fight Club", "Chuck Palahniuk");
-        Book b3 = new Book("The Da Vinci Code", "Dan Brown");
-        Book b4 = new Book("Frankenstein", "Mary Shelley");
-        Book b5 = new Book("A Game of Thrones", "George R. R. Martin");
-        Book b6 = new Book("The Divine Comedy", "Dante Alighieri");
+//        Book b1 = new Book("Lord of The Rings", "J. R. R. Tolkien");
+//        Book b2 = new Book("Fight Club", "Chuck Palahniuk");
+//        Book b3 = new Book("The Da Vinci Code", "Dan Brown");
+//        Book b4 = new Book("Frankenstein", "Mary Shelley");
+//        Book b5 = new Book("A Game of Thrones", "George R. R. Martin");
+//        Book b6 = new Book("The Divine Comedy", "Dante Alighieri");
 
-        BookList.add(b1);
-        BookList.add(b2);
-        BookList.add(b3);
-        BookList.add(b4);
-        BookList.add(b5);
-        BookList.add(b6);
 
+        DatabaseHandler db = new DatabaseHandler(context);
+        //db.getWritableDatabase().execSQL("delete from book");
+        BookDao bookDao = new BookDao(db);
+//        bookDao.save(b1);
+//        bookDao.save(b2);
+//        bookDao.save(b3);
+//        bookDao.save(b4);
+//        bookDao.save(b5);
+//        bookDao.save(b6);
+        BookList = bookDao.listAll();
     }
 
     @Override

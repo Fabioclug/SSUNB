@@ -5,17 +5,29 @@ import java.util.Date;
 public class Book {
     private String title;
     private String author;
-    private String cathegory;
+    private String category;
     private String synopsis;
-    private String code;
+    private int code;
     private Date publication;
     private int edition;
-    private String editor;
+    private String publisher;
     private int pages;
 
-    public Book(String name, String author) {
-        this.title = name;
+    public Book(String title, String author) {
+        this.title = title;
         this.author = author;
+    }
+
+    public Book(String title, String author, String category, String synopsis, int code, Date publication, int edition, String publisher, int pages) {
+        this.title = title;
+        this.author = author;
+        this.category = category;
+        this.synopsis = synopsis;
+        this.code = code;
+        this.publication = publication;
+        this.edition = edition;
+        this.publisher = publisher;
+        this.pages = pages;
     }
 
     public String getAuthor() {
@@ -34,12 +46,12 @@ public class Book {
         this.title = title;
     }
 
-    public String getCathegory() {
-        return cathegory;
+    public String getCategory() {
+        return category;
     }
 
-    public void setCathegory(String cathegory) {
-        this.cathegory = cathegory;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getSynopsis() {
@@ -50,11 +62,11 @@ public class Book {
         this.synopsis = synopsis;
     }
 
-    public String getCode() {
+    public int getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(int code) {
         this.code = code;
     }
 
@@ -74,12 +86,12 @@ public class Book {
         this.edition = edition;
     }
 
-    public String getEditor() {
-        return editor;
+    public String getPublisher() {
+        return publisher;
     }
 
-    public void setEditor(String editor) {
-        this.editor = editor;
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
     }
 
     public int getPages() {

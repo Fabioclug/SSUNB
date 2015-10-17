@@ -7,11 +7,10 @@ public class Person {
     private String email;
     private String city;
 
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
+    public Person(String name, String surname, String email, String city) {
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
         this.city = city;
     }
 
@@ -37,5 +36,13 @@ public class Person {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 }

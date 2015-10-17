@@ -7,10 +7,9 @@
     <TextView
         android:id="@+id/book_title"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/book_title"
-        android:text="Nome do Livro"
+        android:layout_height="@dimen/book_page_title"
         android:gravity="center"
-        android:textSize="30dp"/>
+        android:textSize="@dimen/book_page_title_text"/>
 
     <ImageView
         android:id="@+id/book_icon"
@@ -24,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/book_icon"
         android:layout_below="@+id/book_title"
-        android:text="oi"
+        android:text="@string/book_page_desc"
         android:gravity="center"
         android:layout_toRightOf="@+id/book_icon"/>
 
