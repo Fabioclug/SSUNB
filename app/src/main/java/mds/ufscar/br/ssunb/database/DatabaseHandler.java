@@ -18,6 +18,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL("create table book(code integer not null primary key, title text not null, " +
                 "author text not null, category text, synopsis text, publication date, " +
                 "edition integer, publisher text, pages integer)");
+
     }
 
     @Override

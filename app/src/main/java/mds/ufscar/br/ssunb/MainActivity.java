@@ -20,7 +20,7 @@ import mds.ufscar.br.ssunb.model.Book;
 
 public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickListener {
 
-    private ListView book_list;
+   // private ListView book_list;
 
     public MainActivity() {
 
@@ -36,18 +36,18 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
         //LocationListener mlocListener = new MyLocationListener(getApplicationContext());
         //mlocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, mlocListener);
 
-        book_list = (ListView) findViewById(R.id.book_list_view);
-        book_list.setAdapter(new BookListAdapter(this));
-        //findViewById(R.id.action_settings)
-        findViewById(R.id.menu_button).setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PopupMenu popupMenu = new PopupMenu(MainActivity.this, v);
-                popupMenu.setOnMenuItemClickListener(MainActivity.this);
-                popupMenu.inflate(R.menu.menu_main);
-                popupMenu.show();
-            }
-        });
+//        book_list = (ListView) findViewById(R.id.book_list_view);
+//        book_list.setAdapter(new BookListAdapter(this));
+//        //findViewById(R.id.action_settings)
+//        findViewById(R.id.menu_button).setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                PopupMenu popupMenu = new PopupMenu(MainActivity.this, v);
+//                popupMenu.setOnMenuItemClickListener(MainActivity.this);
+//                popupMenu.inflate(R.menu.menu_main);
+//                popupMenu.show();
+//            }
+//        });
     }
 
 //    public void enterBookPage(View v) {
@@ -76,6 +76,20 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void startActivityLogin(View view) {
+
+        Intent ActivityLogin;
+        ActivityLogin = new Intent(this, LoginActivity.class);
+        startActivity(ActivityLogin);
+    }
+
+    public void startActivityCadastro(View view) {
+
+        Intent ActivityCadastro;
+        ActivityCadastro = new Intent(this, CadastroActivity.class);
+        startActivity(ActivityCadastro);
     }
 
     @Override

@@ -6,4 +6,16 @@
     <string name="action_settings">Settings</string>
     <string name="menu_profile">Profile</string>
     <string name="book_page_desc">No description</string>
+    <string name="title_activity_login_cadastro">LoginCadastroActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_cadastro">CadastroActivity</string>
+    <string name="PrimNome">Primeiro Nome</string>
+    <string name="SobreNome">Sobrenome</string>
+    <string name="email">Email</string>
+    <string name="cidade">Cidade</string>
+    <string name="Senha">Senha</string>
+    <string name="RepSenha">Repetir Senha</string>
+    <string name="botaoCadastro">Cadastrar</string>
+    <string name="title_activity_home_usuario">HomeUsuarioActivity</string>
+    <string name="search_title">Procurar Obras Literárias</string>
 </resources>
