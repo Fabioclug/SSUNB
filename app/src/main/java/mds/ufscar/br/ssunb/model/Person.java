@@ -2,16 +2,28 @@ package mds.ufscar.br.ssunb.model;
 
 
 public class Person {
+    private int id;
     private String name;
     private String surname;
     private String email;
     private String city;
+    private String senha;
 
-    public Person(String name, String surname, String email, String city) {
+    public Person(String name, String surname, String city, String email, String senha) {
+        //this.id = id;
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.city = city;
+        this.senha = senha;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -44,5 +56,13 @@ public class Person {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 }

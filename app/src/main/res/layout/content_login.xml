@@ -30,8 +30,8 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
-        android:hint="Enter Name"
+        android:id="@+id/Login"
+        android:hint="Entre com o email"
         android:focusable="true"
         android:textColorHighlight="#ff7eff15"
         android:textColorHint="#ffff25e6"
@@ -72,21 +72,22 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/editText2"
-        android:layout_below="@+id/editText"
+        android:id="@+id/senha"
+        android:layout_below="@+id/Login"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/editText"
-        android:layout_alignEnd="@+id/editText"
+        android:layout_alignRight="@+id/Login"
+        android:layout_alignEnd="@+id/Login"
         android:textColorHint="#ffff299f"
-        android:hint="Password" />
+        android:hint="Senha" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="login"
         android:id="@+id/button"
-        android:layout_below="@+id/editText2"
+        android:onClick="validar"
+        android:layout_below="@+id/senha"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="51dp" />
 

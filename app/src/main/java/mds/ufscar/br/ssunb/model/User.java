@@ -5,19 +5,19 @@ package mds.ufscar.br.ssunb.model;
  */
 public class User extends Person {
 
-    String senha;
+   // String senha;
 
-    public User(String name, String surname, String email, String Cidade, String senha)
+    public User(String name, String surname, String Cidade, String email, String senha)
     {
-        super(name, surname, email, Cidade);
-        this.senha = senha;
+        super(name, surname, Cidade,email, senha);
+      //  this.senha = senha;
     }
 
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
+//    public String getSenha() {
+//        return senha;
+//    }
+//
+//    public void setSenha(String senha) {
+//        this.senha = senha;
+//    }
 }

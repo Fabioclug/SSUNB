@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import mds.ufscar.br.ssunb.model.User;
+
 public class CadastroActivity extends AppCompatActivity {
 
     @Override
@@ -42,6 +44,18 @@ public class CadastroActivity extends AppCompatActivity {
         String city = campoCidade.getText().toString();
         String email = campoEmail.getText().toString();
         String senha = campoSenha.getText().toString();
+
+        User novoUsuario = new User(nome, surname, city, email, senha);
+        UserController novoUserControler = new UserController(this);
+
+        try{
+            novoUserControler.insert(novoUsuario);
+        }catch(Exception e)
+        {
+            System.out.println("Falha ao inserir usuario no BD");
+        }
+
+
 
         System.out.println("Informacoes User: " + nome + " " + surname + " " + city + " " + email + " " + senha);
 
