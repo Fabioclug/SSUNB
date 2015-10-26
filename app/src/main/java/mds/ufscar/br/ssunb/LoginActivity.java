@@ -28,8 +28,8 @@ public class LoginActivity extends Activity {
         setContentView(R.layout.activity_login);
         context = this;
         usuarioController = new UserController(this);
-        campoLogin = (EditText) findViewById(R.id.Login);
-        campoSenha = (EditText) findViewById(R.id.senha);
+       // campoLogin = (EditText) findViewById(R.id.LoginText);
+        //campoSenha = (EditText) findViewById(R.id.senha);
 
         try {
             //testaInicializacao();

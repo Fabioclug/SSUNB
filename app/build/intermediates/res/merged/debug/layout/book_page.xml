@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/book_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/book_page_title"
+        android:gravity="center"
+        android:textSize="@dimen/book_page_title_text"/>
+
+    <ImageView
+        android:id="@+id/book_icon"
+        android:layout_width="@dimen/book_icon"
+        android:layout_height="@dimen/book_icon"
+        android:layout_below="@+id/book_title"
+        android:src="@android:drawable/ic_menu_agenda"/>
+
+    <TextView
+        android:id="@+id/book_description"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/book_icon"
+        android:layout_below="@+id/book_title"
+        android:text="@string/book_page_desc"
+        android:gravity="center"
+        android:layout_toRightOf="@+id/book_icon"/>
+
+</RelativeLayout><!-- From: file:/home/gabriela/Copy/2015.2/MDS/SSUNB/app/src/main/res/layout/book_page.xml -->

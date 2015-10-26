@@ -1,76 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-<!--
+    android:background="@color/bootstrap_brand_secondary_fill"
+    android:orientation="vertical">
 
-    <RelativeLayout
-        android:id="@+id/top_bar"
+    <View
+        android:layout_gravity="top"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/bar_height"
-        android:background="#006699">
+        android:layout_height="@dimen/guillotine_actionbar_background_view_height"
+        android:background="@color/bootstrap_brand_primary"
+        />
 
-        <Button
-            android:id="@+id/menu_button"
-            android:layout_width="40dp"
-            android:layout_height="@dimen/bar_height"
-            android:background="@android:drawable/ic_menu_sort_by_size"
-            />
-
-        <SearchView
-            android:id="@+id/search_bar"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/bar_height"
-            android:layout_toRightOf="@id/menu_button"
-            android:layout_margin="@dimen/search_bar_margin"
-            android:background="#4f7c99"/>
-
-    </RelativeLayout>
-
-
-    <ListView
-        android:id="@+id/book_list_view"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/top_bar"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:paddingBottom="@dimen/activity_vertical_margin">
-    </ListView>
+        android:orientation="vertical">
 
-    -->
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            app:contentInsetStart="0dp"
+            style="@style/Toolbar">
 
-    <TextView android:text="Bem Vindos ao SSUNB!"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textview"
-        android:textSize="35dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+            <ImageView
+                android:id="@+id/content_hamburger"
+                style="@style/ImageView.Hamburger"
+                android:src="@drawable/ic_menu_90" />
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="startActivityLogin"
-        android:text="Login"
-        android:layout_marginTop="106dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+            <TextView
+                style="@style/example_title"
+                android:text="SSUNB"
+                android:textColor="#ffffff" />
+        </android.support.v7.widget.Toolbar>
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="startActivityCadastro"
-        android:text="Efetuar Cadastro"
-        android:layout_marginTop="68dp"
-        android:layout_below="@+id/button1"
-        android:layout_centerHorizontal="true" />
+        <LinearLayout
+        style="@style/example_container"
+        android:baselineAligned="false"
+        android:orientation="vertical"
+        android:weightSum="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
 
+    <!--
 
-</RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bar_height"
+            android:background="#006699">
+
+
+            <SearchView
+                android:id="@+id/search_bar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/bar_height"
+                android:layout_toRightOf="@id/menu_button"
+                android:layout_margin="@dimen/search_bar_margin"
+                android:background="#4f7c99"/>
+
+        </RelativeLayout>
+
+
+        <ListView
+            android:id="@+id/book_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/top_bar"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingBottom="@dimen/activity_vertical_margin">
+        </ListView>
+
+        -->
+
+        <com.beardedhen.androidbootstrap.BootstrapCircleThumbnail
+            android:id="@+id/bcircle_image_change_example"
+            android:layout_width="81dp"
+            android:layout_height="81dp"
+            android:src="@drawable/ic_search_black_24dp"
+            android:layout_gravity="center_horizontal" />
+
+        <EditText
+            android:layout_width="263dp"
+            android:layout_height="0dp"
+            android:id="@+id/loginText"
+            android:textIsSelectable="false"
+            android:layout_gravity="center"
+            android:layout_weight="0.20"
+            android:layout_marginTop="50dp"
+            android:autoLink="none"
+            android:clickable="true"
+            android:hint="Login"
+            android:contextClickable="false" />
+
+        <EditText
+            android:layout_width="263dp"
+            android:layout_height="0dp"
+            android:inputType="numberPassword"
+            android:ems="10"
+            android:id="@+id/senhaText"
+            android:layout_gravity="center"
+            android:password="true"
+            android:hint="Senha"
+            android:singleLine="false"
+            android:editable="true"
+            android:layout_weight="0.20" />
+
+        <com.beardedhen.androidbootstrap.BootstrapLabel
+            android:layout_width="227dp"
+            android:layout_height="wrap_content"
+            app:bootstrapBrand="primary"
+            app:bootstrapHeading="h2"
+            app:roundedCorners="true"
+            android:text="Login"
+            android:layout_column="7"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/loginButton"
+            android:onClick="validar"
+            android:layout_gravity="center"
+            android:layout_weight="0.06"
+            android:layout_marginTop="11dp" />
+
+        <com.beardedhen.androidbootstrap.BootstrapLabel
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:bootstrapBrand="primary"
+            app:bootstrapHeading="h2"
+            app:roundedCorners="true"
+            android:text="Login Facebook"
+            android:layout_column="7"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/LoginFacebook"
+            android:layout_gravity="center"
+            android:layout_weight="0.09"
+            android:layout_marginTop="11dp" />
+
+            <LinearLayout
+                android:layout_width="340dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+                <com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/buttonCadastro"
+                style="@style/wrapping_button"
+                android:text="Cadastre-se no SSUNB"
+                app:bootstrapBrand="info"
+                app:bootstrapSize="lg"
+                android:onClick="startActivityCadastro"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</FrameLayout>

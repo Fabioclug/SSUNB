@@ -1,116 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/activity_cadastro" tools:context="mds.ufscar.br.ssunb.CadastroActivity">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bootstrap_brand_secondary_fill"
+    android:orientation="vertical">
+
+    <View
+        android:layout_gravity="top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/guillotine_actionbar_background_view_height"
+        android:background="@color/bootstrap_brand_primary"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            app:contentInsetStart="0dp"
+            style="@style/Toolbar">
+
+            <ImageView
+                android:id="@+id/content_hamburger"
+                style="@style/ImageView.Hamburger"
+                android:src="@drawable/ic_menu_90" />
+
+            <TextView
+                style="@style/example_title"
+                android:text="SSUNB"
+                android:textColor="#ffffff" />
+        </android.support.v7.widget.Toolbar>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/LinearLayout1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="342dp"
         android:orientation="vertical"
-        tools:context=".MainActivity" >
+        tools:context=".MainActivity"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp">
 
-    <TextView
-        android:id="@+id/textViewPrimNome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/PrimNome"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
         android:id="@+id/editTextPrimNome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:layout_below="@+id/textView1"
-        android:layout_alignParentStart="true">
-
-        <requestFocus />
+        android:hint="@string/PrimNome">
     </EditText>
-
-    <TextView
-        android:id="@+id/textViewSobreNome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/SobreNome"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_below="@+id/editText1"
-        android:layout_alignParentStart="true" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="@string/SobreNome"
             android:id="@+id/editTextSobreNome" />
-
-        <TextView
-        android:id="@+id/textViewCidade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/cidade"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_above="@+id/button2"
-        android:layout_alignEnd="@+id/textView2" />
 
     <EditText
         android:id="@+id/editTextCidade"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:layout_above="@+id/editText4"
-        android:layout_alignParentStart="true" />
+        android:hint="@string/cidade" />
 
-    <TextView
-        android:id="@+id/textViewEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/email"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_above="@+id/button2"
-        android:layout_centerHorizontal="true" />
 
     <EditText
         android:id="@+id/editTextEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true" />
+        android:hint="@string/email" />
 
-
-        <TextView
-            android:id="@+id/textViewSenha"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/Senha"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_above="@+id/button2"
-            android:layout_centerHorizontal="true" />
 
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:ems="10"
+            android:hint="@string/Senha"
             android:id="@+id/editTextSenha" />
 
-        <Button
-        android:id="@+id/buttonCadastro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="EfetuarCadastro"
-        android:text="@string/botaoCadastro"
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="@string/RepSenha"
+            android:id="@+id/editTextRepSenha" />
 
-        android:layout_marginBottom="108dp"
-        android:layout_gravity="center_horizontal" />
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:id="@+id/buttonCadastro"
+            style="@style/wrapping_button"
+            android:text="Cadastre-se no SSUNB"
+            app:bootstrapBrand="info"
+            app:bootstrapSize="lg"
+            android:onClick="EfetuarCadastro"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp" />
 
+
+    </LinearLayout>
 </LinearLayout>
-
-</RelativeLayout>
+</FrameLayout>
