@@ -16,6 +16,7 @@ import android.widget.PopupMenu;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
 
+import mds.ufscar.br.ssunb.database.DatabaseHandler;
 import mds.ufscar.br.ssunb.model.Book;
 
 public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickListener {
@@ -31,6 +32,10 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
         super.onCreate(savedInstanceState);
         //setTheme(R.style.AppTheme);
         setContentView(R.layout.activity_main);
+        DatabaseHandler db = new DatabaseHandler(this);
+        db.getWritableDatabase().execSQL("CREATE TABLE usuario (id integer not null primary key, " +
+                "PrimNome text not null, SobreNome text not null,cidade text not null," +
+                "email text not null, senha text not null )");
 
         //LocationManager mlocManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
         //LocationListener mlocListener = new MyLocationListener(getApplicationContext());
