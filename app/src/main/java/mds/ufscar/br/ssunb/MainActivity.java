@@ -147,7 +147,7 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
         String senha = campoSenha.getText().toString();
 
         try {
-            boolean isValid = true; //= usuarioController.validaLogin(login, senha);
+            boolean isValid = usuarioController.validaLogin(login, senha);
             if (isValid) {
                 exibeDialogo("Usuario e senha validados com sucesso!");
             } else {
