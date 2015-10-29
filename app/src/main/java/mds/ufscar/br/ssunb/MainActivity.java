@@ -2,6 +2,7 @@ package mds.ufscar.br.ssunb;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.location.LocationListener;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.view.View.OnClickListener;
@@ -21,7 +23,11 @@ import mds.ufscar.br.ssunb.model.Book;
 
 public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickListener {
 
-   // private ListView book_list;
+   // private ListView book_list;7
+   private EditText campoLogin, campoSenha;
+    private Context context;
+    private UserController usuarioController;
+    private AlertDialog.Builder alert;
 
     public MainActivity() {
 
@@ -32,10 +38,10 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
         super.onCreate(savedInstanceState);
         //setTheme(R.style.AppTheme);
         setContentView(R.layout.activity_main);
-        DatabaseHandler db = new DatabaseHandler(this);
-        db.getWritableDatabase().execSQL("CREATE TABLE usuario (id integer not null primary key, " +
-                "PrimNome text not null, SobreNome text not null,cidade text not null," +
-                "email text not null, senha text not null )");
+//        DatabaseHandler db = new DatabaseHandler(this);
+//        db.getWritableDatabase().execSQL("CREATE TABLE usuario (id integer not null primary key, " +
+//                "PrimNome text not null, SobreNome text not null,cidade text not null," +
+//                "email text not null, senha text not null )");
 
         //LocationManager mlocManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
         //LocationListener mlocListener = new MyLocationListener(getApplicationContext());
@@ -53,6 +59,22 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
 //                popupMenu.show();
 //            }
 //        });
+
+        context = this;
+        usuarioController = new UserController(this);
+        // campoLogin = (EditText) findViewById(R.id.LoginText);
+        //campoSenha = (EditText) findViewById(R.id.senha);
+
+        try {
+            //testaInicializacao();
+        } catch (Exception e) {
+            exibeDialogo("Erro inicializando banco de dados");
+            e.printStackTrace();
+        }
+
+
+
+
     }
 
 //    public void enterBookPage(View v) {
@@ -60,6 +82,14 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
 //        Intent intent = new Intent(MainActivity.this, BookPage.class);
 //        startActivity(intent);
 //    }
+
+
+    public void exibeDialogo(String mensagem) {
+        alert = new AlertDialog.Builder(context);
+        alert.setPositiveButton("OK", null);
+        alert.setMessage(mensagem);
+        alert.create().show();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -83,12 +113,12 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
         return super.onOptionsItemSelected(item);
     }
 
-    public void startActivityLogin(View view) {
-
-        Intent ActivityLogin;
-        ActivityLogin = new Intent(this, LoginActivity.class);
-        startActivity(ActivityLogin);
-    }
+//    public void startActivityLogin(View view) {
+//
+//        Intent ActivityLogin;
+//        ActivityLogin = new Intent(this, LoginActivity.class);
+//        startActivity(ActivityLogin);
+//    }
 
     public void startActivityCadastro(View view) {
 
@@ -106,4 +136,27 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
         }
         return false;
     }
+
+
+    public void validar(View view) {
+
+        campoLogin = (EditText) findViewById(R.id.loginText);
+        campoSenha = (EditText) findViewById(R.id.senhaText);
+
+        String login = campoLogin.getText().toString();
+        String senha = campoSenha.getText().toString();
+
+        try {
+            boolean isValid = true; //= usuarioController.validaLogin(login, senha);
+            if (isValid) {
+                exibeDialogo("Usuario e senha validados com sucesso!");
+            } else {
+                exibeDialogo("Verifique usuario e senha!");
+            }
+        } catch (Exception e) {
+            exibeDialogo("Erro validando usuario e senha");
+            e.printStackTrace();
+        }
+    }
+
 }
