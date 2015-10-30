@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.PopupMenu;
@@ -61,9 +62,20 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
 //        });
 
         context = this;
+        //context.deleteDatabase("ssunb");
         usuarioController = new UserController(this);
         // campoLogin = (EditText) findViewById(R.id.LoginText);
         //campoSenha = (EditText) findViewById(R.id.senha);
+
+        findViewById(R.id.loginButton).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(validar()) {
+                    Intent intent = new Intent(MainActivity.this, HomeUsuarioActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
 
         try {
             //testaInicializacao();
@@ -138,17 +150,18 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
     }
 
 
-    public void validar(View view) {
+    public boolean validar() {
 
         campoLogin = (EditText) findViewById(R.id.loginText);
         campoSenha = (EditText) findViewById(R.id.senhaText);
 
         String login = campoLogin.getText().toString();
         String senha = campoSenha.getText().toString();
-
+        boolean answer = false;
         try {
             boolean isValid = usuarioController.validaLogin(login, senha);
             if (isValid) {
+                answer = true;
                 exibeDialogo("Usuario e senha validados com sucesso!");
             } else {
                 exibeDialogo("Verifique usuario e senha!");
@@ -157,6 +170,7 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
             exibeDialogo("Erro validando usuario e senha");
             e.printStackTrace();
         }
+        return answer;
     }
 
 }

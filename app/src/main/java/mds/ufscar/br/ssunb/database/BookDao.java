@@ -24,6 +24,26 @@ public class BookDao implements Dao<Book> {
         dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
     }
 
+    public Book build(Cursor cursor) {
+        String title, author, category, synopsis, publisher;
+        int code, edition, pages;
+        Date publication = null;
+        title = cursor.getString(cursor.getColumnIndex("title"));
+        author = cursor.getString(cursor.getColumnIndex("author"));
+        category = cursor.getString(cursor.getColumnIndex("category"));
+        synopsis = cursor.getString(cursor.getColumnIndex("synopsis"));
+        publisher = cursor.getString(cursor.getColumnIndex("publisher"));
+        code = cursor.getInt(cursor.getColumnIndex("code"));
+        edition = cursor.getInt(cursor.getColumnIndex("edition"));
+        pages = cursor.getInt(cursor.getColumnIndex("pages"));
+//      try {
+//          publication = dateFormat.parse(cursor.getString((cursor.getColumnIndex("publication"))));
+//      } catch (ParseException e) {
+//          e.printStackTrace();
+//      }
+        return new Book(title, author, category, synopsis, code, publication, edition, publisher, pages);
+    }
+
     @Override
     public boolean save(Book object) {
         SQLiteDatabase db = handler.getWritableDatabase();
@@ -52,27 +72,11 @@ public class BookDao implements Dao<Book> {
     @Override
     public List<Book> listAll() {
         Cursor cursor = handler.getReadableDatabase().query("book", null, null, null, null, null, "title");
-        String title, author, category, synopsis, publisher;
-        int code, edition, pages;
-        Date publication = null;
         List<Book> bookList = new ArrayList<Book>();
 
         if (cursor .moveToFirst()) {
             while (cursor.isAfterLast() == false) {
-                title = cursor.getString(cursor.getColumnIndex("title"));
-                author = cursor.getString(cursor.getColumnIndex("author"));
-                category = cursor.getString(cursor.getColumnIndex("category"));
-                synopsis = cursor.getString(cursor.getColumnIndex("synopsis"));
-                publisher = cursor.getString(cursor.getColumnIndex("publisher"));
-                code = cursor.getInt(cursor.getColumnIndex("code"));
-//                try {
-//                    publication = dateFormat.parse(cursor.getString((cursor.getColumnIndex("publication"))));
-//                } catch (ParseException e) {
-//                    e.printStackTrace();
-//                }
-                edition = cursor.getInt(cursor.getColumnIndex("edition"));
-                pages = cursor.getInt(cursor.getColumnIndex("pages"));
-                Book b = new Book(title, author, category, synopsis, code, publication, edition, publisher, pages);
+                Book b = build(cursor);
                 bookList.add(b);
                 cursor.moveToNext();
             }
@@ -83,5 +87,19 @@ public class BookDao implements Dao<Book> {
     @Override
     public List<Book> listBy(String criteria) {
         return null;
+    }
+
+    public List<Book> listByUser(int user_code) {
+        List<Book> bookList = new ArrayList<Book>();
+        Cursor cursor = handler.getReadableDatabase().rawQuery("SELECT * FROM exemplar_livro AS E JOIN book B ON" +
+        "E.livro = C.code WHERE E.usuario = ?", new String[] {Integer.toString(user_code)});
+        if (cursor .moveToFirst()) {
+            while (cursor.isAfterLast() == false) {
+                Book b = build(cursor);
+                bookList.add(b);
+                cursor.moveToNext();
+            }
+        }
+        return bookList;
     }
 }

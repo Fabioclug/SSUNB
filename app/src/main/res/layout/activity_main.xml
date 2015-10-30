@@ -122,7 +122,6 @@
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:id="@+id/loginButton"
-            android:onClick="validar"
             android:layout_gravity="center"
             android:layout_weight="0.06"
             android:layout_marginTop="11dp" />

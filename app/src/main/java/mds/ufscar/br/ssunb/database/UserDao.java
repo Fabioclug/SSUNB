@@ -20,33 +20,13 @@ public class UserDao implements Dao<User> {
         this.handler = handler;
     }
 
-    public boolean insert(User usuario) throws Exception {
-        ContentValues values = new ContentValues();
-        SQLiteDatabase db = handler.getWritableDatabase();
-
-        values.put("id", 0);
-        values.put("PrimNome", usuario.getName());
-        values.put("SobreNome", usuario.getSurname());
-        values.put("cidade", usuario.getCity());
-        values.put("email", usuario.getEmail());
-        values.put("senha", usuario.getSenha());
-
-        int result = (int) db.insert("usuario", null, values);
-        //db.close();
-
-        if(result > 0)
-        {
-            usuario.setId(result);
-        }
-        return (result > 0);
-    }
-
     @Override
     public boolean save(User object) {
         ContentValues values = new ContentValues();
         SQLiteDatabase db = handler.getWritableDatabase();
 
-        values.put("id", 0);
+        //nao precisa inserir o id, o sqlite faz um autoincrement automatico
+        //values.put("id", 0);
         values.put("PrimNome", object.getName());
         values.put("SobreNome", object.getSurname());
         values.put("cidade", object.getCity());
@@ -54,7 +34,7 @@ public class UserDao implements Dao<User> {
         values.put("senha", object.getSenha());
 
         int result = (int) db.insert("usuario", null, values);
-        //db.close();
+        db.close();
 
         if(result > 0)
         {
@@ -95,17 +75,17 @@ public class UserDao implements Dao<User> {
 //    }
 
     public User montaUsuario(Cursor cursor) {
-        if (cursor.getCount() == 0) {
-            return null;
-        }
-        Integer id = cursor.getInt(cursor.getColumnIndex("id"));
-        String PrimNome = cursor.getString(cursor.getColumnIndex("PrimNome"));
-        String SobreNome = cursor.getString(cursor.getColumnIndex("SobreNome"));
-        String cidade = cursor.getString(cursor.getColumnIndex("cidade"));
-        String email = cursor.getString(cursor.getColumnIndex("email"));
-        String senha = cursor.getString(cursor.getColumnIndex("senha"));
+        if(cursor.moveToFirst()) {
+            Integer id = cursor.getInt(cursor.getColumnIndex("id"));
+            String PrimNome = cursor.getString(cursor.getColumnIndex("PrimNome"));
+            String SobreNome = cursor.getString(cursor.getColumnIndex("SobreNome"));
+            String cidade = cursor.getString(cursor.getColumnIndex("cidade"));
+            String email = cursor.getString(cursor.getColumnIndex("email"));
+            String senha = cursor.getString(cursor.getColumnIndex("senha"));
 
-        return new User(PrimNome, SobreNome, cidade, email, senha);
+            return new User(PrimNome, SobreNome, cidade, email, senha);
+        }
+        else return null;
 
     }
 
@@ -113,10 +93,11 @@ public class UserDao implements Dao<User> {
         //SQLiteDatabase db = handler.getWritableDatabase();
 //        String sql = "SELECT * FROM " + "usuario" + " WHERE email = ? AND senha = ?";
 //        String[] selectionArgs = new String[] { email, senha };
-        Cursor cursor = handler.getReadableDatabase().query("usuario", null, null, null, null, null, "email");
-        cursor.moveToFirst();
-
-        return montaUsuario(cursor);
+        Cursor cursor = handler.getReadableDatabase().rawQuery("SELECT * FROM usuario WHERE email = ? AND senha = ?",
+                new String[] { email, senha });
+        User u = montaUsuario(cursor);
+        cursor.close();
+        return u;
     }
 
 }

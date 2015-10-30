@@ -46,14 +46,12 @@ public class UserController {
 
     public boolean validaLogin(String email, String senha) throws Exception {
         User user = usuarioDAO.findByLogin(email, senha);
-        System.out.println("Email: "+email+ " Senha: "+senha);
+        System.out.println("Email: "+user.getEmail()+ " Senha: "+user.getSenha());
 
         if (user == null || user.getEmail() == null || user.getSenha() == null) {
             return false;
         }
-        String informado = email + senha;
-        String esperado = user.getEmail() + user.getSenha();
-        if (informado.equals(esperado)) {
+        if (user.getEmail().equals(email) && user.getSenha().equals(senha)) {
             return true;
         }
         return false;
