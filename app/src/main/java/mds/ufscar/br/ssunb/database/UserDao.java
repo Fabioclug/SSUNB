@@ -100,4 +100,13 @@ public class UserDao implements Dao<User> {
         return u;
     }
 
+    public User findByEmail(String email)
+    {
+        Cursor cursor = handler.getReadableDatabase().rawQuery("SELECT * FROM usuario WHERE email = ?",
+                new String[] { email });
+        User u = montaUsuario(cursor);
+        cursor.close();
+        return u;
+    }
+
 }

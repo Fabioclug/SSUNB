@@ -29,6 +29,7 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
     private Context context;
     private UserController usuarioController;
     private AlertDialog.Builder alert;
+    private String emailUserSecao;
 
     public MainActivity() {
 
@@ -72,6 +73,7 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
             public void onClick(View v) {
                 if(validar()) {
                     Intent intent = new Intent(MainActivity.this, HomeUsuarioActivity.class);
+                    intent.putExtra("EMAIL_USER", emailUserSecao);
                     startActivity(intent);
                 }
             }
@@ -162,6 +164,7 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
             boolean isValid = usuarioController.validaLogin(login, senha);
             if (isValid) {
                 answer = true;
+                emailUserSecao = login;
                 exibeDialogo("Usuario e senha validados com sucesso!");
             } else {
                 exibeDialogo("Verifique usuario e senha!");

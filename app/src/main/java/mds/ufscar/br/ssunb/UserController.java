@@ -58,4 +58,10 @@ public class UserController {
 
     }
 
+    public User findByEmail(String email)
+    {
+        User user = usuarioDAO.findByEmail(email);
+        return user;
+    }
+
 }
