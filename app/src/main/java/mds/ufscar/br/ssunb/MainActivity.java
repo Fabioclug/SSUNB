@@ -24,8 +24,8 @@ import mds.ufscar.br.ssunb.model.Book;
 
 public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickListener {
 
-   // private ListView book_list;7
-   private EditText campoLogin, campoSenha;
+   // private ListView book_list;
+    private EditText campoLogin, campoSenha;
     private Context context;
     private UserController usuarioController;
     private AlertDialog.Builder alert;
