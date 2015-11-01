@@ -18,4 +18,12 @@
     <string name="botaoCadastro">Cadastrar</string>
     <string name="title_activity_home_usuario">HomeUsuarioActivity</string>
     <string name="search_title">Procurar Obras Literárias</string>
+
+    <string-array name="itensMenuUser">
+        <item>Meus Livros</item>
+        <item>Meus Empréstimos</item>
+        <item>Minhas Informações Pessoais</item>
+        <item>Minhas Avaliações</item>
+    </string-array>
+
 </resources>

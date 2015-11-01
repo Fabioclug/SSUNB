@@ -6,16 +6,20 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import mds.ufscar.br.ssunb.database.UserDao;
 import mds.ufscar.br.ssunb.model.User;
 
-public class HomeUsuarioActivity extends AppCompatActivity {
+public class HomeUsuarioActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
     UserController usuarioDaSessao;
     String emailUsuarioDaSessao;
+    ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +36,9 @@ public class HomeUsuarioActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        listView = (ListView) findViewById(R.id.ListMenuUser);
+       // listView.setOnItemClickListener(this);
 
 
         if(getIntent().hasExtra("EMAIL_USER")){
@@ -51,6 +58,8 @@ public class HomeUsuarioActivity extends AppCompatActivity {
     }
 
 
-
-
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        return false;
+    }
 }
