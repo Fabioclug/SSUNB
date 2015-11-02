@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bootstrap_brand_secondary_fill"
+    android:orientation="vertical">
+
+    <View
+        android:layout_gravity="top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/guillotine_actionbar_background_view_height"
+        android:background="@color/bootstrap_brand_primary"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            app:contentInsetStart="0dp"
+            style="@style/Toolbar">
+
+            <com.beardedhen.androidbootstrap.BootstrapCircleThumbnail
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/content_1"
+                android:layout_marginLeft="20dp"
+                app:bootstrapBrand="danger"
+                app:hasBorder="true"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Preencher com 1 o nome"
+                android:id="@+id/NameUser"
+                android:textColor="#ffffff"
+                android:textSize="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                />
+
+
+        </android.support.v7.widget.Toolbar>
+
+
+
+        <LinearLayout
+            style="@style/example_container"
+            android:baselineAligned="false"
+            android:orientation="vertical"
+            android:weightSum="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/editTextPrimNome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/NomeLivro">
+            </EditText>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/AutorLivro"
+                android:id="@+id/editTextSobreNome" />
+
+
+
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/buttonSujestaoLivro"
+                style="@style/wrapping_button"
+                android:text="Enviar Sujestão"
+                app:bootstrapBrand="info"
+                app:bootstrapSize="lg"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp" />
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</FrameLayout>

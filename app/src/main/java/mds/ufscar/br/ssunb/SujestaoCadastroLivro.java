@@ -9,25 +9,20 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import mds.ufscar.br.ssunb.database.UserDao;
 import mds.ufscar.br.ssunb.model.User;
 
-public class HomeUsuarioActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
-
+public class SujestaoCadastroLivro extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
     UserController usuarioDaSessao;
     String emailUsuarioDaSessao;
-    ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_usuario);
+        setContentView(R.layout.activity_sujestao_cadastro_livro);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -40,15 +35,11 @@ public class HomeUsuarioActivity extends AppCompatActivity implements AdapterVie
             }
         });
 
-        listView = (ListView) findViewById(R.id.ListMenuUser);
-        listView.setOnItemClickListener(this);
-
-
         if(getIntent().hasExtra("EMAIL_USER")){
             Bundle extras = getIntent().getExtras();
             emailUsuarioDaSessao = extras.getString("EMAIL_USER");
             System.out.println(extras.getString("EMAIL_USER"));
-            Log.w("EmailUser",extras.getString("EMAIL_USER"));
+            Log.w("EmailUser", extras.getString("EMAIL_USER"));
         }
 
         usuarioDaSessao = new UserController(this);
@@ -58,36 +49,21 @@ public class HomeUsuarioActivity extends AppCompatActivity implements AdapterVie
         TextView NomeDoUsuario = (TextView)findViewById(R.id.NameUser);
         NomeDoUsuario.setText(nome);
 
-    }
 
-    public void PaginaCadastroLivro(View view)
-    {
-        Intent ActivityCadastroLivro;
-        ActivityCadastroLivro = new Intent(this, SujestaoCadastroLivro.class);
-        startActivity(ActivityCadastroLivro);
+        findViewById(R.id.buttonSujestaoLivro).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //recuperar itens que foram digitados e pensar numa maneira de salvar sujestoes
+                Toast.makeText(getApplicationContext(), "Sujestão enviada para análise",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
 
     @Override
-    public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
-
-        switch (position){
-            case 0:
-                break;
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                Intent intent = new Intent(HomeUsuarioActivity.this, SujestaoCadastroLivro.class);
-                intent.putExtra("EMAIL_USER", emailUsuarioDaSessao);
-                startActivity(intent);
-                break;
-        }
-//        Toast.makeText(getApplicationContext(), ((TextView) view).getText(),
-//                Toast.LENGTH_SHORT).show();
+    public boolean onMenuItemClick(MenuItem item) {
+        return false;
     }
-
 }
