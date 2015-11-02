@@ -26,8 +26,8 @@
         <item>Meus Empréstimos</item>
         <item>Minhas Informações Pessoais</item>
         <item>Minhas Avaliações</item>
-        <item>Enviar sujestão de novo livro</item>
+        <item>Enviar sugestão de novo livro</item>
     </string-array>
-    <string name="title_activity_sujestao_cadastro_livro">SujestaoCadastroLivro</string>
+    <string name="title_activity_sugestao_cadastro_livro">SujestaoCadastroLivro</string>
 
 </resources>

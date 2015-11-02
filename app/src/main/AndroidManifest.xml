@@ -46,8 +46,8 @@
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
-            android:name=".SujestaoCadastroLivro"
-            android:label="@string/title_activity_sujestao_cadastro_livro"
+            android:name=".SugestaoCadastroLivro"
+            android:label="@string/title_activity_sugestao_cadastro_livro"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
     </application>

@@ -1,6 +1,5 @@
 package mds.ufscar.br.ssunb;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,14 +14,14 @@ import android.widget.Toast;
 
 import mds.ufscar.br.ssunb.model.User;
 
-public class SujestaoCadastroLivro extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
+public class SugestaoCadastroLivro extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
     UserController usuarioDaSessao;
     String emailUsuarioDaSessao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sujestao_cadastro_livro);
+        setContentView(R.layout.activity_sugestao_cadastro_livro);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -53,8 +52,8 @@ public class SujestaoCadastroLivro extends AppCompatActivity implements PopupMen
         findViewById(R.id.buttonSujestaoLivro).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //recuperar itens que foram digitados e pensar numa maneira de salvar sujestoes
-                Toast.makeText(getApplicationContext(), "Sujestão enviada para análise",
+                //recuperar itens que foram digitados e pensar numa maneira de salvar sugestoes
+                Toast.makeText(getApplicationContext(), "Sugestão enviada para análise",
                         Toast.LENGTH_SHORT).show();
             }
         });

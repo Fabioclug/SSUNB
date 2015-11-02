@@ -74,7 +74,8 @@ public class UserDao implements Dao<User> {
 //        return retorno;
 //    }
 
-    public User montaUsuario(Cursor cursor) {
+    @Override
+    public User build(Cursor cursor) {
         if(cursor.moveToFirst()) {
             Integer id = cursor.getInt(cursor.getColumnIndex("id"));
             String PrimNome = cursor.getString(cursor.getColumnIndex("PrimNome"));
@@ -83,7 +84,7 @@ public class UserDao implements Dao<User> {
             String email = cursor.getString(cursor.getColumnIndex("email"));
             String senha = cursor.getString(cursor.getColumnIndex("senha"));
 
-            return new User(PrimNome, SobreNome, cidade, email, senha);
+            return new User(id, PrimNome, SobreNome, cidade, email, senha);
         }
         else return null;
 
@@ -95,7 +96,7 @@ public class UserDao implements Dao<User> {
 //        String[] selectionArgs = new String[] { email, senha };
         Cursor cursor = handler.getReadableDatabase().rawQuery("SELECT * FROM usuario WHERE email = ? AND senha = ?",
                 new String[] { email, senha });
-        User u = montaUsuario(cursor);
+        User u = build(cursor);
         cursor.close();
         return u;
     }
@@ -104,7 +105,7 @@ public class UserDao implements Dao<User> {
     {
         Cursor cursor = handler.getReadableDatabase().rawQuery("SELECT * FROM usuario WHERE email = ?",
                 new String[] { email });
-        User u = montaUsuario(cursor);
+        User u = build(cursor);
         cursor.close();
         return u;
     }

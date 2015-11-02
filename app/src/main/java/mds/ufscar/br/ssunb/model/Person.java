@@ -1,6 +1,9 @@
 package mds.ufscar.br.ssunb.model;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Person {
     private int id;
     private String name;
@@ -8,6 +11,7 @@ public class Person {
     private String email;
     private String city;
     private String senha;
+    private List<Book> ownedBooks;
 
     public Person(String name, String surname, String city, String email, String senha) {
         //this.id = id;
@@ -16,6 +20,17 @@ public class Person {
         this.email = email;
         this.city = city;
         this.senha = senha;
+        ownedBooks = new ArrayList<Book>();
+    }
+
+    public Person(int id, String name, String surname, String city, String email, String senha) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.city = city;
+        this.senha = senha;
+        ownedBooks = new ArrayList<Book>();
     }
 
     public int getId() {
@@ -64,5 +79,17 @@ public class Person {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public List<Book> getOwnedBooks() {
+        return ownedBooks;
+    }
+
+    public void setOwnedBooks(List<Book> ownedBooks) {
+        this.ownedBooks = ownedBooks;
+    }
+
+    public void addBook(Book b) {
+        ownedBooks.add(b);
     }
 }

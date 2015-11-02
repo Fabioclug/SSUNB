@@ -7,15 +7,11 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import mds.ufscar.br.ssunb.database.UserDao;
 import mds.ufscar.br.ssunb.model.User;
 
 public class HomeUsuarioActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
@@ -63,7 +59,7 @@ public class HomeUsuarioActivity extends AppCompatActivity implements AdapterVie
     public void PaginaCadastroLivro(View view)
     {
         Intent ActivityCadastroLivro;
-        ActivityCadastroLivro = new Intent(this, SujestaoCadastroLivro.class);
+        ActivityCadastroLivro = new Intent(this, SugestaoCadastroLivro.class);
         startActivity(ActivityCadastroLivro);
     }
 
@@ -81,7 +77,7 @@ public class HomeUsuarioActivity extends AppCompatActivity implements AdapterVie
             case 3:
                 break;
             case 4:
-                Intent intent = new Intent(HomeUsuarioActivity.this, SujestaoCadastroLivro.class);
+                Intent intent = new Intent(HomeUsuarioActivity.this, SugestaoCadastroLivro.class);
                 intent.putExtra("EMAIL_USER", emailUsuarioDaSessao);
                 startActivity(intent);
                 break;

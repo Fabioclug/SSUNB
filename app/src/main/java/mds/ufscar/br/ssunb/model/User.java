@@ -7,10 +7,14 @@ public class User extends Person {
 
    // String senha;
 
-    public User(String name, String surname, String Cidade, String email, String senha)
-    {
+    public User(String name, String surname, String Cidade, String email, String senha) {
         super(name, surname, Cidade,email, senha);
       //  this.senha = senha;
+    }
+
+    public User(int id, String name, String surname, String Cidade, String email, String senha) {
+        super(id, name, surname, Cidade,email, senha);
+        //  this.senha = senha;
     }
 
 //    public String getSenha() {
