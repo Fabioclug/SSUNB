@@ -51,6 +51,16 @@
             android:label="@string/title_activity_home_usuario"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
+        <activity
+            android:name="mds.ufscar.br.ssunb.SugestaoCadastroLivro"
+            android:label="@string/title_activity_sugestao_cadastro_livro"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name="mds.ufscar.br.ssunb.LivrosUsuarioActivity"
+            android:label="@string/title_activity_livros_usuario"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
     </application>
 
 </manifest> <!-- android:theme="@android:style/Theme.Holo.Light" > -->

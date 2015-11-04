@@ -122,7 +122,6 @@
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:id="@+id/loginButton"
-            android:onClick="validar"
             android:layout_gravity="center"
             android:layout_weight="0.06"
             android:layout_marginTop="11dp" />
@@ -170,4 +169,4 @@
 
     </LinearLayout>
 
-</FrameLayout><!-- From: file:/home/gabriela/Copy/2015.2/MDS/SSUNB/app/src/main/res/layout/activity_main.xml -->
+</FrameLayout><!-- From: file:/home/breno/Área%20de%20Trabalho/MDS/SSUNB/app/src/main/res/layout/activity_main.xml -->
