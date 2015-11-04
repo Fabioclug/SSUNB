@@ -28,11 +28,6 @@
         <item>Minhas Avaliações</item>
         <item>Enviar sugestão de novo livro</item>
     </string-array>
-<<<<<<< HEAD
-    <string name="title_activity_sugestao_cadastro_livro">SujestaoCadastroLivro</string>
-    <string name="title_activity_livros_usuario">LivrosUsuarioActivity</string>
-=======
     <string name="title_activity_sugestao_cadastro_livro">SugestaoCadastroLivro</string>
->>>>>>> d358239d52a276491a01277da064b2d1123cbc29
 
 </resources>
