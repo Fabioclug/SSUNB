@@ -28,6 +28,6 @@
         <item>Minhas Avaliações</item>
         <item>Enviar sugestão de novo livro</item>
     </string-array>
-    <string name="title_activity_sugestao_cadastro_livro">SujestaoCadastroLivro</string>
+    <string name="title_activity_sugestao_cadastro_livro">SugestaoCadastroLivro</string>
 
 </resources>

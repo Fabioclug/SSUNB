@@ -74,9 +74,9 @@
 
 
             <com.beardedhen.androidbootstrap.BootstrapButton
-                android:id="@+id/buttonSujestaoLivro"
+                android:id="@+id/buttonSugestaoLivro"
                 style="@style/wrapping_button"
-                android:text="Enviar Sujestão"
+                android:text="Enviar Sugestão"
                 app:bootstrapBrand="info"
                 app:bootstrapSize="lg"
                 android:layout_alignParentTop="true"

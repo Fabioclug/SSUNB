@@ -49,7 +49,7 @@ public class SugestaoCadastroLivro extends AppCompatActivity implements PopupMen
         NomeDoUsuario.setText(nome);
 
 
-        findViewById(R.id.buttonSujestaoLivro).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.buttonSugestaoLivro).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //recuperar itens que foram digitados e pensar numa maneira de salvar sugestoes
