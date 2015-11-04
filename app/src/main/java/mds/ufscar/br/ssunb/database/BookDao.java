@@ -91,7 +91,7 @@ public class BookDao implements Dao<Book> {
 
     public List<Book> listByUser(int user_code) {
         List<Book> bookList = new ArrayList<Book>();
-        Cursor cursor = handler.getReadableDatabase().rawQuery("SELECT * FROM exemplar_livro AS E JOIN book B ON" +
+        Cursor cursor = handler.getReadableDatabase().rawQuery("SELECT * FROM exemplar_livro AS E JOIN book B ON " +
         "E.livro = C.code WHERE E.usuario = ?", new String[] {Integer.toString(user_code)});
         if (cursor .moveToFirst()) {
             while (cursor.isAfterLast() == false) {
