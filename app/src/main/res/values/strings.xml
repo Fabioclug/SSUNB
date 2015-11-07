@@ -29,5 +29,7 @@
         <item>Enviar sugestão de novo livro</item>
     </string-array>
     <string name="title_activity_sugestao_cadastro_livro">SugestaoCadastroLivro</string>
+    <string name="title_activity_livros_usuario">LivrosUsuarioActivity</string>
+
 
 </resources>
