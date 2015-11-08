@@ -8,6 +8,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import mds.ufscar.br.ssunb.model.Book;
 import mds.ufscar.br.ssunb.model.User;
 
 /**
@@ -45,7 +46,15 @@ public class UserDao implements Dao<User> {
 
     @Override
     public List<User> listAll() {
-        return null;
+        Cursor cursor = handler.getReadableDatabase().rawQuery("SELECT * FROM usuario", null);
+        List<User> userList = new ArrayList<User>();
+        if(cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                userList.add(build(cursor));
+                cursor.moveToNext();
+            }
+        }
+        return userList;
     }
 
     @Override
@@ -84,7 +93,12 @@ public class UserDao implements Dao<User> {
             String email = cursor.getString(cursor.getColumnIndex("email"));
             String senha = cursor.getString(cursor.getColumnIndex("senha"));
 
-            return new User(id, PrimNome, SobreNome, cidade, email, senha);
+            // aqui talvez tenha que ser criado um novo handler
+            BookDao bdao = new BookDao(this.handler);
+            List<Book> blist = bdao.listByUser(id);
+            User u = new User(id, PrimNome, SobreNome, cidade, email, senha);
+            u.setOwnedBooks(blist);
+            return u;
         }
         else return null;
 

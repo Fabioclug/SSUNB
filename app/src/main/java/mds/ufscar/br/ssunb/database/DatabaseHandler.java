@@ -14,7 +14,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     private static final String CREATE_BOOK = "create table book(code integer not null primary key," +
             "title text not null, author text not null, category text, synopsis text, publication date, " +
-            "edition integer, publisher text, pages integer)";
+            "edition integer, publisher text, pages integer, pending integer default 1)";
 
     private static final String CREATE_COLLABORATOR = "CREATE TABLE colaborador (id integer primary key," +
             "cpf text not null, FOREIGN KEY(id) REFERENCES usuario(id))";

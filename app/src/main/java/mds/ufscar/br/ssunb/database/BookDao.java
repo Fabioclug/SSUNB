@@ -69,19 +69,33 @@ public class BookDao implements Dao<Book> {
         return (result > 0);
     }
 
-    @Override
-    public List<Book> listAll() {
-        Cursor cursor = handler.getReadableDatabase().query("book", null, null, null, null, null, "title");
+    public List<Book> executeQuery(String query, String[] subs) {
         List<Book> bookList = new ArrayList<Book>();
-
-        if (cursor .moveToFirst()) {
-            while (cursor.isAfterLast() == false) {
+        Cursor cursor = handler.getReadableDatabase().rawQuery(query, subs);
+        if(cursor.moveToFirst()) {
+            while(!cursor.isAfterLast()) {
                 Book b = build(cursor);
                 bookList.add(b);
                 cursor.moveToNext();
             }
         }
         return bookList;
+    }
+
+    @Override
+    public List<Book> listAll() {
+        String query = "SELECT * FROM book";
+        return executeQuery(query, null);
+    }
+
+    public List<Book> listPending() {
+        String query = "SELECT * FROM book WHERE pending = 1";
+        return executeQuery(query, null);
+    }
+
+    public List<Book> listConfirmed() {
+        String query = "SELECT * FROM book WHERE pending = 0";
+        return executeQuery(query, null);
     }
 
     @Override
@@ -90,16 +104,9 @@ public class BookDao implements Dao<Book> {
     }
 
     public List<Book> listByUser(int user_code) {
-        List<Book> bookList = new ArrayList<Book>();
-        Cursor cursor = handler.getReadableDatabase().rawQuery("SELECT * FROM exemplar_livro AS E JOIN book B ON " +
-        "E.livro = C.code WHERE E.usuario = ?", new String[] {Integer.toString(user_code)});
-        if (cursor .moveToFirst()) {
-            while (cursor.isAfterLast() == false) {
-                Book b = build(cursor);
-                bookList.add(b);
-                cursor.moveToNext();
-            }
-        }
-        return bookList;
+        String query = "SELECT * FROM exemplar_livro AS E JOIN book B ON " +
+        "E.livro = C.code WHERE E.usuario = ?";
+        String[] subs = new String[] {Integer.toString(user_code)};
+        return executeQuery(query, subs);
     }
 }
