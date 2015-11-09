@@ -30,6 +30,10 @@
     </string-array>
     <string name="title_activity_sugestao_cadastro_livro">SugestaoCadastroLivro</string>
     <string name="title_activity_livros_usuario">LivrosUsuarioActivity</string>
+    <string name="title_activity_search">Search</string>
+
+    <string name="search_hint">Obras Literárias</string>
+    <string name="search_label">Procurar Obras Literárias</string>
 
 
 </resources>

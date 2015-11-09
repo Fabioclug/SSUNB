@@ -46,6 +46,19 @@
                 />
 
 
+
+            <android.support.v7.widget.SearchView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:id="@+id/options_menu_main_search"
+                android:actionViewClass="android.support.v7.widget.SearchView"
+                android:layout_marginRight="20dp"
+                app:showAsAction="always"
+                android:title="Search"/>
+
+
+
+
         </android.support.v7.widget.Toolbar>
 
 

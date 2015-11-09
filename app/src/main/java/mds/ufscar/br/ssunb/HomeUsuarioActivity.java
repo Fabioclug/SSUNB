@@ -1,12 +1,16 @@
 package mds.ufscar.br.ssunb;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -27,14 +31,14 @@ public class HomeUsuarioActivity extends AppCompatActivity implements AdapterVie
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
 
         listView = (ListView) findViewById(R.id.ListMenuUser);
         listView.setOnItemClickListener(this);
@@ -54,7 +58,28 @@ public class HomeUsuarioActivity extends AppCompatActivity implements AdapterVie
         TextView NomeDoUsuario = (TextView)findViewById(R.id.NameUser);
         NomeDoUsuario.setText(nome);
 
+        SearchView etSearch = (SearchView) findViewById(R.id.options_menu_main_search);
+        etSearch.setSubmitButtonEnabled(true);
+
+        SearchView.OnQueryTextListener queryTextListener = new SearchView.OnQueryTextListener() {
+            public boolean onQueryTextChange(String newText) {
+                return true;
+            }
+
+            public boolean onQueryTextSubmit(String query) {
+                // Called when the user submits the query
+                Intent intent = new Intent(HomeUsuarioActivity.this, Search.class);
+                intent.putExtra("query", query);
+                HomeUsuarioActivity.this.startActivity(intent);
+                return true;
+            }
+        };
+
+        etSearch.setOnQueryTextListener(queryTextListener);
+
     }
+
+
 
     public void PaginaCadastroLivro(View view)
     {
@@ -62,6 +87,8 @@ public class HomeUsuarioActivity extends AppCompatActivity implements AdapterVie
         ActivityCadastroLivro = new Intent(this, SugestaoCadastroLivro.class);
         startActivity(ActivityCadastroLivro);
     }
+
+
 
 
     @Override

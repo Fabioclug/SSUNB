@@ -105,7 +105,7 @@ public class BookDao implements Dao<Book> {
 
     public List<Book> listByUser(int user_code) {
         String query = "SELECT * FROM exemplar_livro AS E JOIN book B ON " +
-        "E.livro = C.code WHERE E.usuario = ?";
+        "E.livro = B.code WHERE E.usuario = ?";
         String[] subs = new String[] {Integer.toString(user_code)};
         return executeQuery(query, subs);
     }
