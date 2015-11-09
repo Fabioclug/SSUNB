@@ -44,6 +44,7 @@ public class BookDao implements Dao<Book> {
         return new Book(title, author, category, synopsis, code, publication, edition, publisher, pages);
     }
 
+    // insere um livro no banco
     @Override
     public boolean save(Book object) {
         SQLiteDatabase db = handler.getWritableDatabase();
@@ -69,6 +70,14 @@ public class BookDao implements Dao<Book> {
         return (result > 0);
     }
 
+    // insere um exemplar de livro no banco, juntamente com o usuário dono
+    public boolean saveBookCopy(int bookid, int userid) {
+        ContentValues values = new ContentValues();
+        values.put("usuario", bookid);
+        values.put("livro", bookid);
+        return (handler.getWritableDatabase().insert("exemplar_livro", null, values) > 0);
+    }
+
     public List<Book> executeQuery(String query, String[] subs) {
         List<Book> bookList = new ArrayList<Book>();
         Cursor cursor = handler.getReadableDatabase().rawQuery(query, subs);
@@ -88,11 +97,13 @@ public class BookDao implements Dao<Book> {
         return executeQuery(query, null);
     }
 
+    // listagem dos livros pendentes de aprovação
     public List<Book> listPending() {
         String query = "SELECT * FROM book WHERE pending = 1";
         return executeQuery(query, null);
     }
 
+    // listagem dos livros aprovados por um colaborador
     public List<Book> listConfirmed() {
         String query = "SELECT * FROM book WHERE pending = 0";
         return executeQuery(query, null);
@@ -103,6 +114,14 @@ public class BookDao implements Dao<Book> {
         return null;
     }
 
+    // listagem de livros que contenham a substring name no título
+    public List<Book> listByName(String name) {
+        String query = "SELECT * FROM book WHERE name LIKE %?%";
+        String[] subs = new String[] {name};
+        return executeQuery(query, subs);
+    }
+
+    // listagem de todos os livros de um usuário
     public List<Book> listByUser(int user_code) {
         String query = "SELECT * FROM exemplar_livro AS E JOIN book B ON " +
         "E.livro = B.code WHERE E.usuario = ?";
