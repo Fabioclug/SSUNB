@@ -58,25 +58,6 @@ public class HomeUsuarioActivity extends AppCompatActivity implements AdapterVie
         TextView NomeDoUsuario = (TextView)findViewById(R.id.NameUser);
         NomeDoUsuario.setText(nome);
 
-        SearchView etSearch = (SearchView) findViewById(R.id.options_menu_main_search);
-        etSearch.setSubmitButtonEnabled(true);
-
-        SearchView.OnQueryTextListener queryTextListener = new SearchView.OnQueryTextListener() {
-            public boolean onQueryTextChange(String newText) {
-                return true;
-            }
-
-            public boolean onQueryTextSubmit(String query) {
-                // Called when the user submits the query
-                Intent intent = new Intent(HomeUsuarioActivity.this, Search.class);
-                intent.putExtra("query", query);
-                HomeUsuarioActivity.this.startActivity(intent);
-                return true;
-            }
-        };
-
-        etSearch.setOnQueryTextListener(queryTextListener);
-
     }
 
 
@@ -86,6 +67,14 @@ public class HomeUsuarioActivity extends AppCompatActivity implements AdapterVie
         Intent ActivityCadastroLivro;
         ActivityCadastroLivro = new Intent(this, SugestaoCadastroLivro.class);
         startActivity(ActivityCadastroLivro);
+    }
+
+    public void PaginaBusca(View view)
+    {
+        Intent ActivitySearch;
+        ActivitySearch = new Intent(this, Search.class);
+        ActivitySearch.putExtra("EMAIL_USER",emailUsuarioDaSessao);
+        startActivity(ActivitySearch);
     }
 
 

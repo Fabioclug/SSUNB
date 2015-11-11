@@ -50,18 +50,6 @@
 
 
 
-        <LinearLayout
-            style="@style/example_container"
-            android:baselineAligned="false"
-            android:orientation="vertical"
-            android:weightSum="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
-
-
-        </LinearLayout>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:swipe="http://schemas.android.com/apk/res-auto"

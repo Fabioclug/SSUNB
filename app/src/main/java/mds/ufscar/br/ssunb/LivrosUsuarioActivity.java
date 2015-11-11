@@ -29,6 +29,7 @@ public class LivrosUsuarioActivity extends AppCompatActivity {
     UserController usuarioDaSessao;
     String emailUsuarioDaSessao;
     BookDao livrosUsuario;
+    User atual;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +56,7 @@ public class LivrosUsuarioActivity extends AppCompatActivity {
         }
 
         usuarioDaSessao = new UserController(this);
-        User atual = usuarioDaSessao.findByEmail(emailUsuarioDaSessao);
+        atual = usuarioDaSessao.findByEmail(emailUsuarioDaSessao);
         String nome = atual.getName();
         int codigo = atual.getId();
 
@@ -64,7 +65,7 @@ public class LivrosUsuarioActivity extends AppCompatActivity {
 
         swipelistview=(SwipeListView)findViewById(R.id.example_swipe_lv_list);
         itemData=new ArrayList<ItemRow>();
-        adapter=new ItemAdapter(this,R.layout.custom_row,itemData);
+        adapter=new ItemAdapter(this,R.layout.custom_row,itemData,atual);
 
         swipelistview.setSwipeListViewListener(new BaseSwipeListViewListener() {
             @Override

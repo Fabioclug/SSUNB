@@ -6,7 +6,6 @@ package mds.ufscar.br.ssunb;
 import java.util.List;
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,28 +15,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import mds.ufscar.br.ssunb.database.BookDao;
-import mds.ufscar.br.ssunb.database.DatabaseHandler;
-import mds.ufscar.br.ssunb.model.Book;
-import mds.ufscar.br.ssunb.model.User;
-
-public class ItemAdapter extends ArrayAdapter {
+public class ItemAdapterSearch extends ArrayAdapter {
 
     List   data;
     Context context;
     int layoutResID;
     Button botao1, botao2, botao3;
-    //ItemRow itemdata;
-    User userAtual;
-    BookDao Bd;
 
-    public ItemAdapter(Context context, int layoutResourceId,List data, User atual) {
+    public ItemAdapterSearch(Context context, int layoutResourceId,List data) {
         super(context, layoutResourceId, data);
 
         this.data=data;
         this.context=context;
         this.layoutResID=layoutResourceId;
-        this.userAtual = atual;
 
         // TODO Auto-generated constructor stub
     }
@@ -56,6 +46,8 @@ public class ItemAdapter extends ArrayAdapter {
 
             holder = new NewsHolder();
 
+            //Button botao1, botao2, botao3;
+
             holder.itemName = (TextView)row.findViewById(R.id.example_itemname);
             holder.icon=(ImageView)row.findViewById(R.id.example_image);
             holder.button1=(Button)row.findViewById(R.id.swipe_button1);
@@ -73,7 +65,7 @@ public class ItemAdapter extends ArrayAdapter {
             holder = (NewsHolder)row.getTag();
         }
 
-        final ItemRow itemdata = (ItemRow) data.get(position);
+        ItemRow itemdata = (ItemRow) data.get(position);
         holder.itemName.setText(itemdata.getItemName());
         holder.icon.setImageDrawable(itemdata.getIcon());
 
@@ -82,11 +74,7 @@ public class ItemAdapter extends ArrayAdapter {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                //Toast.makeText(context, "Button 1 Clicked",Toast.LENGTH_SHORT).show();
-                String nomeDoLivro = itemdata.getItemName();
-                Intent Paginalivro = new Intent(context, BookPage.class);
-                Paginalivro.putExtra("Livro",nomeDoLivro);
-                context.startActivity(Paginalivro);
+                Toast.makeText(context, "Button 1 Clicked",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -95,7 +83,7 @@ public class ItemAdapter extends ArrayAdapter {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                if(botao2.getText().toString().equals("Requisitar"))
+                if(botao1.getText().toString().equals("Requisitar"))
                 {
                     Toast.makeText(context, "Requisitar",Toast.LENGTH_SHORT).show();
                 }else
@@ -111,29 +99,7 @@ public class ItemAdapter extends ArrayAdapter {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                //Toast.makeText(context, "Button 3 Clicked",Toast.LENGTH_SHORT).show();
-                if(botao3.getText().toString().equals("Adicionar"))
-                {
-                    DatabaseHandler db = new DatabaseHandler(context);
-                    Bd = new BookDao(db);
-                    String nomeDoLivro = itemdata.getItemName();
-                    Book livro = Bd.findByTitle(nomeDoLivro);
-                    System.out.println("Encontrou o livro:");
-                    int idLivro = livro.getCode();
-                    System.out.println("Pegou o codigo: "+idLivro);
-                    int idUser = userAtual.getId();
-                    if(Bd.saveBookCopy(idLivro,idUser))
-                    {
-                        Toast.makeText(context, "Livro Inserido com sucesso!",Toast.LENGTH_SHORT).show();
-                    }else
-                    {
-                        Toast.makeText(context, "Falha ao inserir livro.",Toast.LENGTH_SHORT).show();
-                    }
-                    //Toast.makeText(context, "Requisitar",Toast.LENGTH_SHORT).show();
-                }else
-                {
-                    Toast.makeText(context, "não e requisitar",Toast.LENGTH_SHORT).show();
-                }
+                Toast.makeText(context, "Button 3 Clicked",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -141,7 +107,7 @@ public class ItemAdapter extends ArrayAdapter {
 
     }
 
-    static class NewsHolder{
+    final static class NewsHolder{
 
         TextView itemName;
         ImageView icon;

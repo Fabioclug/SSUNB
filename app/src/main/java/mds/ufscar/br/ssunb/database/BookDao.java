@@ -73,7 +73,7 @@ public class BookDao implements Dao<Book> {
     // insere um exemplar de livro no banco, juntamente com o usuário dono
     public boolean saveBookCopy(int bookid, int userid) {
         ContentValues values = new ContentValues();
-        values.put("usuario", bookid);
+        values.put("usuario", userid);
         values.put("livro", bookid);
         return (handler.getWritableDatabase().insert("exemplar_livro", null, values) > 0);
     }
@@ -127,5 +127,16 @@ public class BookDao implements Dao<Book> {
         "E.livro = B.code WHERE E.usuario = ?";
         String[] subs = new String[] {Integer.toString(user_code)};
         return executeQuery(query, subs);
+    }
+
+    public Book findByTitle(String name) {
+        //SQLiteDatabase db = handler.getWritableDatabase();
+//        String sql = "SELECT * FROM " + "usuario" + " WHERE email = ? AND senha = ?";
+//        String[] selectionArgs = new String[] { email, senha };
+        Cursor cursor = handler.getReadableDatabase().rawQuery("SELECT * FROM book WHERE title = ?",
+                new String[] { name });
+        Book b = build(cursor);
+        cursor.close();
+        return b;
     }
 }
