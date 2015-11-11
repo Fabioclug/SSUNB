@@ -135,6 +135,7 @@ public class BookDao implements Dao<Book> {
 //        String[] selectionArgs = new String[] { email, senha };
         Cursor cursor = handler.getReadableDatabase().rawQuery("SELECT * FROM book WHERE title = ?",
                 new String[] { name });
+        cursor.moveToFirst();
         Book b = build(cursor);
         cursor.close();
         return b;
