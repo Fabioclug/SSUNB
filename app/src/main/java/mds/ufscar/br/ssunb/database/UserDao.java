@@ -64,19 +64,22 @@ public class UserDao implements Dao<User> {
 
     @Override
     public User build(Cursor cursor) {
-        Integer id = cursor.getInt(cursor.getColumnIndex("id"));
-        String PrimNome = cursor.getString(cursor.getColumnIndex("PrimNome"));
-        String SobreNome = cursor.getString(cursor.getColumnIndex("SobreNome"));
-        String cidade = cursor.getString(cursor.getColumnIndex("cidade"));
-        String email = cursor.getString(cursor.getColumnIndex("email"));
-        String senha = cursor.getString(cursor.getColumnIndex("senha"));
+        if(!cursor.isAfterLast()) {
+            Integer id = cursor.getInt(cursor.getColumnIndex("id"));
+            String PrimNome = cursor.getString(cursor.getColumnIndex("PrimNome"));
+            String SobreNome = cursor.getString(cursor.getColumnIndex("SobreNome"));
+            String cidade = cursor.getString(cursor.getColumnIndex("cidade"));
+            String email = cursor.getString(cursor.getColumnIndex("email"));
+            String senha = cursor.getString(cursor.getColumnIndex("senha"));
 
-        // aqui talvez tenha que ser criado um novo handler
-        BookDao bdao = new BookDao(this.handler);
-        List<Book> blist = bdao.listByUser(id);
-        User u = new User(id, PrimNome, SobreNome, cidade, email, senha);
-        u.setOwnedBooks(blist);
-        return u;
+            // aqui talvez tenha que ser criado um novo handler
+            BookDao bdao = new BookDao(this.handler);
+            List<Book> blist = bdao.listByUser(id);
+            User u = new User(id, PrimNome, SobreNome, cidade, email, senha);
+            u.setOwnedBooks(blist);
+            return u;
+        }
+        else return null;
     }
 
     public User finfById(int id) {

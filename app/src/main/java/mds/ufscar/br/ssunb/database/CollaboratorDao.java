@@ -22,7 +22,7 @@ public class CollaboratorDao implements Dao<Collaborator> {
 
     @Override
     public Collaborator build(Cursor c) {
-        if(c.moveToFirst()) {
+        if(!c.isAfterLast()) {
             Integer id = c.getInt(c.getColumnIndex("id"));
             String PrimNome = c.getString(c.getColumnIndex("PrimNome"));
             String SobreNome = c.getString(c.getColumnIndex("SobreNome"));
@@ -39,7 +39,6 @@ public class CollaboratorDao implements Dao<Collaborator> {
             return colaborador;
         }
         else return null;
-
     }
 
     @Override
@@ -91,6 +90,7 @@ public class CollaboratorDao implements Dao<Collaborator> {
         Cursor cursor = handler.getReadableDatabase().rawQuery("SELECT * FROM usuario AS u " +
                         "JOIN colaborador as c ON u.id = c.id WHERE email = ? AND senha = ?",
                 new String[] { email, senha });
+        cursor.moveToFirst();
         Collaborator c = build(cursor);
         cursor.close();
         return c;

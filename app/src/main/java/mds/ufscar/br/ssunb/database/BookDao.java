@@ -25,23 +25,26 @@ public class BookDao implements Dao<Book> {
     }
 
     public Book build(Cursor cursor) {
-        String title, author, category, synopsis, publisher;
-        int code, edition, pages;
-        Date publication = null;
-        title = cursor.getString(cursor.getColumnIndex("title"));
-        author = cursor.getString(cursor.getColumnIndex("author"));
-        category = cursor.getString(cursor.getColumnIndex("category"));
-        synopsis = cursor.getString(cursor.getColumnIndex("synopsis"));
-        publisher = cursor.getString(cursor.getColumnIndex("publisher"));
-        code = cursor.getInt(cursor.getColumnIndex("code"));
-        edition = cursor.getInt(cursor.getColumnIndex("edition"));
-        pages = cursor.getInt(cursor.getColumnIndex("pages"));
+        if(!cursor.isAfterLast()) {
+            String title, author, category, synopsis, publisher;
+            int code, edition, pages;
+            Date publication = null;
+            title = cursor.getString(cursor.getColumnIndex("title"));
+            author = cursor.getString(cursor.getColumnIndex("author"));
+            category = cursor.getString(cursor.getColumnIndex("category"));
+            synopsis = cursor.getString(cursor.getColumnIndex("synopsis"));
+            publisher = cursor.getString(cursor.getColumnIndex("publisher"));
+            code = cursor.getInt(cursor.getColumnIndex("code"));
+            edition = cursor.getInt(cursor.getColumnIndex("edition"));
+            pages = cursor.getInt(cursor.getColumnIndex("pages"));
 //      try {
 //          publication = dateFormat.parse(cursor.getString((cursor.getColumnIndex("publication"))));
 //      } catch (ParseException e) {
 //          e.printStackTrace();
 //      }
-        return new Book(title, author, category, synopsis, code, publication, edition, publisher, pages);
+            return new Book(title, author, category, synopsis, code, publication, edition, publisher, pages);
+        }
+        else return null;
     }
 
     // insere um livro no banco
@@ -131,7 +134,7 @@ public class BookDao implements Dao<Book> {
 
     public Book findById(int id) {
         Cursor cursor = handler.getReadableDatabase().rawQuery("SELECT * FROM book WHERE id = ?",
-                new String[] {String.valueOf(id)});
+                new String[]{String.valueOf(id)});
         cursor.moveToFirst();
         Book b = build(cursor);
         cursor.close();
