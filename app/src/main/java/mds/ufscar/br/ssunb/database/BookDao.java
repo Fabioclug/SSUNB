@@ -129,6 +129,15 @@ public class BookDao implements Dao<Book> {
         return executeQuery(query, subs);
     }
 
+    public Book findById(int id) {
+        Cursor cursor = handler.getReadableDatabase().rawQuery("SELECT * FROM book WHERE id = ?",
+                new String[] {String.valueOf(id)});
+        cursor.moveToFirst();
+        Book b = build(cursor);
+        cursor.close();
+        return b;
+    }
+
     public Book findByTitle(String name) {
         //SQLiteDatabase db = handler.getWritableDatabase();
 //        String sql = "SELECT * FROM " + "usuario" + " WHERE email = ? AND senha = ?";

@@ -4,11 +4,16 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import mds.ufscar.br.ssunb.model.Book;
 import mds.ufscar.br.ssunb.model.Emprestimo;
+import mds.ufscar.br.ssunb.model.User;
 
 /**
  * Created by Fabioclug on 2015-11-02.
@@ -23,8 +28,29 @@ public class EmprestimoDao implements Dao<Emprestimo> {
     }
 
     @Override
-    public Emprestimo build(Cursor c) {
-        return null;
+    public Emprestimo build(Cursor cursor) {
+        UserDao userDao = new UserDao(handler);
+        BookDao bookDao = new BookDao(handler);
+
+        Integer requesterId = cursor.getInt(cursor.getColumnIndex("solicitante"));
+        Integer ownerId = cursor.getInt(cursor.getColumnIndex("dono_livro"));
+        Integer bookId = cursor.getInt(cursor.getColumnIndex("livro"));
+        User requester = userDao.finfById(requesterId);
+        User bookOwner = userDao.finfById(ownerId);
+        Book requestedBook = bookDao.findById(bookId);
+        Date requestDate = null;
+        Date lendDate = null;
+        Date returnDate = null;
+        try {
+            requestDate = dateFormat.parse(cursor.getString((cursor.getColumnIndex("solicitado"))));
+            lendDate = dateFormat.parse(cursor.getString((cursor.getColumnIndex("retirada"))));
+            requestDate = dateFormat.parse(cursor.getString((cursor.getColumnIndex("devolucao"))));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        String status = (cursor.getInt(cursor.getColumnIndex("autorizado")) == 1)? "Autorizado" : "Pendente";
+        Emprestimo e = new Emprestimo(requester, bookOwner, requestedBook, requestDate, lendDate, returnDate, status);
+        return e;
     }
 
     @Override
@@ -43,14 +69,23 @@ public class EmprestimoDao implements Dao<Emprestimo> {
 //          e.printStackTrace();
 //      }
 
-        int autorizado = (object.getStatus() == "Autorizado")? 1 : 0;
+        int autorizado = (object.getStatus().equals("Autorizado"))? 1 : 0;
         values.put("autorizado", autorizado);
         return ((int) db.insert("emprestimo", null, values) > 0);
     }
 
     @Override
     public List<Emprestimo> listAll() {
-        return null;
+        List<Emprestimo> emprestimoList = new ArrayList<Emprestimo>();
+        Cursor cursor = handler.getReadableDatabase().rawQuery("SELECT * FROM emprestimo", null);
+        if(cursor.moveToFirst()) {
+            while(!cursor.isAfterLast()) {
+                Emprestimo e = build(cursor);
+                emprestimoList.add(e);
+                cursor.moveToNext();
+            }
+        }
+        return emprestimoList;
     }
 
     @Override

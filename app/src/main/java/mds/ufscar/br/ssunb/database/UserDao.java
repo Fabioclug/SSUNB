@@ -62,52 +62,32 @@ public class UserDao implements Dao<User> {
         return null;
     }
 
-//    public User findById(Integer id) {
-//
-//        SQLiteDatabase db = handler.getWritableDatabase();
-//        Cursor cursor = handler.getReadableDatabase().query("usuario",null, null, null, null, null,"id");
-//        cursor.moveToFirst();
-//
-//        return montaUsuario(cursor);
-//    }
-
-//    public List<User> findAll() throws Exception {
-//        List<User> retorno = new ArrayList<User>();
-//        String sql = "SELECT * FROM " + "usuario";
-//        Cursor cursor = getDatabase().rawQuery(sql, null);
-//        cursor.moveToFirst();
-//        while (!cursor.isAfterLast()) {
-//            retorno.add(montaUsuario(cursor));
-//            cursor.moveToNext();
-//        }
-//        return retorno;
-//    }
-
     @Override
     public User build(Cursor cursor) {
-        if(cursor.moveToFirst()) {
-            Integer id = cursor.getInt(cursor.getColumnIndex("id"));
-            String PrimNome = cursor.getString(cursor.getColumnIndex("PrimNome"));
-            String SobreNome = cursor.getString(cursor.getColumnIndex("SobreNome"));
-            String cidade = cursor.getString(cursor.getColumnIndex("cidade"));
-            String email = cursor.getString(cursor.getColumnIndex("email"));
-            String senha = cursor.getString(cursor.getColumnIndex("senha"));
+        Integer id = cursor.getInt(cursor.getColumnIndex("id"));
+        String PrimNome = cursor.getString(cursor.getColumnIndex("PrimNome"));
+        String SobreNome = cursor.getString(cursor.getColumnIndex("SobreNome"));
+        String cidade = cursor.getString(cursor.getColumnIndex("cidade"));
+        String email = cursor.getString(cursor.getColumnIndex("email"));
+        String senha = cursor.getString(cursor.getColumnIndex("senha"));
 
-            // aqui talvez tenha que ser criado um novo handler
-            BookDao bdao = new BookDao(this.handler);
-            List<Book> blist = bdao.listByUser(id);
-            User u = new User(id, PrimNome, SobreNome, cidade, email, senha);
-            u.setOwnedBooks(blist);
-            return u;
-        }
-        else return null;
-
+        // aqui talvez tenha que ser criado um novo handler
+        BookDao bdao = new BookDao(this.handler);
+        List<Book> blist = bdao.listByUser(id);
+        User u = new User(id, PrimNome, SobreNome, cidade, email, senha);
+        u.setOwnedBooks(blist);
+        return u;
     }
 
-    public User findByLogin(String email, String senha) {
-        //SQLiteDatabase db = handler.getWritableDatabase();
-//        String sql = "SELECT * FROM " + "usuario" + " WHERE email = ? AND senha = ?";
-//        String[] selectionArgs = new String[] { email, senha };
+    public User finfById(int id) {
+        Cursor cursor = handler.getReadableDatabase().rawQuery("SELECT * FROM usuario WHERE id = ?",
+                new String[] {String.valueOf(id)});
+        User u = build(cursor);
+        cursor.close();
+        return u;
+    }
+
+    public User findByLogin(String email, String senha) {;
         Cursor cursor = handler.getReadableDatabase().rawQuery("SELECT * FROM usuario WHERE email = ? AND senha = ?",
                 new String[] { email, senha });
         User u = build(cursor);
