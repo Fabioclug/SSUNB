@@ -4,8 +4,10 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import mds.ufscar.br.ssunb.model.Book;
 import mds.ufscar.br.ssunb.model.Collaborator;
 
 /**
@@ -20,7 +22,24 @@ public class CollaboratorDao implements Dao<Collaborator> {
 
     @Override
     public Collaborator build(Cursor c) {
-        return null;
+        if(c.moveToFirst()) {
+            Integer id = c.getInt(c.getColumnIndex("id"));
+            String PrimNome = c.getString(c.getColumnIndex("PrimNome"));
+            String SobreNome = c.getString(c.getColumnIndex("SobreNome"));
+            String cidade = c.getString(c.getColumnIndex("cidade"));
+            String email = c.getString(c.getColumnIndex("email"));
+            String senha = c.getString(c.getColumnIndex("senha"));
+            String cpf = c.getString(c.getColumnIndex("cpf"));
+
+            // aqui talvez tenha que ser criado um novo handler
+            BookDao bdao = new BookDao(this.handler);
+            List<Book> blist = bdao.listByUser(id);
+            Collaborator colaborador = new Collaborator(id, PrimNome, SobreNome, cidade, email, senha, cpf);
+            colaborador.setOwnedBooks(blist);
+            return colaborador;
+        }
+        else return null;
+
     }
 
     @Override
@@ -51,11 +70,29 @@ public class CollaboratorDao implements Dao<Collaborator> {
 
     @Override
     public List<Collaborator> listAll() {
+        String query = "SELECT * FROM usuario AS u JOIN colaborador as c ON u.id = c.id";
+        List<Collaborator> colaboradorList = new ArrayList<Collaborator>();
+        Cursor cursor = handler.getReadableDatabase().rawQuery(query, null);
+        if(cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                colaboradorList.add(build(cursor));
+                cursor.moveToNext();
+            }
+        }
         return null;
     }
 
     @Override
     public List<Collaborator> listBy(String criteria) {
         return null;
+    }
+
+    public Collaborator findByLogin(String email, String senha) {
+        Cursor cursor = handler.getReadableDatabase().rawQuery("SELECT * FROM usuario AS u " +
+                        "JOIN colaborador as c ON u.id = c.id WHERE email = ? AND senha = ?",
+                new String[] { email, senha });
+        Collaborator c = build(cursor);
+        cursor.close();
+        return c;
     }
 }
