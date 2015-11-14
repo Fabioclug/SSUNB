@@ -12,7 +12,10 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <meta-data android:name="android.app.default_searchable" android:value=".app.Search" />
+        <meta-data
+            android:name="android.app.default_searchable"
+            android:value=".app.Search" />
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
@@ -38,6 +41,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
+
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
@@ -59,9 +63,15 @@
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
+
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name=".HomeColaborador"
+            android:label="@string/title_activity_home_colaborador"
+            android:theme="@style/AppTheme.NoActionBar" >
         </activity>
     </application>
 

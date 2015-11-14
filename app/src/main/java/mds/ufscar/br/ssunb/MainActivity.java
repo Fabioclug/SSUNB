@@ -18,18 +18,22 @@ import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
+import java.lang.String;
 
 import mds.ufscar.br.ssunb.database.DatabaseHandler;
 import mds.ufscar.br.ssunb.model.Book;
 
 public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickListener {
 
-   // private ListView book_list;
+    // private ListView book_list;
     private EditText campoLogin, campoSenha;
     private Context context;
     private UserController usuarioController;
+    private CollaboratorController colaboradorControler;
     private AlertDialog.Builder alert;
     private String emailUserSecao;
+    private String part1, part2;
+
 
     public MainActivity() {
 
@@ -64,7 +68,8 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
 
         context = this;
         //context.deleteDatabase("ssunb");
-        usuarioController = new UserController(this);
+        //usuarioController = new UserController(this);
+        //colaboradorControler = new CollaboratorController(this);
         // campoLogin = (EditText) findViewById(R.id.LoginText);
         //campoSenha = (EditText) findViewById(R.id.senha);
 
@@ -72,9 +77,18 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
             @Override
             public void onClick(View v) {
                 if(validar()) {
-                    Intent intent = new Intent(MainActivity.this, HomeUsuarioActivity.class);
-                    intent.putExtra("EMAIL_USER", emailUserSecao);
-                    startActivity(intent);
+                    if(part2.equals("ssunb.com"))
+                    {
+                        Intent intent = new Intent(MainActivity.this, HomeColaborador.class);
+                        intent.putExtra("EMAIL_COLABORATOR", emailUserSecao);
+                        startActivity(intent);
+
+                    }else{
+                        Intent intent = new Intent(MainActivity.this, HomeUsuarioActivity.class);
+                        intent.putExtra("EMAIL_USER", emailUserSecao);
+                        startActivity(intent);
+                    }
+
                 }
             }
         });
@@ -160,19 +174,45 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
         String login = campoLogin.getText().toString();
         String senha = campoSenha.getText().toString();
         boolean answer = false;
-        try {
-            boolean isValid = usuarioController.validaLogin(login, senha);
-            if (isValid) {
-                answer = true;
-                emailUserSecao = login;
-                exibeDialogo("Usuario e senha validados com sucesso!");
-            } else {
-                exibeDialogo("Verifique usuario e senha!");
+        boolean isValid;
+
+        String[] parts = login.split("@");
+        part1 = parts[0];
+        part2 = parts[1];
+
+        if(part2.equals("ssunb.com"))
+        {
+            try {
+                colaboradorControler = new CollaboratorController(context);
+                isValid = colaboradorControler.validaLogin(login, senha);
+                if (isValid) {
+                    answer = true;
+                    emailUserSecao = login;
+                    exibeDialogo("Colaborador e senha validados com sucesso!");
+                } else {
+                    exibeDialogo("Verifique colaborador e senha!");
+                }
+            } catch (Exception e) {
+                exibeDialogo("Erro validando colaborador e senha");
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            exibeDialogo("Erro validando usuario e senha");
-            e.printStackTrace();
+        }else{
+            try {
+                usuarioController = new UserController(context);
+                isValid = usuarioController.validaLogin(login, senha);
+                if (isValid) {
+                    answer = true;
+                    emailUserSecao = login;
+                    exibeDialogo("Usuario e senha validados com sucesso!");
+                } else {
+                    exibeDialogo("Verifique usuario e senha!");
+                }
+            } catch (Exception e) {
+                exibeDialogo("Erro validando usuario e senha");
+                e.printStackTrace();
+            }
         }
+
         return answer;
     }
 
