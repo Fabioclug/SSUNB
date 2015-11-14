@@ -50,27 +50,31 @@
         android:id="@+id/editTextPrimNome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/PrimNome">
+        android:hint="@string/PrimNome"
+        android:inputType="text">
     </EditText>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/SobreNome"
-            android:id="@+id/editTextSobreNome" />
+            android:id="@+id/editTextSobreNome"
+            android:inputType="text" />
 
     <EditText
         android:id="@+id/editTextCidade"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/cidade" />
+        android:hint="@string/cidade"
+        android:inputType="text" />
 
 
     <EditText
         android:id="@+id/editTextEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/email" />
+        android:hint="@string/email"
+        android:inputType="textEmailAddress" />
 
 
 

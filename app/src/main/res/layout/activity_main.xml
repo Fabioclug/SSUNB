@@ -94,14 +94,14 @@
             android:layout_weight="0.20"
             android:layout_marginTop="50dp"
             android:autoLink="none"
-            android:clickable="true"
+            android:clickable="false"
             android:hint="Login"
-            android:contextClickable="false" />
+            android:contextClickable="false"
+            android:inputType="textEmailAddress" />
 
         <EditText
             android:layout_width="263dp"
             android:layout_height="0dp"
-            android:inputType="numberPassword"
             android:ems="10"
             android:id="@+id/senhaText"
             android:layout_gravity="center"
@@ -109,7 +109,8 @@
             android:hint="Senha"
             android:singleLine="false"
             android:editable="true"
-            android:layout_weight="0.20" />
+            android:layout_weight="0.20"
+            android:inputType="textWebPassword" />
 
         <com.beardedhen.androidbootstrap.BootstrapLabel
             android:layout_width="227dp"
