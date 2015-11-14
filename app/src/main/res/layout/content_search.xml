@@ -23,16 +23,33 @@
             app:contentInsetStart="0dp"
             style="@style/Toolbar">
 
+            <EditText
+                android:id="@+id/Query"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"/>
 
-                <android.support.v7.widget.SearchView
-                    android:layout_width="wrap_content"
-                    android:layout_height="80dp"
-                    android:id="@+id/options_menu_main_search"
-                    android:queryHint="Procurar"
-                    android:actionViewClass="android.support.v7.widget.SearchView"
-                    android:layout_marginRight="20dp"
-                    app:showAsAction="always"
-                    android:title="Search"/>
+            <!--
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ir"/>
+                -->
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:id="@+id/buttonSearch"
+            style="@style/wrapping_button"
+            android:text="Ir"
+            app:bootstrapBrand="info"
+            app:bootstrapSize="lg"
+            android:onClick="startActivityCadastro"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+             />
+
+
 
 
 

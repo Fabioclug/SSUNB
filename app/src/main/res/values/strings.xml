@@ -22,12 +22,20 @@
     <string name="AutorLivro">Nome do autor</string>
 
     <string-array name="itensMenuUser">
+        <item>Procurar Livros</item>
         <item>Meus Livros</item>
         <item>Meus Empréstimos</item>
         <item>Minhas Informações Pessoais</item>
         <item>Minhas Avaliações</item>
         <item>Enviar sugestão de novo livro</item>
     </string-array>
+
+    <string-array name="itensMenuColaborador">
+        <item>Sugestões Pendentes</item>
+        <item>Listar Empréstimos</item>
+        <item>Listar Usuários</item>
+    </string-array>
+
     <string name="title_activity_sugestao_cadastro_livro">SugestaoCadastroLivro</string>
     <string name="title_activity_livros_usuario">LivrosUsuarioActivity</string>
     <string name="title_activity_search">Search</string>

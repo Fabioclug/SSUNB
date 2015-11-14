@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 
 import com.fortysevendeg.swipelistview.BaseSwipeListViewListener;
 import com.fortysevendeg.swipelistview.SwipeListView;
@@ -39,14 +40,6 @@ public class Search extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         if(getIntent().hasExtra("EMAIL_USER")){
             Bundle extras = getIntent().getExtras();
@@ -58,25 +51,36 @@ public class Search extends AppCompatActivity {
         usuarioDaSessao = new UserController(this);
         atual = usuarioDaSessao.findByEmail(emailUsuarioDaSessao);
 
-        SearchView etSearch = (SearchView) findViewById(R.id.options_menu_main_search);
-        etSearch.setSubmitButtonEnabled(true);
-
-        SearchView.OnQueryTextListener queryTextListener = new SearchView.OnQueryTextListener() {
-            public boolean onQueryTextChange(String newText) {
-                return true;
+        findViewById(R.id.buttonSearch).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText editQuery = (EditText) findViewById(R.id.Query);
+                String query = editQuery.getText().toString();
+                RealizaBusca(query);
+                System.out.println("Chegou aqui "+query);
             }
+        });
 
-            public boolean onQueryTextSubmit(String query) {
-                // Called when the user submits the query
 
-                String pesquisa = query;
-                System.out.println("Palavra de busca "+pesquisa);
-
-                return true;
-            }
-        };
-
-        etSearch.setOnQueryTextListener(queryTextListener);
+//        SearchView etSearch = (SearchView) findViewById(R.id.options_menu_main_search);
+//        etSearch.setSubmitButtonEnabled(true);
+//
+//        SearchView.OnQueryTextListener queryTextListener = new SearchView.OnQueryTextListener() {
+//            public boolean onQueryTextChange(String newText) {
+//                return true;
+//            }
+//
+//            public boolean onQueryTextSubmit(String query) {
+//                // Called when the user submits the query
+//
+//                String pesquisa = query;
+//                System.out.println("Palavra de busca "+pesquisa);
+//
+//                return true;
+//            }
+//        };
+//
+//        etSearch.setOnQueryTextListener(queryTextListener);
 
         swipelistview=(SwipeListView)findViewById(R.id.example_swipe_lv_list);
         itemData=new ArrayList<ItemRow>();
@@ -157,6 +161,11 @@ public class Search extends AppCompatActivity {
 
         adapter.notifyDataSetChanged();
 
+
+    }
+
+    public void RealizaBusca(String query)
+    {
 
     }
 

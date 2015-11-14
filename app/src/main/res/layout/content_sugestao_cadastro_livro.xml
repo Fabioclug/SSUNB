@@ -59,7 +59,7 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/editTextPrimNome"
+                android:id="@+id/nomeLivro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/NomeLivro">
@@ -69,7 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/AutorLivro"
-                android:id="@+id/editTextSobreNome" />
+                android:id="@+id/nomeAutor" />
 
 
 

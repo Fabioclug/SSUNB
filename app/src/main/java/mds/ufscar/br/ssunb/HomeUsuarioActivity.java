@@ -85,17 +85,23 @@ public class HomeUsuarioActivity extends AppCompatActivity implements AdapterVie
 
         switch (position){
             case 0:
+                Intent intentSearch = new Intent(HomeUsuarioActivity.this, Search.class);
+                intentSearch.putExtra("EMAIL_USER", emailUsuarioDaSessao);
+                startActivity(intentSearch);
+                break;
+            case 1:
                 Intent intentLivros = new Intent(HomeUsuarioActivity.this, LivrosUsuarioActivity.class);
                 intentLivros.putExtra("EMAIL_USER", emailUsuarioDaSessao);
                 startActivity(intentLivros);
-                break;
-            case 1:
                 break;
             case 2:
                 break;
             case 3:
                 break;
             case 4:
+
+                break;
+            case 5:
                 Intent intent = new Intent(HomeUsuarioActivity.this, SugestaoCadastroLivro.class);
                 intent.putExtra("EMAIL_USER", emailUsuarioDaSessao);
                 startActivity(intent);

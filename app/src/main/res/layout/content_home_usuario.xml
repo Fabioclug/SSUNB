@@ -45,13 +45,6 @@
                 android:layout_marginTop="10dp"
                 />
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginEnd="20dp"
-                android:src="@drawable/ic_search_black_24dp"
-                android:onClick="PaginaBusca"/>
-
 
         <!--
             <android.support.v7.widget.SearchView

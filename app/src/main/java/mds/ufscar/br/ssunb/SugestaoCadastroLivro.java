@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,6 +54,14 @@ public class SugestaoCadastroLivro extends AppCompatActivity implements PopupMen
             @Override
             public void onClick(View v) {
                 //recuperar itens que foram digitados e pensar numa maneira de salvar sugestoes
+                EditText nomeLivro = (EditText) findViewById(R.id.nomeLivro);
+                EditText nomeAutor = (EditText) findViewById(R.id.nomeAutor);
+
+                String livro = nomeLivro.getText().toString();
+                String autor = nomeAutor.getText().toString();
+
+                Sugestao(livro,autor);
+
                 Toast.makeText(getApplicationContext(), "Sugestão enviada para análise",
                         Toast.LENGTH_SHORT).show();
             }
@@ -60,6 +69,10 @@ public class SugestaoCadastroLivro extends AppCompatActivity implements PopupMen
 
     }
 
+    public void Sugestao(String livro, String autor)
+    {
+        String status;
+    }
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
