@@ -71,23 +71,25 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
         context = this;
 
         //
-                Book b1 = new Book("Lord of The Rings", "J. R. R. Tolkien");
-        Book b2 = new Book("Fight Club", "Chuck Palahniuk");
-        Book b3 = new Book("The Da Vinci Code", "Dan Brown");
-        Book b4 = new Book("Frankenstein", "Mary Shelley");
-        Book b5 = new Book("A Game of Thrones", "George R. R. Martin");
-        Book b6 = new Book("The Divine Comedy", "Dante Alighieri");
+//                Book b1 = new Book("Lord of The Rings", "J. R. R. Tolkien");
+//        Book b2 = new Book("Fight Club", "Chuck Palahniuk");
+//        Book b3 = new Book("The Da Vinci Code", "Dan Brown");
+//        Book b4 = new Book("Frankenstein", "Mary Shelley");
+//        Book b5 = new Book("A Game of Thrones", "George R. R. Martin");
+//        Book b6 = new Book("The Divine Comedy", "Dante Alighieri");
+//
+//
+//        DatabaseHandler db = new DatabaseHandler(context);
+//
+//        BookDao bookDao = new BookDao(db);
+//        bookDao.save(b1);
+//        bookDao.save(b2);
+//        bookDao.save(b3);
+//        bookDao.save(b4);
+//        bookDao.save(b5);
+//        bookDao.save(b6);
 
 
-        DatabaseHandler db = new DatabaseHandler(context);
-
-        BookDao bookDao = new BookDao(db);
-        bookDao.save(b1);
-        bookDao.save(b2);
-        bookDao.save(b3);
-        bookDao.save(b4);
-        bookDao.save(b5);
-        bookDao.save(b6);
 
         //context.deleteDatabase("ssunb");
 
@@ -242,43 +244,56 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
         String senha = campoSenha.getText().toString();
         boolean answer = false;
         boolean isValid;
+        boolean emailOk = false;
 
-        String[] parts = login.split("@");
-        part1 = parts[0];
-        part2 = parts[1];
-
-        if(part2.equals("ssunb.com"))
+        if(login.toLowerCase().contains("@"))
         {
-            try {
-                colaboradorControler = new CollaboratorController(context);
-                isValid = colaboradorControler.validaLogin(login, senha);
-                if (isValid) {
-                    answer = true;
-                    emailUserSecao = login;
-                    exibeDialogo("Colaborador e senha validados com sucesso!");
-                } else {
-                    exibeDialogo("Verifique colaborador e senha!");
-                }
-            } catch (Exception e) {
-                exibeDialogo("Erro validando colaborador e senha");
-                e.printStackTrace();
-            }
+            String[] parts = login.split("@");
+            part1 = parts[0];
+            part2 = parts[1];
+            emailOk = true;
+
         }
-        else{
-            try {
-                usuarioController = new UserController(context);
-                isValid = usuarioController.validaLogin(login, senha);
-                if (isValid) {
-                    answer = true;
-                    emailUserSecao = login;
-                    exibeDialogo("Usuario e senha validados com sucesso!");
-                } else {
-                    exibeDialogo("Verifique usuario e senha!");
+
+        if(emailOk)
+        {
+            if(part2.equals("ssunb.com"))
+            {
+                try {
+                    colaboradorControler = new CollaboratorController(context);
+                    isValid = colaboradorControler.validaLogin(login, senha);
+                    if (isValid) {
+                        answer = true;
+                        emailUserSecao = login;
+                        exibeDialogo("Colaborador e senha validados com sucesso!");
+                    } else {
+                        exibeDialogo("Verifique colaborador e senha!");
+                    }
+                } catch (Exception e) {
+                    exibeDialogo("Erro validando colaborador e senha");
+                    e.printStackTrace();
                 }
-            } catch (Exception e) {
-                exibeDialogo("Erro validando usuario e senha");
-                e.printStackTrace();
             }
+            else{
+                try {
+                    usuarioController = new UserController(context);
+                    isValid = usuarioController.validaLogin(login, senha);
+                    if (isValid) {
+                        answer = true;
+                        emailUserSecao = login;
+                        exibeDialogo("Usuario e senha validados com sucesso!");
+                    } else {
+                        exibeDialogo("Verifique usuario e senha!");
+                    }
+                } catch (Exception e) {
+                    exibeDialogo("Erro validando usuario e senha");
+                    e.printStackTrace();
+                }
+            }
+
+        }else
+        {
+            exibeDialogo("Você deve informar um email válido para realizar login");
         }
 
         return answer;
