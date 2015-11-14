@@ -20,6 +20,7 @@
     <string name="search_title">Procurar Obras Literárias</string>
     <string name="NomeLivro">Nome do livro</string>
     <string name="AutorLivro">Nome do autor</string>
+    <string name="facebook_app_id">172774966403083</string>
 
     <string-array name="itensMenuUser">
         <item>Procurar Livros</item>

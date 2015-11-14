@@ -4,6 +4,8 @@ import java.util.List;
 
 import android.content.Context;
 
+import com.facebook.GraphRequest;
+
 import mds.ufscar.br.ssunb.database.DatabaseHandler;
 import mds.ufscar.br.ssunb.database.UserDao;
 import mds.ufscar.br.ssunb.model.User;
@@ -32,6 +34,7 @@ public class UserController {
         //db.getWritableDatabase().execSQL("delete from book");
         usuarioDAO = new UserDao(db);
     }
+
 
     public void insert(User usuario) throws Exception {
 //        DatabaseHandler db = new DatabaseHandler(context);

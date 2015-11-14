@@ -126,19 +126,14 @@
             android:layout_weight="0.06"
             android:layout_marginTop="11dp" />
 
-        <com.beardedhen.androidbootstrap.BootstrapLabel
-            android:layout_width="wrap_content"
+        <com.facebook.login.widget.LoginButton
+            android:layout_width="229dp"
             android:layout_height="wrap_content"
-            app:bootstrapBrand="primary"
-            app:bootstrapHeading="h2"
-            app:roundedCorners="true"
-            android:text="Login Facebook"
             android:layout_column="7"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            android:id="@+id/LoginFacebook"
+            android:id="@+id/loginFacebook"
             android:layout_gravity="center"
-            android:layout_weight="0.09"
             android:layout_marginTop="11dp" />
 
             <LinearLayout
