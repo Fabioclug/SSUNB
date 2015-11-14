@@ -119,8 +119,8 @@ public class BookDao implements Dao<Book> {
 
     // listagem de livros que contenham a substring name no título
     public List<Book> listByName(String name) {
-        String query = "SELECT * FROM book WHERE name LIKE %?%";
-        String[] subs = new String[] {name};
+        String query = "SELECT * FROM book WHERE title LIKE ?";
+        String[] subs = new String[] {name + "%"};
         return executeQuery(query, subs);
     }
 
