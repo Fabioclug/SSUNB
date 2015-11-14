@@ -85,6 +85,7 @@ public class UserDao implements Dao<User> {
     public User finfById(int id) {
         Cursor cursor = handler.getReadableDatabase().rawQuery("SELECT * FROM usuario WHERE id = ?",
                 new String[] {String.valueOf(id)});
+        cursor.moveToFirst();
         User u = build(cursor);
         cursor.close();
         return u;
@@ -93,6 +94,7 @@ public class UserDao implements Dao<User> {
     public User findByLogin(String email, String senha) {;
         Cursor cursor = handler.getReadableDatabase().rawQuery("SELECT * FROM usuario WHERE email = ? AND senha = ?",
                 new String[] { email, senha });
+        cursor.moveToFirst();
         User u = build(cursor);
         cursor.close();
         return u;
@@ -102,6 +104,7 @@ public class UserDao implements Dao<User> {
     {
         Cursor cursor = handler.getReadableDatabase().rawQuery("SELECT * FROM usuario WHERE email = ?",
                 new String[] { email });
+        cursor.moveToFirst();
         User u = build(cursor);
         cursor.close();
         return u;
