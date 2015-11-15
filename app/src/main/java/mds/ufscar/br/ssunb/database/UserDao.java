@@ -57,6 +57,21 @@ public class UserDao implements Dao<User> {
         return userList;
     }
 
+    // listagem de usuários que possuem um determinado livro
+    public List<User> listByBook(String title) {
+        String query = "SELECT * FROM usuario AS U JOIN exemplar_livro AS E ON U.id = E.usuario " +
+                "JOIN book AS B ON E.livro = B.code WHERE B.title = ?";
+        Cursor cursor = handler.getReadableDatabase().rawQuery(query, new String[] {title});
+        List<User> userList = new ArrayList<User>();
+        if(cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                userList.add(build(cursor));
+                cursor.moveToNext();
+            }
+        }
+        return userList;
+    }
+
     @Override
     public List<User> listBy(String criteria) {
         return null;
