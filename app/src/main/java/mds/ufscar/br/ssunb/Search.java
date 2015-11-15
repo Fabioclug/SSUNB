@@ -20,6 +20,7 @@ import java.util.List;
 
 import mds.ufscar.br.ssunb.database.BookDao;
 import mds.ufscar.br.ssunb.database.DatabaseHandler;
+import mds.ufscar.br.ssunb.database.UserDao;
 import mds.ufscar.br.ssunb.model.Book;
 import mds.ufscar.br.ssunb.model.User;
 
@@ -32,6 +33,8 @@ public class Search extends AppCompatActivity {
     String emailUsuarioDaSessao;
     BookDao livrosUsuario;
     User atual;
+    String LivroEscolhido;
+    UserDao usuarios;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +87,7 @@ public class Search extends AppCompatActivity {
 
         swipelistview=(SwipeListView)findViewById(R.id.example_swipe_lv_list);
         itemData=new ArrayList<ItemRow>();
-        adapter=new ItemAdapter(this,R.layout.custom_row_search,itemData, atual);
+        adapter=new ItemAdapter(this,R.layout.custom_row_search,itemData, atual, this);
 
         swipelistview.setSwipeListViewListener(new BaseSwipeListViewListener() {
             @Override
@@ -149,6 +152,7 @@ public class Search extends AppCompatActivity {
 
         DatabaseHandler db = new DatabaseHandler(this);
         livrosUsuario = new BookDao(db);
+        usuarios = new UserDao(db);
         List<Book> livros = livrosUsuario.listAll();
 
         for(int i=0;i<livros.size();i++)
@@ -173,6 +177,25 @@ public class Search extends AppCompatActivity {
             itemData.add(new ItemRow(livrosProcurados.get(i).getTitle() ));
 
         }
+        adapter.notifyDataSetChanged();
+    }
+
+    public void setLivroEscolhido(String nome)
+    {
+        this.LivroEscolhido = nome;
+    }
+
+    public void listaUsuarios()
+    {
+
+       // List<User> usuariosQuePossuemOLivro = usuarios.listByBook(LivroEscolhido);
+        Intent ListagemUsuarios;
+        ListagemUsuarios = new Intent(this, PaginaListagemUsuarios.class);
+        ListagemUsuarios.putExtra("EMAIL_USER",emailUsuarioDaSessao);
+        ListagemUsuarios.putExtra("LIVRO_ESCOLHIDO",LivroEscolhido);
+        startActivity(ListagemUsuarios);
+
+        System.out.println("Funfou!");
     }
 
     public int convertDpToPixel(float dp) {

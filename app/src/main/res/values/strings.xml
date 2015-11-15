@@ -44,6 +44,9 @@
     <string name="search_hint">Obras Literárias</string>
     <string name="search_label">Procurar Obras Literárias</string>
     <string name="title_activity_home_colaborador">HomeColaborador</string>
+    <string name="title_activity_pagina_emprestimo">PaginaEmprestimo</string>
+    <string name="title_activity_pagina_listagem">PaginaListagem</string>
+    <string name="title_activity_pagina_listagem_usuarios">PaginaListagemUsuarios</string>
 
 
 </resources>

@@ -30,6 +30,8 @@ public class ItemAdapter extends ArrayAdapter {
     //ItemRow itemdata;
     User userAtual;
     BookDao Bd;
+    DatabaseHandler db;
+    Search PaginaPesquisa;
 
     public ItemAdapter(Context context, int layoutResourceId,List data, User atual) {
         super(context, layoutResourceId, data);
@@ -38,6 +40,22 @@ public class ItemAdapter extends ArrayAdapter {
         this.context=context;
         this.layoutResID=layoutResourceId;
         this.userAtual = atual;
+        this.db = new DatabaseHandler(this.context);
+
+
+        // TODO Auto-generated constructor stub
+    }
+
+    public ItemAdapter(Context context, int layoutResourceId,List data, User atual, Search paginaPesquisa) {
+        super(context, layoutResourceId, data);
+
+        this.data=data;
+        this.context=context;
+        this.layoutResID=layoutResourceId;
+        this.userAtual = atual;
+        this.db = new DatabaseHandler(this.context);
+        this.PaginaPesquisa = paginaPesquisa;
+
 
         // TODO Auto-generated constructor stub
     }
@@ -97,6 +115,9 @@ public class ItemAdapter extends ArrayAdapter {
                 // TODO Auto-generated method stub
                 if(botao2.getText().toString().equals("Requisitar"))
                 {
+                    String nomeDoLivro = itemdata.getItemName();
+                    PaginaPesquisa.setLivroEscolhido(nomeDoLivro);
+                    PaginaPesquisa.listaUsuarios();
                     Toast.makeText(context, "Requisitar",Toast.LENGTH_SHORT).show();
                 }else
                 {
@@ -114,7 +135,6 @@ public class ItemAdapter extends ArrayAdapter {
                 //Toast.makeText(context, "Button 3 Clicked",Toast.LENGTH_SHORT).show();
                 if(botao3.getText().toString().equals("Adicionar"))
                 {
-                    DatabaseHandler db = new DatabaseHandler(context);
                     Bd = new BookDao(db);
                     String nomeDoLivro = itemdata.getItemName();
                     Book livro = Bd.findByTitle(nomeDoLivro);
@@ -140,6 +160,7 @@ public class ItemAdapter extends ArrayAdapter {
         return row;
 
     }
+
 
     static class NewsHolder{
 
