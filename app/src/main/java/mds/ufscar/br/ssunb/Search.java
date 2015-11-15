@@ -166,7 +166,13 @@ public class Search extends AppCompatActivity {
 
     public void RealizaBusca(String query)
     {
+        itemData.clear();
+        List<Book> livrosProcurados = livrosUsuario.listByName(query);
+        for(int i=0;i<livrosProcurados.size();i++)
+        {
+            itemData.add(new ItemRow(livrosProcurados.get(i).getTitle() ));
 
+        }
     }
 
     public int convertDpToPixel(float dp) {

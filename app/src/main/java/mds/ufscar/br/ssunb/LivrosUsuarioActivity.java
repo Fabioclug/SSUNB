@@ -128,17 +128,17 @@ public class LivrosUsuarioActivity extends AppCompatActivity {
 
         swipelistview.setAdapter(adapter);
 
-//        DatabaseHandler db = new DatabaseHandler(this);
-//        livrosUsuario = new BookDao(db);
-//        List<Book> livros = livrosUsuario.listByUser(codigo);
+        DatabaseHandler db = new DatabaseHandler(this);
+        livrosUsuario = new BookDao(db);
+        List<Book> livros = livrosUsuario.listByUser(codigo);
 
-//        for(int i=0;i<livros.size();i++)
-//        {
-//            itemData.add(new ItemRow(livros.get(i).getTitle() ));
-//
-//        }
+        for(int i=0;i<livros.size();i++)
+        {
+            itemData.add(new ItemRow(livros.get(i).getTitle() ));
 
-        itemData.add(new ItemRow("Livro"));
+        }
+
+        //itemData.add(new ItemRow("Livro"));
 
         adapter.notifyDataSetChanged();
 
