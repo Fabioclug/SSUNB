@@ -9,6 +9,7 @@ import java.util.List;
 
 import mds.ufscar.br.ssunb.model.Book;
 import mds.ufscar.br.ssunb.model.Collaborator;
+import mds.ufscar.br.ssunb.model.User;
 
 /**
  * Created by Fabioclug on 2015-11-08.
@@ -31,7 +32,6 @@ public class CollaboratorDao implements Dao<Collaborator> {
             String senha = c.getString(c.getColumnIndex("senha"));
             String cpf = c.getString(c.getColumnIndex("cpf"));
 
-            // aqui talvez tenha que ser criado um novo handler
             BookDao bdao = new BookDao(this.handler);
             List<Book> blist = bdao.listByUser(id);
             Collaborator colaborador = new Collaborator(id, PrimNome, SobreNome, cidade, email, senha, cpf);
@@ -95,4 +95,15 @@ public class CollaboratorDao implements Dao<Collaborator> {
         cursor.close();
         return c;
     }
+    public Collaborator findByEmail(String email) {
+        UserDao ud = new UserDao(handler);
+        User u = ud.findByEmail(email);
+        Cursor cursor = handler.getReadableDatabase().rawQuery("SELECT * FROM colaborador WHERE id = ?",
+                new String[] {String.valueOf(u.getId())});
+        cursor.moveToFirst();
+        Collaborator c = build(cursor);
+        cursor.close();
+        return c;
+    }
+
 }

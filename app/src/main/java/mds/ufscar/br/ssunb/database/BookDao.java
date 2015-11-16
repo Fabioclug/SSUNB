@@ -152,4 +152,13 @@ public class BookDao implements Dao<Book> {
         cursor.close();
         return b;
     }
+
+    public boolean confirmBook(String title) {
+        //String query = "UPDATE book SET pending = 0 WHERE title = ?";
+        ContentValues values = new ContentValues();
+        values.put("pending", 0);
+        SQLiteDatabase db = handler.getWritableDatabase();
+        int result = db.update("book", values, "title = ?", new String[]{title});
+        return (result > 0);
+    }
 }

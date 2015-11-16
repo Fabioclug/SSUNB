@@ -35,8 +35,8 @@ public class EmprestimoDao implements Dao<Emprestimo> {
         Integer requesterId = cursor.getInt(cursor.getColumnIndex("solicitante"));
         Integer ownerId = cursor.getInt(cursor.getColumnIndex("dono_livro"));
         Integer bookId = cursor.getInt(cursor.getColumnIndex("livro"));
-        User requester = userDao.finfById(requesterId);
-        User bookOwner = userDao.finfById(ownerId);
+        User requester = userDao.findById(requesterId);
+        User bookOwner = userDao.findById(ownerId);
         Book requestedBook = bookDao.findById(bookId);
         Date requestDate = null;
         Date lendDate = null;
