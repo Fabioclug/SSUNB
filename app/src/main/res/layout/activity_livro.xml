@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bootstrap_brand_secondary_fill"
+    android:orientation="vertical">
+
+    <View
+        android:layout_gravity="top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/guillotine_actionbar_background_view_height"
+        android:background="@color/bootstrap_brand_primary"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            app:contentInsetStart="0dp"
+            style="@style/Toolbar">
+
+        <com.beardedhen.androidbootstrap.BootstrapCircleThumbnail
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/content_1"
+            android:layout_marginLeft="20dp"
+            app:bootstrapBrand="danger"
+            app:hasBorder="true"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Preencher com 1 o nome"
+            android:id="@+id/NameUser"
+            android:textColor="#ffffff"
+            android:textSize="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            />
+
+        </android.support.v7.widget.Toolbar>
+
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/LinearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".MainActivity"
+            android:layout_gravity="center"
+            android:layout_marginTop="100dp"
+            android:orientation="vertical">
+
+
+            <com.beardedhen.androidbootstrap.BootstrapCircleThumbnail
+                android:id="@+id/imagemLivro"
+                android:layout_width="132dp"
+                android:layout_height="169dp"
+                android:src="@drawable/icone"
+                app:hasBorder="true"
+                android:layout_gravity="center" />
+
+            <TextView android:id="@+id/nomeLivro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nome Livro"
+                style="@style/TextoNomeLivro"
+                android:layout_gravity="center|top"
+                android:gravity="center" />
+
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ratingBar"
+                android:rating="100"
+                android:layout_gravity="center" />
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView android:id="@+id/labelAutor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Autor: "
+                    style="@style/TextoLabel"
+                    android:layout_gravity="center|top"
+                     />
+
+                <TextView android:id="@+id/nomeAutor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nomaadahksdbak"
+                    style="@style/TextoResp"
+                    android:gravity="center" />
+
+
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView android:id="@+id/labelCategoria"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Categoria: "
+                    style="@style/TextoLabel"
+                    android:layout_gravity="center|top"
+                    />
+
+                <TextView android:id="@+id/nomeCategoria"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nomaadahksdbak"
+                    style="@style/TextoResp"
+                    android:gravity="center"/>
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView android:id="@+id/labelResumo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Resumo: "
+                    style="@style/TextoLabel"
+                    android:layout_gravity="center|top"
+                    />
+
+                <TextView android:id="@+id/nomeResumo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nomaadahksdbak"
+                    style="@style/TextoResp"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView android:id="@+id/labelPublicacao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ano de Publicação: "
+                    style="@style/TextoLabel"
+                    android:layout_gravity="center|top"
+                    />
+
+                <TextView android:id="@+id/nomePublicacao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nomaadahksdbak"
+                    style="@style/TextoResp"
+                    android:gravity="center"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView android:id="@+id/labelEdicao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Edição: "
+                    style="@style/TextoLabel"
+                    android:layout_gravity="center|top"
+                    />
+
+                <TextView android:id="@+id/nomeEdicao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nomaadahksdbak"
+                    style="@style/TextoResp"
+                    android:gravity="center"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView android:id="@+id/labelPaginas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nº de Páginas: "
+                    style="@style/TextoLabel"
+                    android:layout_gravity="center|top"
+                    />
+
+                <TextView android:id="@+id/nomePaginas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nomaadahksdbak"
+                    style="@style/TextoResp"
+                    android:gravity="center"/>
+            </LinearLayout>
+
+
+
+
+
+
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

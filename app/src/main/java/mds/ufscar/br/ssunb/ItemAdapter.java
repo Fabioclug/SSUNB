@@ -102,7 +102,7 @@ public class ItemAdapter extends ArrayAdapter {
                 // TODO Auto-generated method stub
                 //Toast.makeText(context, "Button 1 Clicked",Toast.LENGTH_SHORT).show();
                 String nomeDoLivro = itemdata.getItemName();
-                Intent Paginalivro = new Intent(context, BookPage.class);
+                Intent Paginalivro = new Intent(context, LivroActivity.class);
                 Paginalivro.putExtra("Livro",nomeDoLivro);
                 context.startActivity(Paginalivro);
             }

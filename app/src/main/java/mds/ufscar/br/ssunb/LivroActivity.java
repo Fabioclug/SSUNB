@@ -1,17 +1,29 @@
 package mds.ufscar.br.ssunb;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.ArrayAdapter;
 
-import mds.ufscar.br.ssunb.model.Book;
+import java.util.ArrayList;
+import java.util.List;
 
-public class BookPage extends Activity {
+import mds.ufscar.br.ssunb.database.DatabaseHandler;
+import mds.ufscar.br.ssunb.database.UserDao;
+import mds.ufscar.br.ssunb.model.User;
 
-    public BookPage() {
+public class LivroActivity extends AppCompatActivity{
+
+    String emailUsuarioDaSessao;
+    String livroEscolhido;
+    List<UserRow> itemData = new ArrayList<>();
+    User usuarioPortador;
+    DatabaseHandler db;
+    UserDao usuarios;
+    private ArrayAdapter<UserRow> adaptador = null;
+    public LivroActivity() {
 
     }
 
@@ -24,7 +36,17 @@ public class BookPage extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.book_page);
+        setContentView(R.layout.activity_livro);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        if(getIntent().hasExtra("Livro")){
+            Bundle extras = getIntent().getExtras();
+            livroEscolhido = extras.getString("Livro");
+            System.out.println(extras.getString("EMAIL_USER"));
+        }
+
+
 
 //        Intent r = getIntent();
 //

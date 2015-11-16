@@ -34,10 +34,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".BookPage"
-            android:label="@string/book_page" >
-        </activity>
-        <activity
             android:name=".CadastroActivity"
             android:label="@string/title_activity_cadastro"
             android:theme="@style/AppTheme.NoActionBar" >
