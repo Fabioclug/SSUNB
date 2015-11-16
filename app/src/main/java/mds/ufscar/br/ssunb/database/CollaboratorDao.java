@@ -55,7 +55,6 @@ public class CollaboratorDao implements Dao<Collaborator> {
         values.put("senha", object.getSenha());
 
         int result = (int) db.insert("usuario", null, values);
-        db.close();
 
         if(result > 0) {
             object.setId(result);
@@ -78,11 +77,6 @@ public class CollaboratorDao implements Dao<Collaborator> {
                 cursor.moveToNext();
             }
         }
-        return null;
-    }
-
-    @Override
-    public List<Collaborator> listBy(String criteria) {
         return null;
     }
 

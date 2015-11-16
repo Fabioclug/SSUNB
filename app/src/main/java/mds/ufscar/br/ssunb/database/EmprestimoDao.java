@@ -88,8 +88,17 @@ public class EmprestimoDao implements Dao<Emprestimo> {
         return emprestimoList;
     }
 
-    @Override
-    public List<Emprestimo> listBy(String criteria) {
-        return null;
+    public List<Emprestimo> listPendingByUser(int user_id) {
+        List<Emprestimo> emprestimoList = new ArrayList<Emprestimo>();
+        Cursor cursor = handler.getReadableDatabase().rawQuery("SELECT * FROM emprestimo WHERE dono_livro = ?",
+                new String[]{String.valueOf(user_id)});
+        if(cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                emprestimoList.add(build(cursor));
+                cursor.moveToNext();
+            }
+        }
+        return emprestimoList;
     }
+
 }

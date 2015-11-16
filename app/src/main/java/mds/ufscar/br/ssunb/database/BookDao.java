@@ -112,11 +112,6 @@ public class BookDao implements Dao<Book> {
         return executeQuery(query, null);
     }
 
-    @Override
-    public List<Book> listBy(String criteria) {
-        return null;
-    }
-
     // listagem de livros que contenham a substring name no título
     public List<Book> listByName(String name) {
         String query = "SELECT * FROM book WHERE title LIKE ?";

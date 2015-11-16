@@ -73,11 +73,6 @@ public class UserDao implements Dao<User> {
     }
 
     @Override
-    public List<User> listBy(String criteria) {
-        return null;
-    }
-
-    @Override
     public User build(Cursor cursor) {
         if(!cursor.isAfterLast()) {
             Integer id = cursor.getInt(cursor.getColumnIndex("id"));
