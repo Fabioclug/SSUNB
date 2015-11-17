@@ -10,7 +10,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final int DB_VERSION = 1;
     private static final String CREATE_USER = "CREATE TABLE usuario (id integer not null primary key, " +
             "PrimNome text not null, SobreNome text not null,cidade text not null," +
-            "email text not null, senha text not null )";
+            "email text not null, senha text not null, latitude real, longitude real)";
 
     private static final String CREATE_BOOK = "create table book(code integer not null primary key," +
             "title text not null, author text not null, category text, synopsis text, publication date, " +

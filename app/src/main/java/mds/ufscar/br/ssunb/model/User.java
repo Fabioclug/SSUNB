@@ -5,23 +5,30 @@ package mds.ufscar.br.ssunb.model;
  */
 public class User extends Person {
 
-   // String senha;
+    double latitude;
+    double longitude;
 
     public User(String name, String surname, String Cidade, String email, String senha) {
         super(name, surname, Cidade,email, senha);
-      //  this.senha = senha;
     }
 
     public User(int id, String name, String surname, String Cidade, String email, String senha) {
         super(id, name, surname, Cidade,email, senha);
-        //  this.senha = senha;
     }
 
-//    public String getSenha() {
-//        return senha;
-//    }
-//
-//    public void setSenha(String senha) {
-//        this.senha = senha;
-//    }
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
 }

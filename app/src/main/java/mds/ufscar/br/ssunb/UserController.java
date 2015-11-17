@@ -27,8 +27,7 @@ public class UserController {
 //        return instance;
 //    }
 
-    public UserController(Context context)
-    {
+    public UserController(Context context) {
         this.context = context;
         DatabaseHandler db = new DatabaseHandler(context);
         //db.getWritableDatabase().execSQL("delete from book");
@@ -42,10 +41,6 @@ public class UserController {
 //        usuarioDAO = new UserDao(db);
         usuarioDAO.save(usuario);
     }
-
-//    public List<User> findAll() throws Exception {
-//        return usuarioDAO.findAll();
-//    }
 
     public boolean validaLogin(String email, String senha) throws Exception {
         User user = usuarioDAO.findByLogin(email, senha);
@@ -61,8 +56,7 @@ public class UserController {
 
     }
 
-    public User findByEmail(String email)
-    {
+    public User findByEmail(String email) {
         User user = usuarioDAO.findByEmail(email);
         return user;
     }

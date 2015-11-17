@@ -7,7 +7,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.location.Location;
+import android.util.Pair;
 
+import mds.ufscar.br.ssunb.UserDistance;
 import mds.ufscar.br.ssunb.model.Book;
 import mds.ufscar.br.ssunb.model.User;
 
@@ -33,6 +36,8 @@ public class UserDao implements Dao<User> {
         values.put("cidade", object.getCity());
         values.put("email", object.getEmail());
         values.put("senha", object.getSenha());
+        values.put("latitude", object.getLatitude());
+        values.put("longitude", object.getLongitude());
 
         int result = (int) db.insert("usuario", null, values);
         db.close();
@@ -87,10 +92,35 @@ public class UserDao implements Dao<User> {
             List<Book> blist = bdao.listByUser(id);
             User u = new User(id, PrimNome, SobreNome, cidade, email, senha);
             u.setOwnedBooks(blist);
+            Double myValue;
+            if (!cursor.isNull(cursor.getColumnIndex("latitude")) && !cursor.isNull(cursor.getColumnIndex("longitude"))) {
+                double latitude = cursor.getDouble(cursor.getColumnIndex("longitude"));
+                double longitude = cursor.getDouble(cursor.getColumnIndex("longitude"));
+                u.setLatitude(latitude);
+                u.setLongitude(longitude);
+            }
             return u;
         }
         else return null;
     }
+
+    // lista usuários por ordem de distância em relação à localização recebida
+    public List<UserDistance> listByDistance(double latitude, double longitude) {
+        String query = "SELECT * FROM usuario AS u1 " +
+                "JOIN SELECT acos(sin(?)*sin(radians(latitude)) + cos(?)*cos(radians(latitude))cos(radians(longitude)-?))$R As dist" +
+                "FROM usuario AS u2 ON u1.id = u2.id ORDER BY dist";
+        String[] subs = new String[]{String.valueOf(latitude), String.valueOf(latitude), String.valueOf(longitude)};
+        List<UserDistance> userList = new ArrayList<UserDistance>();
+        Cursor cursor = handler.getReadableDatabase().rawQuery(query, subs);
+        if(cursor.moveToFirst()) {
+            while(!cursor.isAfterLast()) {
+                userList.add(new UserDistance(build(cursor), cursor.getDouble(cursor.getColumnIndex("dist"))));
+                cursor.moveToNext();
+            }
+        }
+        return userList;
+    }
+
 
     public User findById(int id) {
         Cursor cursor = handler.getReadableDatabase().rawQuery("SELECT * FROM usuario WHERE id = ?",

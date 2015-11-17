@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import mds.ufscar.br.ssunb.model.User;
 
@@ -22,8 +23,7 @@ public class CadastroActivity extends AppCompatActivity {
 
     }
 
-    public void EfetuarCadastro(View view)
-    {
+    public void EfetuarCadastro(View view) {
         // Recuperamos os valores dos campos da tela.
         EditText campoNome = (EditText) findViewById(R.id.editTextPrimNome);
         EditText campoSurname = (EditText) findViewById(R.id.editTextSobreNome);
@@ -39,6 +39,24 @@ public class CadastroActivity extends AppCompatActivity {
 
         User novoUsuario = new User(nome, surname, city, email, senha);
         UserController novoUserControler = new UserController(this);
+        Double latitude = null;
+        Double longitude = null;
+        MyLocationListener gps = new MyLocationListener(CadastroActivity.this);
+        if(gps.canGetLocation()) {
+            latitude = gps.getLatitude();
+            longitude = gps.getLongitude();
+            //Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
+        } else {
+            // Can't get location.
+            // GPS or network is not enabled.
+            // Ask user to enable GPS/network in settings.
+            gps.showSettingsAlert();
+        }
+
+        if(latitude != null && longitude != null) {
+            novoUsuario.setLatitude(latitude.doubleValue());
+            novoUsuario.setLongitude(longitude.doubleValue());
+        }
 
         try{
             novoUserControler.insert(novoUsuario);
