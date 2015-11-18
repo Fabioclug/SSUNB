@@ -9,6 +9,11 @@ public class Collaborator extends Person {
         this.cpf = cpf;
     }
 
+    public Collaborator(String name, String surname, String email, String city, String senha, String cpf) {
+        super(name, surname, email, city, senha);
+        this.cpf = cpf;
+    }
+
     public String getCpf() {
         return cpf;
     }

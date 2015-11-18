@@ -1,5 +1,6 @@
 package mds.ufscar.br.ssunb;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,11 +14,16 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import mds.ufscar.br.ssunb.database.BookDao;
+import mds.ufscar.br.ssunb.database.DatabaseHandler;
+import mds.ufscar.br.ssunb.model.Book;
 import mds.ufscar.br.ssunb.model.User;
 
 public class SugestaoCadastroLivro extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
     UserController usuarioDaSessao;
     String emailUsuarioDaSessao;
+    Context context;
+    DatabaseHandler db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,18 +66,33 @@ public class SugestaoCadastroLivro extends AppCompatActivity implements PopupMen
                 String livro = nomeLivro.getText().toString();
                 String autor = nomeAutor.getText().toString();
 
-                Sugestao(livro,autor);
+                Sugestao(livro, autor);
 
                 Toast.makeText(getApplicationContext(), "Sugestão enviada para análise",
                         Toast.LENGTH_SHORT).show();
             }
         });
 
+        context = this;
+
     }
 
     public void Sugestao(String livro, String autor)
     {
-        String status;
+
+        Book novoLivro = new Book(livro, autor);
+        db = new DatabaseHandler(context);
+        BookDao bookDao = new BookDao(db);
+        bookDao.save(novoLivro);
+
+        try{
+            bookDao.save(novoLivro);
+        }catch(Exception e)
+        {
+            Toast.makeText(getApplicationContext(), "Falha ao inserir novo livro no banco",
+                    Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     @Override

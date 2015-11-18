@@ -18,11 +18,11 @@ public class LivroActivity extends AppCompatActivity{
 
     String emailUsuarioDaSessao;
     String livroEscolhido;
-    List<UserRow> itemData = new ArrayList<>();
+    List<ItemRow> itemData = new ArrayList<>();
     User usuarioPortador;
     DatabaseHandler db;
     UserDao usuarios;
-    private ArrayAdapter<UserRow> adaptador = null;
+    private ArrayAdapter<ItemRow> adaptador = null;
     public LivroActivity() {
 
     }

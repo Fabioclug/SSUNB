@@ -37,6 +37,7 @@ import org.json.JSONObject;
 import mds.ufscar.br.ssunb.database.BookDao;
 import mds.ufscar.br.ssunb.database.DatabaseHandler;
 import mds.ufscar.br.ssunb.model.Book;
+import mds.ufscar.br.ssunb.model.Collaborator;
 import mds.ufscar.br.ssunb.model.User;
 
 
@@ -70,7 +71,7 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
         setContentView(R.layout.activity_main);
         context = this;
 
-        //
+//
 //                Book b1 = new Book("Lord of The Rings", "J. R. R. Tolkien");
 //        Book b2 = new Book("Fight Club", "Chuck Palahniuk");
 //        Book b3 = new Book("The Da Vinci Code", "Dan Brown");
@@ -92,6 +93,16 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
 
 
         //context.deleteDatabase("ssunb");
+
+        Collaborator novoColaborador = new Collaborator("Yoda", "=]", "Dagobah", "yoda@ssunb.com", "123","1239");
+        CollaboratorController novoCollaboratorControler = new CollaboratorController(this);
+
+        try{
+            novoCollaboratorControler.insert(novoColaborador);
+        }catch(Exception e)
+        {
+            System.out.println(e.toString());
+        }
 
 
         LoginManager.getInstance().registerCallback(callbackManager,
@@ -168,7 +179,7 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
                 if (validar()) {
                     if (part2.equals("ssunb.com")) {
                         Intent intent = new Intent(MainActivity.this, HomeColaborador.class);
-                        intent.putExtra("EMAIL_COLABORATOR", emailUserSecao);
+                        intent.putExtra("EMAIL_USER", emailUserSecao);
                         startActivity(intent);
 
                     } else {
