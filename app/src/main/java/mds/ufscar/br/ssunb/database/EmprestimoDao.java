@@ -101,4 +101,16 @@ public class EmprestimoDao implements Dao<Emprestimo> {
         return emprestimoList;
     }
 
+    // confirma o empréstimo de um livro, usado pelo dono do livro solicitado
+    public boolean confirmEmprestimo(Emprestimo emprestimo) {
+        //String query = "UPDATE book SET pending = 0 WHERE title = ?";
+        ContentValues values = new ContentValues();
+        values.put("autorizado", 1);
+        SQLiteDatabase db = handler.getWritableDatabase();
+        int result = db.update("emprestimo", values, "solicitante = ? AND dono_livro = ? AND livro = ?", new String[]{
+                String.valueOf(emprestimo.getRequester().getId()), String.valueOf(emprestimo.getBookOwner().getId()),
+                String.valueOf(emprestimo.getRequestedBook().getCode())});
+        return (result > 0);
+    }
+
 }

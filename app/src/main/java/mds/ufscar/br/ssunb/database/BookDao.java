@@ -37,11 +37,13 @@ public class BookDao implements Dao<Book> {
             code = cursor.getInt(cursor.getColumnIndex("code"));
             edition = cursor.getInt(cursor.getColumnIndex("edition"));
             pages = cursor.getInt(cursor.getColumnIndex("pages"));
-//      try {
-//          publication = dateFormat.parse(cursor.getString((cursor.getColumnIndex("publication"))));
-//      } catch (ParseException e) {
-//          e.printStackTrace();
-//      }
+            if(!cursor.isNull(cursor.getColumnIndex("publication"))) {
+                try {
+                    publication = dateFormat.parse(cursor.getString((cursor.getColumnIndex("publication"))));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
             return new Book(title, author, category, synopsis, code, publication, edition, publisher, pages);
         }
         else return null;
@@ -57,12 +59,14 @@ public class BookDao implements Dao<Book> {
         values.put("author", object.getAuthor());
         values.put("category", object.getCategory());
         values.put("synopsis", object.getSynopsis());
-//        try {
-//            values.put("publication", dateFormat.format(object.getPublication()));
-//        }
-//        catch (Exception e) {
-//            System.out.println(e);
-//        }
+        if(object.getPublication() != null) {
+            try {
+                values.put("publication", dateFormat.format(object.getPublication()));
+            }
+            catch (Exception e) {
+                System.out.println(e);
+            }
+        }
         values.put("edition", object.getEdition());
         values.put("publisher", object.getPublisher());
         values.put("pages", object.getPages());
@@ -148,6 +152,7 @@ public class BookDao implements Dao<Book> {
         return b;
     }
 
+    // confirma o cadastro de um livro, usado pelo colaborador
     public boolean confirmBook(String title) {
         //String query = "UPDATE book SET pending = 0 WHERE title = ?";
         ContentValues values = new ContentValues();

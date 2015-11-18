@@ -87,7 +87,6 @@ public class UserDao implements Dao<User> {
             String email = cursor.getString(cursor.getColumnIndex("email"));
             String senha = cursor.getString(cursor.getColumnIndex("senha"));
 
-            // aqui talvez tenha que ser criado um novo handler
             BookDao bdao = new BookDao(this.handler);
             List<Book> blist = bdao.listByUser(id);
             User u = new User(id, PrimNome, SobreNome, cidade, email, senha);
