@@ -132,7 +132,7 @@ public class BookDao implements Dao<Book> {
     }
 
     public Book findById(int id) {
-        Cursor cursor = handler.getReadableDatabase().rawQuery("SELECT * FROM book WHERE id = ?",
+        Cursor cursor = handler.getReadableDatabase().rawQuery("SELECT * FROM book WHERE code = ?",
                 new String[]{String.valueOf(id)});
         cursor.moveToFirst();
         Book b = build(cursor);
@@ -159,6 +159,23 @@ public class BookDao implements Dao<Book> {
         values.put("pending", 0);
         SQLiteDatabase db = handler.getWritableDatabase();
         int result = db.update("book", values, "title = ?", new String[]{title});
+        return (result > 0);
+    }
+
+
+    public boolean confirmBookbyId(int code, String nome, String autor, String categoria, String sinopse, int edicao, String editora, int numpag) {
+        //String query = "UPDATE book SET pending = 0 WHERE title = ?";
+        ContentValues values = new ContentValues();
+        values.put("title", nome);
+        values.put("author",autor);
+        values.put("category", categoria);
+        values.put("synopsis", sinopse);
+        values.put("edition", edicao);
+        values.put("publisher", editora);
+        values.put("pages", numpag);
+        values.put("pending", 0);
+        SQLiteDatabase db = handler.getWritableDatabase();
+        int result = db.update("book", values, "code = ?", new String[]{String.valueOf(code)});
         return (result > 0);
     }
 }

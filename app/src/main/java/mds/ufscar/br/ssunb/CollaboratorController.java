@@ -42,4 +42,9 @@ public class CollaboratorController {
 
     }
 
+    public Collaborator findByEmail(String email) {
+        Collaborator colaborador = colaboradorDAO.findByEmail(email);
+        return colaborador;
+    }
+
 }

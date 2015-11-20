@@ -12,12 +12,14 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import mds.ufscar.br.ssunb.database.CollaboratorDao;
 import mds.ufscar.br.ssunb.model.Collaborator;
 import mds.ufscar.br.ssunb.model.User;
 
 public class HomeColaborador extends AppCompatActivity implements AdapterView.OnItemClickListener {
     ListView listView;
     CollaboratorController colaboradorAtual;
+    CollaboratorDao col;
     String emailColaboradorDaSessao;
 
     @Override
@@ -39,11 +41,11 @@ public class HomeColaborador extends AppCompatActivity implements AdapterView.On
         }
 
         colaboradorAtual = new CollaboratorController(this);
-        //Collaborator atual = colaboradorAtual.findByEmail(emailUsuarioDaSessao);
-        //String nome = atual.getName();
+//        Collaborator atual = colaboradorAtual.findByEmail(emailColaboradorDaSessao);
+//        String nome = atual.getName();
 
-        TextView NomeDoUsuario = (TextView)findViewById(R.id.NameColaborator);
-        //NomeDoUsuario.setText(nome);
+        TextView NomeDoColaborador = (TextView)findViewById(R.id.NameCollaborator);
+//        NomeDoColaborador.setText(nome);
 
     }
 
@@ -52,7 +54,7 @@ public class HomeColaborador extends AppCompatActivity implements AdapterView.On
         switch (position) {
             case 0:
                 Intent intentSearch = new Intent(HomeColaborador.this, ListaLivrosPendentes.class);
-                intentSearch.putExtra("EMAIL_USER", emailColaboradorDaSessao);
+                intentSearch.putExtra("EMAIL_COLABORADOR", emailColaboradorDaSessao);
                 startActivity(intentSearch);
                 break;
             case 1:

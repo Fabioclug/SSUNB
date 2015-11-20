@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:text="Preencher com 1 o nome"
-                android:id="@+id/NameColaborator"
+                android:id="@+id/NameCollaborator"
                 android:textColor="#ffffff"
                 android:textSize="30dp"
                 android:layout_marginLeft="20dp"

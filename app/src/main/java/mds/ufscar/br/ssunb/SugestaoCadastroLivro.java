@@ -69,8 +69,7 @@ public class SugestaoCadastroLivro extends AppCompatActivity implements PopupMen
 
                 Sugestao(livro, autor);
 
-                Toast.makeText(getApplicationContext(), "Sugestão enviada para análise",
-                        Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -87,6 +86,8 @@ public class SugestaoCadastroLivro extends AppCompatActivity implements PopupMen
 
         try{
             bookDao.save(novoLivro);
+            Toast.makeText(getApplicationContext(), "Sugestão enviada para análise",
+                    Toast.LENGTH_SHORT).show();
         }catch(Exception e)
         {
             Toast.makeText(getApplicationContext(), "Falha ao inserir novo livro no banco",

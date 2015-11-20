@@ -1,5 +1,6 @@
 package mds.ufscar.br.ssunb;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,11 +20,13 @@ import mds.ufscar.br.ssunb.database.BookDao;
 import mds.ufscar.br.ssunb.database.DatabaseHandler;
 import mds.ufscar.br.ssunb.database.UserDao;
 import mds.ufscar.br.ssunb.model.Book;
+import mds.ufscar.br.ssunb.model.Collaborator;
 import mds.ufscar.br.ssunb.model.User;
 
 public class ListaLivrosPendentes extends AppCompatActivity {
 
-    String emailColaboradorSessao;
+    String emailColaboradorDaSessao;
+    CollaboratorController colaboradorAtual;
     String livroEscolhido;
     List<ItemRow> itemData = new ArrayList<>();
     DatabaseHandler db;
@@ -38,10 +42,17 @@ public class ListaLivrosPendentes extends AppCompatActivity {
 
         if(getIntent().hasExtra("EMAIL_USER")){
             Bundle extras = getIntent().getExtras();
-            emailColaboradorSessao = extras.getString("EMAIL_USER");
-            //System.out.println(extras.getString("EMAIL_USER"));
-            //Log.w("EmailUser", extras.getString("EMAIL_USER"));
+            emailColaboradorDaSessao = extras.getString("EMAIL_COLABORADOR");
+            System.out.println(extras.getString("EMAIL_COLABORADOR"));
+            Log.w("EmailColaborador", extras.getString("EMAIL_COLABORADOR"));
         }
+
+        colaboradorAtual = new CollaboratorController(this);
+//        Collaborator atual = colaboradorAtual.findByEmail(emailColaboradorDaSessao);
+//        String nome = atual.getName();
+
+        TextView NomeDoColaborador = (TextView)findViewById(R.id.NameCollaborator);
+//        NomeDoColaborador.setText(nome);
 
         ListView lista = (ListView) findViewById(R.id.pending_list_view);
         adaptador = new ArrayAdapter<ItemRow>(this,
@@ -56,7 +67,11 @@ public class ListaLivrosPendentes extends AppCompatActivity {
                 String nome = livroEscolhido.getItemName();
                 int ident = livroEscolhido.id;
                 System.out.println("Nome Livro " + nome+ " id:"+ident);
-                //usuarioPortador =
+                Intent intent = new Intent(ListaLivrosPendentes.this, ConfirmacaoCadastroLivro.class);
+                intent.putExtra("EMAIL_COLABORADOR", emailColaboradorDaSessao);
+                intent.putExtra("ID_LIVRO", ident);
+                startActivity(intent);
+
             }
         });
 

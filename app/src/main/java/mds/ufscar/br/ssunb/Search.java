@@ -153,7 +153,7 @@ public class Search extends AppCompatActivity {
         DatabaseHandler db = new DatabaseHandler(this);
         livrosUsuario = new BookDao(db);
         usuarios = new UserDao(db);
-        List<Book> livros = livrosUsuario.listAll();
+        List<Book> livros = livrosUsuario.listConfirmed();
 
         for(int i=0;i<livros.size();i++)
         {

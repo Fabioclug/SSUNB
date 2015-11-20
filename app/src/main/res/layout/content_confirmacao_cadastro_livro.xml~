@@ -39,11 +39,11 @@
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/LinearLayout1"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="342dp"
             android:orientation="vertical"
             tools:context=".MainActivity"
             android:layout_gravity="center"
-            android:layout_marginTop="50dp">
+            android:layout_marginTop="100dp">
 
 
             <EditText
@@ -65,7 +65,7 @@
                 android:id="@+id/editTextCategoria"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Categoria"
+                android:hint=""
                 android:inputType="text" />
 
 
@@ -73,7 +73,7 @@
                 android:id="@+id/editTextEdicao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Edição do livro"
+                android:hint=""
                 android:inputType="textEmailAddress" />
 
 
@@ -81,19 +81,19 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Editora"
+                android:hint=""
                 android:id="@+id/editTextEditora" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Número de páginas"
+                android:hint=""
                 android:id="@+id/editTextPage" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Sinopse"
+                android:hint=""
                 android:id="@+id/editTextSinopse" />
 
             <com.beardedhen.androidbootstrap.BootstrapButton
@@ -107,7 +107,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:layout_gravity="center"
-                android:layout_marginTop="25dp" />
+                android:layout_marginTop="15dp" />
 
 
         </LinearLayout>
