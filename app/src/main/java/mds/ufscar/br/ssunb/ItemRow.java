@@ -9,12 +9,21 @@ public class ItemRow {
 
     String itemName;
     Drawable icon;
+    int id;
 
     public ItemRow(String itemName) {
         super();
         this.itemName = itemName;
         //this.icon = icon;
     }
+
+    public ItemRow(String itemName, int id) {
+        super();
+        this.itemName = itemName;
+        this.id = id;
+        //this.icon = icon;
+    }
+
     public String getItemName() {
         return itemName;
     }
@@ -26,6 +35,11 @@ public class ItemRow {
     }
     public void setIcon(Drawable icon) {
         this.icon = icon;
+    }
+
+    @Override
+    public String toString() {
+        return itemName;
     }
 
 }

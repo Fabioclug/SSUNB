@@ -83,7 +83,6 @@ public class SugestaoCadastroLivro extends AppCompatActivity implements PopupMen
         Book novoLivro = new Book(livro, autor);
         db = new DatabaseHandler(context);
         BookDao bookDao = new BookDao(db);
-        bookDao.save(novoLivro);
 
         try{
             bookDao.save(novoLivro);

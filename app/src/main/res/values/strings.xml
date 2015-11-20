@@ -47,6 +47,8 @@
     <string name="title_activity_pagina_emprestimo">PaginaEmprestimo</string>
     <string name="title_activity_pagina_listagem">PaginaListagem</string>
     <string name="title_activity_pagina_listagem_usuarios">PaginaListagemUsuarios</string>
+    <string name="title_activity_lista_livros_pendentes">ListaLivrosPendentes</string>
+    <string name="title_activity_comfirmacao_cadastro_livro">ComfirmacaoCadastroLivro</string>
 
 
 </resources>

@@ -87,6 +87,16 @@
             android:label="@string/title_activity_pagina_listagem_usuarios"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
+        <activity
+            android:name=".ListaLivrosPendentes"
+            android:label="@string/title_activity_lista_livros_pendentes"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".ComfirmacaoCadastroLivro"
+            android:label="@string/title_activity_comfirmacao_cadastro_livro"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
     </application>
 
 </manifest> <!-- android:theme="@android:style/Theme.Holo.Light" > -->
