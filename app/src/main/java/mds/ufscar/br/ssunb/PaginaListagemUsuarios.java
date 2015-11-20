@@ -1,5 +1,6 @@
 package mds.ufscar.br.ssunb;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -21,11 +22,11 @@ import mds.ufscar.br.ssunb.model.User;
 public class PaginaListagemUsuarios extends AppCompatActivity {
     String emailUsuarioDaSessao;
     String livroEscolhido;
-    List<UserRow> itemData = new ArrayList<>();
+    List<ItemRow> itemData = new ArrayList<>();
     User usuarioPortador;
     DatabaseHandler db;
     UserDao usuarios;
-    private ArrayAdapter<UserRow> adaptador = null;
+    private ArrayAdapter<ItemRow> adaptador = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +44,7 @@ public class PaginaListagemUsuarios extends AppCompatActivity {
         }
 
         ListView lista = (ListView) findViewById(R.id.user_list_view);
-        adaptador = new ArrayAdapter<UserRow>(this,
+        adaptador = new ArrayAdapter<ItemRow>(this,
                 android.R.layout.simple_list_item_1, itemData);
         lista.setAdapter(adaptador);
 
@@ -51,9 +52,15 @@ public class PaginaListagemUsuarios extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
-                UserRow userEscolhido = adaptador.getItem(position);
-                String nome = userEscolhido.getName();
+                ItemRow userEscolhido = adaptador.getItem(position);
+                String nome = userEscolhido.getItemName();
+                int ident = userEscolhido.getId();
                 System.out.println("Nome Usuario " + nome);
+                Intent intent = new Intent(PaginaListagemUsuarios.this, PaginaEmprestimo.class);
+                intent.putExtra("EMAIL_USER", emailUsuarioDaSessao);
+                intent.putExtra("USER_ESCOLHIDO", ident);
+                intent.putExtra("LIVRO_ESCOLHIDO", livroEscolhido);
+                startActivity(intent);
                 //usuarioPortador =
             }
         });
@@ -73,7 +80,7 @@ public class PaginaListagemUsuarios extends AppCompatActivity {
         for(int i=0;i<usuariosQuePossuemOLivro.size();i++)
         {
             System.out.println("Usuarios "+ usuariosQuePossuemOLivro.get(i).getName());
-            adaptador.add(new UserRow(usuariosQuePossuemOLivro.get(i).getName() ));
+            adaptador.add(new ItemRow(usuariosQuePossuemOLivro.get(i).getName(), usuariosQuePossuemOLivro.get(i).getId() ));
 
         }
 

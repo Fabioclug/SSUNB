@@ -36,6 +36,7 @@ public class ItemRow {
     public void setIcon(Drawable icon) {
         this.icon = icon;
     }
+    public int getId() {return this.id; }
 
     @Override
     public String toString() {
