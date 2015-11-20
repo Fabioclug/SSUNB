@@ -51,6 +51,7 @@
 
 
         <LinearLayout
+            android:id="@+id/LinearLayout1"
             style="@style/example_container"
             android:baselineAligned="false"
             android:orientation="vertical"

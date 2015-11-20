@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -92,6 +93,19 @@ public class SugestaoCadastroLivro extends AppCompatActivity implements PopupMen
                     Toast.LENGTH_SHORT).show();
         }
 
+        clear((ViewGroup) findViewById(R.id.LinearLayout1));
+
+    }
+
+    public void clear(ViewGroup group) {
+
+        int count = group.getChildCount();
+        for (int i = 0; i < count; i++) {
+            View view = group.getChildAt(i);
+            if (view instanceof EditText) {
+                ((EditText)view).setText("");
+            }
+        }
     }
 
     @Override
