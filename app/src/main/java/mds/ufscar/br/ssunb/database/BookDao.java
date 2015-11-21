@@ -178,4 +178,16 @@ public class BookDao implements Dao<Book> {
         int result = db.update("book", values, "code = ?", new String[]{String.valueOf(code)});
         return (result > 0);
     }
+
+    // insere uma avaliação de usuario para um livro
+    public boolean rateBook(int id_user, int id_book, double stars) {
+        ContentValues values = new ContentValues();
+        values.put("usuario",id_user);
+        values.put("livro", id_book);
+        values.put("nota", stars);
+        values.put("data_avaliacao", dateFormat.format(new Date()));
+        SQLiteDatabase db = handler.getWritableDatabase();
+        int result = (int) db.insert("avaliacoes", null, values);
+        return (result > 0);
+    }
 }

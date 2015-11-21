@@ -90,10 +90,9 @@ public class CollaboratorDao implements Dao<Collaborator> {
         return c;
     }
     public Collaborator findByEmail(String email) {
-        UserDao ud = new UserDao(handler);
-        User u = ud.findByEmail(email);
-        Cursor cursor = handler.getReadableDatabase().rawQuery("SELECT * FROM colaborador WHERE id = ?",
-                new String[] {String.valueOf(u.getId())});
+        Cursor cursor = handler.getReadableDatabase().rawQuery("SELECT * FROM usuario AS u JOIN colaborador " +
+                        "AS c ON u.id = c.id WHERE email = ?",
+                new String[] {email});
         cursor.moveToFirst();
         Collaborator c = build(cursor);
         cursor.close();
