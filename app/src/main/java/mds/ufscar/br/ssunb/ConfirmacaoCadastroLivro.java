@@ -83,9 +83,10 @@ public class ConfirmacaoCadastroLivro extends AppCompatActivity {
         EditText campoAutor = (EditText) findViewById(R.id.editTextAutor);
         EditText campoCategoria = (EditText) findViewById(R.id.editTextCategoria);
         EditText campoEdicao = (EditText) findViewById(R.id.editTextEdicao);
-        EditText campoEditora = (EditText) findViewById(R.id.editTextEditora);
         EditText campoPaginas = (EditText) findViewById(R.id.editTextPage);
         EditText campoSinopse = (EditText) findViewById(R.id.editTextSinopse);
+        EditText campoDataPublicacao = (EditText) findViewById(R.id.editDataPublicacao);
+
 
         campoNomeLivro.setHint(livro.getTitle());
         campoAutor.setHint(livro.getAuthor());
@@ -101,15 +102,15 @@ public class ConfirmacaoCadastroLivro extends AppCompatActivity {
         }
         String categoria = campoCategoria.getText().toString();
         String edicao = campoEdicao.getText().toString();
-        String editora = campoEditora.getText().toString();
         String paginas = campoPaginas.getText().toString();
         String Sinopse = campoSinopse.getText().toString();
+        String publicacao = campoDataPublicacao.getText().toString();
 
         int ed = Integer.parseInt(edicao);
         int pag = Integer.parseInt(paginas);
 
         try {
-            bookDao.confirmBookbyId(cod_livro, nome, autor, categoria, Sinopse, ed, editora, pag);
+            bookDao.confirmBookbyId(cod_livro, nome, autor, categoria, Sinopse, ed, publicacao, pag);
             Toast.makeText(getApplicationContext(), "Confirmação de cadastro com sucesso",
                     Toast.LENGTH_SHORT).show();
         } catch (Exception e) {

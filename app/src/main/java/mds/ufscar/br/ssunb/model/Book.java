@@ -8,9 +8,8 @@ public class Book {
     private String category;
     private String synopsis;
     private int code;
-    private Date publication;
+    private String publication;
     private int edition;
-    private String publisher;
     private int pages;
 
     public Book(String title, String author) {
@@ -18,7 +17,7 @@ public class Book {
         this.author = author;
     }
 
-    public Book(String title, String author, String category, String synopsis, int code, Date publication, int edition, String publisher, int pages) {
+    public Book(String title, String author, String category, String synopsis, int code, String publication, int edition, int pages) {
         this.title = title;
         this.author = author;
         this.category = category;
@@ -26,7 +25,17 @@ public class Book {
         this.code = code;
         this.publication = publication;
         this.edition = edition;
-        this.publisher = publisher;
+        this.pages = pages;
+    }
+
+
+    public Book(String title, String author, String category, String synopsis, String publication, int edition, int pages) {
+        this.title = title;
+        this.author = author;
+        this.category = category;
+        this.synopsis = synopsis;
+        this.publication = publication;
+        this.edition = edition;
         this.pages = pages;
     }
 
@@ -70,14 +79,6 @@ public class Book {
         this.code = code;
     }
 
-    public Date getPublication() {
-        return publication;
-    }
-
-    public void setPublication(Date publication) {
-        this.publication = publication;
-    }
-
     public int getEdition() {
         return edition;
     }
@@ -86,12 +87,12 @@ public class Book {
         this.edition = edition;
     }
 
-    public String getPublisher() {
-        return publisher;
+    public String getPublication() {
+        return publication;
     }
 
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
+    public void setPublication(String publication) {
+        this.publication = publication;
     }
 
     public int getPages() {

@@ -26,25 +26,24 @@ public class BookDao implements Dao<Book> {
 
     public Book build(Cursor cursor) {
         if(!cursor.isAfterLast()) {
-            String title, author, category, synopsis, publisher;
+            String title, author, category, synopsis, publication;
             int code, edition, pages;
-            Date publication = null;
             title = cursor.getString(cursor.getColumnIndex("title"));
             author = cursor.getString(cursor.getColumnIndex("author"));
             category = cursor.getString(cursor.getColumnIndex("category"));
             synopsis = cursor.getString(cursor.getColumnIndex("synopsis"));
-            publisher = cursor.getString(cursor.getColumnIndex("publisher"));
             code = cursor.getInt(cursor.getColumnIndex("code"));
             edition = cursor.getInt(cursor.getColumnIndex("edition"));
             pages = cursor.getInt(cursor.getColumnIndex("pages"));
-            if(!cursor.isNull(cursor.getColumnIndex("publication"))) {
+            publication = cursor.getString(cursor.getColumnIndex("publication"));
+         /*   if(!cursor.isNull(cursor.getColumnIndex("publication"))) {
                 try {
                     publication = dateFormat.parse(cursor.getString((cursor.getColumnIndex("publication"))));
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-            }
-            return new Book(title, author, category, synopsis, code, publication, edition, publisher, pages);
+            }*/
+            return new Book(title, author, category, synopsis, code, publication, edition, pages);
         }
         else return null;
     }
@@ -59,16 +58,16 @@ public class BookDao implements Dao<Book> {
         values.put("author", object.getAuthor());
         values.put("category", object.getCategory());
         values.put("synopsis", object.getSynopsis());
-        if(object.getPublication() != null) {
+      /*  if(object.getPublication() != null) {
             try {
                 values.put("publication", dateFormat.format(object.getPublication()));
             }
             catch (Exception e) {
                 System.out.println(e);
             }
-        }
+        }*/
+        values.put("publication", object.getPublication());
         values.put("edition", object.getEdition());
-        values.put("publisher", object.getPublisher());
         values.put("pages", object.getPages());
         int result = (int) db.insert("book", null, values);
         if(result > 0)
@@ -163,7 +162,7 @@ public class BookDao implements Dao<Book> {
     }
 
 
-    public boolean confirmBookbyId(int code, String nome, String autor, String categoria, String sinopse, int edicao, String editora, int numpag) {
+    public boolean confirmBookbyId(int code, String nome, String autor, String categoria, String sinopse, int edicao, String publicacao, int numpag) {
         //String query = "UPDATE book SET pending = 0 WHERE title = ?";
         ContentValues values = new ContentValues();
         values.put("title", nome);
@@ -171,7 +170,7 @@ public class BookDao implements Dao<Book> {
         values.put("category", categoria);
         values.put("synopsis", sinopse);
         values.put("edition", edicao);
-        values.put("publisher", editora);
+        values.put("publication", publicacao);
         values.put("pages", numpag);
         values.put("pending", 0);
         SQLiteDatabase db = handler.getWritableDatabase();

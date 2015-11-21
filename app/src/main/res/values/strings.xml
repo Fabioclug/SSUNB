@@ -9,6 +9,7 @@
     <string name="title_activity_login_cadastro">LoginCadastroActivity</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_cadastro">CadastroActivity</string>
+    <string name="title_activity_livro"></string>
     <string name="PrimNome">Primeiro Nome</string>
     <string name="SobreNome">Sobrenome</string>
     <string name="email">Email</string>

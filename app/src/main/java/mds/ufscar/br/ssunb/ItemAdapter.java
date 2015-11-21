@@ -37,7 +37,7 @@ public class ItemAdapter extends ArrayAdapter {
         super(context, layoutResourceId, data);
 
         this.data=data;
-        this.context=context;
+        this.context = context;
         this.layoutResID=layoutResourceId;
         this.userAtual = atual;
         this.db = new DatabaseHandler(this.context);
@@ -99,11 +99,14 @@ public class ItemAdapter extends ArrayAdapter {
 
             @Override
             public void onClick(View v) {
+
+                System.out.println("AquiiiiiiiiiiiiiiiiiI!");
                 // TODO Auto-generated method stub
                 //Toast.makeText(context, "Button 1 Clicked",Toast.LENGTH_SHORT).show();
                 String nomeDoLivro = itemdata.getItemName();
                 Intent Paginalivro = new Intent(context, LivroActivity.class);
-                Paginalivro.putExtra("Livro",nomeDoLivro);
+                Paginalivro.putExtra("Livro", nomeDoLivro);
+                Paginalivro.putExtra("EMAIL_USER", userAtual.getEmail());
                 context.startActivity(Paginalivro);
             }
         });

@@ -77,12 +77,12 @@
                 android:inputType="textEmailAddress" />
 
 
-
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Editora"
-                android:id="@+id/editTextEditora" />
+                android:hint="Data Publicação"
+                android:id="@+id/editDataPublicacao"
+                android:inputType="date" />
 
             <EditText
                 android:layout_width="match_parent"

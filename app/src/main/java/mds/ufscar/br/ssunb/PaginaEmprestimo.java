@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import mds.ufscar.br.ssunb.database.BookDao;
+import mds.ufscar.br.ssunb.database.EmprestimoDao;
 import mds.ufscar.br.ssunb.model.User;
 
 public class PaginaEmprestimo extends AppCompatActivity {
@@ -17,6 +19,8 @@ public class PaginaEmprestimo extends AppCompatActivity {
     private String emailUsuarioDaSessao;
     private int idUsuarioPortador;
     private String nomeDoLivroEscolhido;
+    private BookDao bookDao;
+    private EmprestimoDao emprestimoDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,10 @@ public class PaginaEmprestimo extends AppCompatActivity {
 
         TextView NomeDoUsuario = (TextView)findViewById(R.id.NameUser);
         NomeDoUsuario.setText(nome);
+
+
+
+
 
 
     }
