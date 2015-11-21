@@ -9,18 +9,13 @@ public class Emprestimo {
     private User requester;
     private User bookOwner;
     private Book requestedBook;
-    private Date requestDate;
-    private Date lendDate;
-    private Date returnDate;
+    private Date date;
     private String status;
 
-    public Emprestimo(User requester, User bookOwner, Book requestedBook, Date requestDate, Date lendDate, Date returnDate, String status) {
+    public Emprestimo(User requester, User bookOwner, Book requestedBook, Date date, String status) {
         this.requester = requester;
         this.bookOwner = bookOwner;
         this.requestedBook = requestedBook;
-        this.requestDate = requestDate;
-        this.lendDate = lendDate;
-        this.returnDate = returnDate;
         this.status = status;
     }
 
@@ -48,28 +43,12 @@ public class Emprestimo {
         this.requestedBook = requestedBook;
     }
 
-    public Date getRequestDate() {
-        return requestDate;
+    public Date getDate() {
+        return date;
     }
 
-    public void setRequestDate(Date requestDate) {
-        this.requestDate = requestDate;
-    }
-
-    public Date getLendDate() {
-        return lendDate;
-    }
-
-    public void setLendDate(Date lendDate) {
-        this.lendDate = lendDate;
-    }
-
-    public Date getReturnDate() {
-        return returnDate;
-    }
-
-    public void setReturnDate(Date returnDate) {
-        this.returnDate = returnDate;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public String getStatus() {

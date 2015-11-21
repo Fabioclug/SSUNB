@@ -98,11 +98,6 @@
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
-            android:name=".ComfirmacaoCadastroLivro"
-            android:label="@string/title_activity_comfirmacao_cadastro_livro"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
-        <activity
             android:name=".ConfirmacaoCadastroLivro"
             android:label="@string/title_activity_confirmacao_cadastro_livro"
             android:theme="@style/AppTheme.NoActionBar" >

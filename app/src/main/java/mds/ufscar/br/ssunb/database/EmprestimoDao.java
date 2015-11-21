@@ -38,18 +38,14 @@ public class EmprestimoDao implements Dao<Emprestimo> {
         User requester = userDao.findById(requesterId);
         User bookOwner = userDao.findById(ownerId);
         Book requestedBook = bookDao.findById(bookId);
-        Date requestDate = null;
-        Date lendDate = null;
-        Date returnDate = null;
+        Date date = null;
         try {
-            requestDate = dateFormat.parse(cursor.getString((cursor.getColumnIndex("solicitado"))));
-            lendDate = dateFormat.parse(cursor.getString((cursor.getColumnIndex("retirada"))));
-            requestDate = dateFormat.parse(cursor.getString((cursor.getColumnIndex("devolucao"))));
+            date = dateFormat.parse(cursor.getString((cursor.getColumnIndex("solicitado"))));
         } catch (ParseException e) {
             e.printStackTrace();
         }
         String status = (cursor.getInt(cursor.getColumnIndex("autorizado")) == 1)? "Autorizado" : "Pendente";
-        Emprestimo e = new Emprestimo(requester, bookOwner, requestedBook, requestDate, lendDate, returnDate, status);
+        Emprestimo e = new Emprestimo(requester, bookOwner, requestedBook,date, status);
         return e;
     }
 
