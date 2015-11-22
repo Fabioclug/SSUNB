@@ -66,7 +66,7 @@ public class CadastroActivity extends AppCompatActivity {
         String email = campoEmail.getText().toString();
         if(email.length()==0)
         {
-            campos.add("email");
+            campos.add("e-mail");
             cont++;
         }
         if(!email.toLowerCase().contains("@"))

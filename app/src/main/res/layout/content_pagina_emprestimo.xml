@@ -105,7 +105,7 @@
                 android:layout_gravity="center_horizontal" />
 
             <com.beardedhen.androidbootstrap.BootstrapButton
-                android:id="@+id/buttonReuisicao"
+                android:id="@+id/buttonRequisicao"
                 style="@style/wrapping_button"
                 android:text="Requisitar Empréstimo"
                 app:bootstrapBrand="info"

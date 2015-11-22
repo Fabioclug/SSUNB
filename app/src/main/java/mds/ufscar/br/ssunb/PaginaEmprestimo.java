@@ -39,7 +39,7 @@ public class PaginaEmprestimo extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        if(getIntent().hasExtra("EMAIL_USER")){
+        if (getIntent().hasExtra("EMAIL_USER")) {
             Bundle extras = getIntent().getExtras();
             emailUsuarioDaSessao = extras.getString("EMAIL_USER");
             idUsuarioPortador = extras.getInt("USER_ESCOLHIDO");
@@ -49,29 +49,24 @@ public class PaginaEmprestimo extends AppCompatActivity {
         }
 
         usuarioDaSessao = new UserController(this);
-        User atual = usuarioDaSessao.findByEmail(emailUsuarioDaSessao);
+        final User atual = usuarioDaSessao.findByEmail(emailUsuarioDaSessao);
         String nome = atual.getName();
 
-        TextView NomeDoUsuario = (TextView)findViewById(R.id.NameUser);
+        TextView NomeDoUsuario = (TextView) findViewById(R.id.NameUser);
         NomeDoUsuario.setText(nome);
 
-        RealizarEmprestimo(atual.getId(), idUsuarioPortador, nomeDoLivroEscolhido);
-
-
+        findViewById(R.id.buttonRequisicao).setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+            RealizarEmprestimo(atual.getId(), idUsuarioPortador, nomeDoLivroEscolhido);
+        }});
 
 
         context = this;
-
-
-
-
-
-
-
     }
 
-    public void RealizarEmprestimo(int idSolicitante, int idPortadodor, String livroEscolhido)
-    {
+
+    public void RealizarEmprestimo(int idSolicitante, int idPortadodor, String livroEscolhido) {
 
         emprestimoDao = new EmprestimoDao(db);
         db = new DatabaseHandler(context);
@@ -79,19 +74,18 @@ public class PaginaEmprestimo extends AppCompatActivity {
         Book livro = bookDao.findByTitle(livroEscolhido);
         System.out.println("Encontrou o livro:");
         int idLivro = livro.getCode();
-        TextView textData = (TextView)findViewById(R.id.dataDesejada);
+        TextView textData = (TextView) findViewById(R.id.dataDesejada);
 
         // * TRANSFORMAR PARA DATA AQUI * //
         Date data = "";
         Emprestimo emprestimo = new Emprestimo(idSolicitante, idPortadodor, idLivro, data, "REQUISITADO");
 
 
-        try{
+        try {
             emprestimoDao.save(emprestimo);
             Toast.makeText(getApplicationContext(), "Sugestão enviada para análise",
                     Toast.LENGTH_SHORT).show();
-        }catch(Exception e)
-        {
+        } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "Falha ao inserir novo livro no banco",
                     Toast.LENGTH_SHORT).show();
         }
