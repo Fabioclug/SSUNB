@@ -48,6 +48,7 @@
     <string name="title_activity_lista_livros_pendentes">ListaLivrosPendentes</string>
     <string name="title_activity_comfirmacao_cadastro_livro">ComfirmacaoCadastroLivro</string>
     <string name="title_activity_confirmacao_cadastro_livro">ConfirmacaoCadastroLivro</string>
+    <string name="title_activity_pagina_listagem_emprestimos">PaginaListagemEmprestimos</string>
 
 
 </resources>

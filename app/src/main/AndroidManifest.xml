@@ -102,6 +102,11 @@
             android:label="@string/title_activity_confirmacao_cadastro_livro"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
+        <activity
+            android:name=".PaginaListagemEmprestimos"
+            android:label="@string/title_activity_pagina_listagem_emprestimos"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
     </application>
 
 </manifest> <!-- android:theme="@android:style/Theme.Holo.Light" > -->
