@@ -125,7 +125,7 @@ public class LivrosUsuarioActivity extends AppCompatActivity {
 
         for(int i=0;i<livros.size();i++)
         {
-            itemData.add(new ItemRow(livros.get(i).getTitle() ));
+            itemData.add(new ItemRow(livros.get(i).getTitle(), livros.get(i).getCode()));
 
         }
 

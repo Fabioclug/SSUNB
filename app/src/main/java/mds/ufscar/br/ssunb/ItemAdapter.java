@@ -126,7 +126,17 @@ public class ItemAdapter extends ArrayAdapter {
                 {
                     if(botao2.getText().toString().equals("Eliminar"))
                     {
-
+                        int idUser = userAtual.getId();
+                        int idBook = itemdata.getId();
+                        String nome = itemdata.getItemName();
+                        BookDao bookDao = new BookDao(db);
+                        try{
+                            bookDao.removeUserBook(idUser, idBook);
+                            Toast.makeText(context, "Livro "+nome+" eliminado do banco.",Toast.LENGTH_SHORT).show();
+                        }catch(Exception e)
+                        {
+                            Toast.makeText(context, "Não foi possível eliminar",Toast.LENGTH_SHORT).show();
+                        }
                     }
                     //Toast.makeText(context, "não e requisitar",Toast.LENGTH_SHORT).show();
                 }
