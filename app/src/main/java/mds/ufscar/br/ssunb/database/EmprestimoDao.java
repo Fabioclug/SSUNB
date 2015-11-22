@@ -109,4 +109,14 @@ public class EmprestimoDao implements Dao<Emprestimo> {
         return (result > 0);
     }
 
+    public Emprestimo findEmprestimo(int solicitante_id, int portador_id, int livro_code) {
+        String query = "SELECT * FROM emprestimo WHERE solicitante = ? AND dono_livro = ? AND livro = ?";
+        String[] subs = new String[]{String.valueOf(solicitante_id), String.valueOf(portador_id), String.valueOf(livro_code)};
+        Cursor cursor = handler.getReadableDatabase().rawQuery(query, subs);
+        if(cursor.moveToFirst()) {
+            return build(cursor);
+        }
+        else return null;
+    }
+
 }

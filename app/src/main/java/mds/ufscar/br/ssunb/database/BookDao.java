@@ -206,4 +206,12 @@ public class BookDao implements Dao<Book> {
                 "b.code = a.livro GROUP BY b.code ORDER BY classificacao DESC";
         return executeQuery(query, null);
     }
+
+    // remove um livro do usuario
+    public boolean removeUserBook(int user, int book) {
+        String whereClause = "usuario = ? AND livro = ?";
+        String[] subs = new String[] {String.valueOf(user), String.valueOf(book)};
+        int result = (int) handler.getWritableDatabase().delete("exemplar_livro", whereClause, subs);
+        return (result > 0);
+    }
 }
