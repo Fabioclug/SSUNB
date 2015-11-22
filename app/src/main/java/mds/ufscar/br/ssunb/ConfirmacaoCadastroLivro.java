@@ -47,11 +47,11 @@ public class ConfirmacaoCadastroLivro extends AppCompatActivity {
 
         context = this;
 
-        if(getIntent().hasExtra("EMAIL_COLABORADOR")){
+        if(getIntent().hasExtra("EMAIL_USER")){
             Bundle extras = getIntent().getExtras();
-            emailColaboradorDaSessao = extras.getString("EMAIL_COLABORADOR");
-//            System.out.println(extras.getString("EMAIL_COLABORADOR"));
-//            Log.w("EmailUser", extras.getString("EMAIL_COLABORADOR"));
+            emailColaboradorDaSessao = extras.getString("EMAIL_USER");
+            System.out.println(extras.getString("EMAIL_USER"));
+
         }
 
         if(getIntent().hasExtra("ID_LIVRO"))
@@ -62,11 +62,11 @@ public class ConfirmacaoCadastroLivro extends AppCompatActivity {
         }
 
         colaboradorAtual = new CollaboratorController(this);
- //       Collaborator atual = colaboradorAtual.findByEmail(emailColaboradorDaSessao);
-//        String nome = atual.getName();
+        Collaborator atual = colaboradorAtual.findByEmail(emailColaboradorDaSessao);
+        String nome = atual.getName();
 
         TextView NomeDoColaborador = (TextView)findViewById(R.id.NameCollaborator);
- //       NomeDoColaborador.setText(nome);
+        NomeDoColaborador.setText(nome);
 
     }
 
@@ -121,4 +121,4 @@ public class ConfirmacaoCadastroLivro extends AppCompatActivity {
 
     }
 
-    }
+}

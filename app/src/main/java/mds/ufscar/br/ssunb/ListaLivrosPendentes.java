@@ -42,17 +42,27 @@ public class ListaLivrosPendentes extends AppCompatActivity {
 
         if(getIntent().hasExtra("EMAIL_USER")){
             Bundle extras = getIntent().getExtras();
-            emailColaboradorDaSessao = extras.getString("EMAIL_COLABORADOR");
-            System.out.println(extras.getString("EMAIL_COLABORADOR"));
-            Log.w("EmailColaborador", extras.getString("EMAIL_COLABORADOR"));
+            emailColaboradorDaSessao = extras.getString("EMAIL_USER");
+
+            System.out.println("Email colaborador "+emailColaboradorDaSessao);
         }
 
-        colaboradorAtual = new CollaboratorController(this);
-//        Collaborator atual = colaboradorAtual.findByEmail(emailColaboradorDaSessao);
-//        String nome = atual.getName();
 
-        TextView NomeDoColaborador = (TextView)findViewById(R.id.NameCollaborator);
-//        NomeDoColaborador.setText(nome);
+
+        try{
+            colaboradorAtual = new CollaboratorController(this);
+            Collaborator atual = colaboradorAtual.findByEmail(emailColaboradorDaSessao);
+            String nome = atual.getName();
+            TextView NomeDoColaborador = (TextView)findViewById(R.id.NameCollaborator);
+            NomeDoColaborador.setText(nome);
+        }catch(Exception e)
+        {
+
+        }
+
+
+
+
 
         ListView lista = (ListView) findViewById(R.id.pending_list_view);
         adaptador = new ArrayAdapter<ItemRow>(this,
@@ -68,7 +78,7 @@ public class ListaLivrosPendentes extends AppCompatActivity {
                 int ident = livroEscolhido.id;
                 System.out.println("Nome Livro " + nome+ " id:"+ident);
                 Intent intent = new Intent(ListaLivrosPendentes.this, ConfirmacaoCadastroLivro.class);
-                intent.putExtra("EMAIL_COLABORADOR", emailColaboradorDaSessao);
+                intent.putExtra("EMAIL_USER", emailColaboradorDaSessao);
                 intent.putExtra("ID_LIVRO", ident);
                 startActivity(intent);
 
@@ -91,7 +101,7 @@ public class ListaLivrosPendentes extends AppCompatActivity {
         List<Book> livrosPendentes = livros.listPending();
         for(int i=0;i<livrosPendentes.size();i++)
         {
-            System.out.println("Usuarios "+ livrosPendentes.get(i).getTitle());
+            //System.out.println("Usuarios "+ livrosPendentes.get(i).getTitle());
             adaptador.add(new ItemRow(livrosPendentes.get(i).getTitle(), livrosPendentes.get(i).getCode() ));
 
         }

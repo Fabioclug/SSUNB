@@ -41,11 +41,11 @@ public class HomeColaborador extends AppCompatActivity implements AdapterView.On
         }
 
         colaboradorAtual = new CollaboratorController(this);
-//        Collaborator atual = colaboradorAtual.findByEmail(emailColaboradorDaSessao);
-//        String nome = atual.getName();
+        Collaborator atual = colaboradorAtual.findByEmail(emailColaboradorDaSessao);
+        String nome = atual.getName();
 
         TextView NomeDoColaborador = (TextView)findViewById(R.id.NameCollaborator);
-//        NomeDoColaborador.setText(nome);
+        NomeDoColaborador.setText(nome);
 
     }
 
@@ -54,7 +54,7 @@ public class HomeColaborador extends AppCompatActivity implements AdapterView.On
         switch (position) {
             case 0:
                 Intent intentSearch = new Intent(HomeColaborador.this, ListaLivrosPendentes.class);
-                intentSearch.putExtra("EMAIL_COLABORADOR", emailColaboradorDaSessao);
+                intentSearch.putExtra("EMAIL_USER", emailColaboradorDaSessao);
                 startActivity(intentSearch);
                 break;
             case 1:

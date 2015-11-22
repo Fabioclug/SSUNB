@@ -33,8 +33,6 @@
 
     <string-array name="itensMenuColaborador">
         <item>Sugestões Pendentes</item>
-        <item>Listar Empréstimos</item>
-        <item>Listar Usuários</item>
     </string-array>
 
     <string name="title_activity_sugestao_cadastro_livro">SugestaoCadastroLivro</string>

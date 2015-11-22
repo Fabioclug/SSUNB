@@ -24,15 +24,41 @@
             app:contentInsetStart="0dp"
             style="@style/Toolbar">
 
-            <ImageView
-                android:id="@+id/content_hamburger"
-                style="@style/ImageView.Hamburger"
-                android:src="@drawable/ic_menu_90" />
+            <com.beardedhen.androidbootstrap.BootstrapCircleThumbnail
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/content_1"
+                android:layout_marginLeft="20dp"
+                app:bootstrapBrand="danger"
+                app:hasBorder="true"
+                />
 
             <TextView
-                style="@style/example_title"
-                android:text="SSUNB"
-                android:textColor="#ffffff" />
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Preencher com 1 o nome"
+                android:id="@+id/NameCollaborator"
+                android:textColor="#ffffff"
+                android:textSize="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                />
+
+
+            <!--
+                <android.support.v7.widget.SearchView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:id="@+id/options_menu_main_search"
+                    android:actionViewClass="android.support.v7.widget.SearchView"
+                    android:layout_marginRight="20dp"
+                    app:showAsAction="always"
+                    android:title="Search"/>
+                -->
+
+
+
+
         </android.support.v7.widget.Toolbar>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
