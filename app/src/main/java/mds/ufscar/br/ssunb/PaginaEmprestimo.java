@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,6 +60,7 @@ public class PaginaEmprestimo extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
             RealizarEmprestimo(atual.getId(), idUsuarioPortador, nomeDoLivroEscolhido);
+
         }});
 
 
@@ -74,7 +76,7 @@ public class PaginaEmprestimo extends AppCompatActivity {
         Book livro = bookDao.findByTitle(livroEscolhido);
         System.out.println("Encontrou o livro:");
         int idLivro = livro.getCode();
-        TextView textData = (TextView) findViewById(R.id.dataDesejada);
+        EditText textData = (EditText) findViewById(R.id.editTextData);
 
         // * TRANSFORMAR PARA DATA AQUI * //
         Date data = "";
@@ -85,10 +87,13 @@ public class PaginaEmprestimo extends AppCompatActivity {
             emprestimoDao.save(emprestimo);
             Toast.makeText(getApplicationContext(), "Sugestão enviada para análise",
                     Toast.LENGTH_SHORT).show();
+            textData.setText("");
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "Falha ao inserir novo livro no banco",
                     Toast.LENGTH_SHORT).show();
         }
+
+
 
 
     }
