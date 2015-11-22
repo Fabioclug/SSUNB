@@ -124,7 +124,11 @@ public class ItemAdapter extends ArrayAdapter {
                     Toast.makeText(context, "Requisitar",Toast.LENGTH_SHORT).show();
                 }else
                 {
-                    Toast.makeText(context, "não e requisitar",Toast.LENGTH_SHORT).show();
+                    if(botao2.getText().toString().equals("Eliminar"))
+                    {
+
+                    }
+                    //Toast.makeText(context, "não e requisitar",Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -155,7 +159,7 @@ public class ItemAdapter extends ArrayAdapter {
                     //Toast.makeText(context, "Requisitar",Toast.LENGTH_SHORT).show();
                 }else
                 {
-                    Toast.makeText(context, "não e requisitar",Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(context, "não e requisitar",Toast.LENGTH_SHORT).show();
                 }
             }
         });

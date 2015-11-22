@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,7 @@ public class PaginaListagemUsuarios extends AppCompatActivity {
     DatabaseHandler db;
     UserDao usuarios;
     private ArrayAdapter<ItemRow> adaptador = null;
+    UserController usuarioDaSessao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,14 @@ public class PaginaListagemUsuarios extends AppCompatActivity {
             System.out.println(extras.getString("EMAIL_USER"));
             Log.w("EmailUser", extras.getString("EMAIL_USER"));
         }
+
+        usuarioDaSessao = new UserController(this);
+        User atual = usuarioDaSessao.findByEmail(emailUsuarioDaSessao);
+        String nome = atual.getName();
+
+        TextView NomeDoUsuario = (TextView)findViewById(R.id.NameUser);
+        NomeDoUsuario.setText(nome);
+
 
         ListView lista = (ListView) findViewById(R.id.user_list_view);
         adaptador = new ArrayAdapter<ItemRow>(this,

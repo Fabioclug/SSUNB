@@ -41,6 +41,17 @@ public class Book {
         this.pages = pages;
     }
 
+    public Book(String title, String author, String category, String synopsis,int code, String publication, int edition, int pages) {
+        this.title = title;
+        this.author = author;
+        this.category = category;
+        this.synopsis = synopsis;
+        this.publication = publication;
+        this.edition = edition;
+        this.pages = pages;
+        this.code = code;
+    }
+
     public String getAuthor() {
         return author;
     }

@@ -22,7 +22,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/swipe_button2"
             style="@style/MyListButtonAction"
-            android:text="Requisições"
+            android:text="Eliminar"
+
             />
 
         <Button
@@ -31,6 +32,7 @@
             android:id="@+id/swipe_button3"
             style="@style/MyListButtonAction"
             android:text="Eliminar"
+            android:visibility="invisible"
             />
 
 

@@ -36,6 +36,7 @@ public class PaginaEmprestimo extends AppCompatActivity {
     private Context context;
     private EmprestimoDao emprestimoDao;
     private DatabaseHandler db;
+    private UserDao usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +67,17 @@ public class PaginaEmprestimo extends AppCompatActivity {
             RealizarEmprestimo(atual.getId(), idUsuarioPortador, nomeDoLivroEscolhido);
 
         }});
+
+        usuario = new UserDao(db);
+        User userPortador = usuario.findById(idUsuarioPortador);
+
+        TextView portador = (TextView) findViewById(R.id.NamePortador);
+        portador.setText(userPortador.getName());
+
+        TextView nomeDoLivro = (TextView) findViewById(R.id.NameLivro);
+        nomeDoLivro.setText(nomeDoLivroEscolhido);
+
+
 
 
         context = this;

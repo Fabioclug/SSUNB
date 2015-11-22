@@ -90,13 +90,12 @@ public class HomeUsuarioActivity extends AppCompatActivity implements AdapterVie
             case 3:
                 break;
             case 4:
-
-                break;
-            case 5:
                 Intent intent = new Intent(HomeUsuarioActivity.this, SugestaoCadastroLivro.class);
                 intent.putExtra("EMAIL_USER", emailUsuarioDaSessao);
                 startActivity(intent);
                 break;
+
+
         }
 //        Toast.makeText(getApplicationContext(), ((TextView) view).getText(),
 //                Toast.LENGTH_SHORT).show();
