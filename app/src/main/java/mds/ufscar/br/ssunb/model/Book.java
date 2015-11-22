@@ -11,13 +11,14 @@ public class Book {
     private String publication;
     private int edition;
     private int pages;
+    private double rating;
 
     public Book(String title, String author) {
         this.title = title;
         this.author = author;
     }
 
-    public Book(String title, String author, String category, String synopsis, int code, String publication, int edition, int pages) {
+    public Book(String title, String author, String category, String synopsis, int code, String publication, int edition, int pages, double rating) {
         this.title = title;
         this.author = author;
         this.category = category;
@@ -26,6 +27,7 @@ public class Book {
         this.publication = publication;
         this.edition = edition;
         this.pages = pages;
+        this.rating = rating;
     }
 
 
@@ -101,5 +103,13 @@ public class Book {
 
     public void setPages(int pages) {
         this.pages = pages;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
     }
 }

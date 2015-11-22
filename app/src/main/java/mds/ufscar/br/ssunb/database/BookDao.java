@@ -21,7 +21,6 @@ public class BookDao implements Dao<Book> {
 
     public BookDao(DatabaseHandler handler) {
         this.handler = handler;
-        dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
     }
 
     public Book build(Cursor cursor) {
@@ -36,6 +35,7 @@ public class BookDao implements Dao<Book> {
             edition = cursor.getInt(cursor.getColumnIndex("edition"));
             pages = cursor.getInt(cursor.getColumnIndex("pages"));
             publication = cursor.getString(cursor.getColumnIndex("publication"));
+            double rating = getRating(code);
          /*   if(!cursor.isNull(cursor.getColumnIndex("publication"))) {
                 try {
                     publication = dateFormat.parse(cursor.getString((cursor.getColumnIndex("publication"))));
@@ -43,7 +43,7 @@ public class BookDao implements Dao<Book> {
                     e.printStackTrace();
                 }
             }*/
-            return new Book(title, author, category, synopsis, code, publication, edition, pages);
+            return new Book(title, author, category, synopsis, code, publication, edition, pages, rating);
         }
         else return null;
     }
@@ -74,6 +74,17 @@ public class BookDao implements Dao<Book> {
             object.setCode(result);
 
         return (result > 0);
+    }
+
+    public double getRating(int id) {
+        String query = "SELECT avg(nota) AS nota FROM book as b JOIN avaliacoes AS a ON" +
+                "b.code = avaliacoes.livro WHERE b.code = ?";
+        String[] subs = new String[]{String.valueOf(id)};
+        Cursor cursor = handler.getReadableDatabase().rawQuery(query, subs);
+        if(cursor.moveToFirst()) {
+            return cursor.getDouble(cursor.getColumnIndex("nota"));
+        }
+        return 0.0;
     }
 
     // insere um exemplar de livro no banco, juntamente com o usuário dono
@@ -188,5 +199,11 @@ public class BookDao implements Dao<Book> {
         SQLiteDatabase db = handler.getWritableDatabase();
         int result = (int) db.insert("avaliacoes", null, values);
         return (result > 0);
+    }
+
+    public List<Book> ListRanking() {
+        String query = "SELECT code, avg(data) AS classificacao FROM book AS b JOIN avaliacoes AS a ON " +
+                "b.code = a.livro GROUP BY b.code ORDER BY classificacao DESC";
+        return executeQuery(query, null);
     }
 }

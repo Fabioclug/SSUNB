@@ -72,20 +72,22 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
         context = this;
 
 
-       /* Book b1 = new Book("Lord of The Rings", "J. R. R. Tolkien", "");
+        //context.deleteDatabase("ssunb");
+
+        Book b1 = new Book("Lord of The Rings", "J. R. R. Tolkien");
         Book b2 = new Book("Fight Club", "Chuck Palahniuk");
         Book b3 = new Book("The Da Vinci Code", "Dan Brown");
         Book b4 = new Book("Frankenstein", "Mary Shelley");
         Book b5 = new Book("A Game of Thrones", "George R. R. Martin");
-        Book b6 = new Book("The Divine Comedy", "Dante Alighieri");*/
+        Book b6 = new Book("The Divine Comedy", "Dante Alighieri");
 
-        Book b1 = new Book("O Senhor dos Anéis", "J. R. R. Tolkien", "Literatura Estrangeira", "O Senhor dos Anéis " +
-                "(The Lord of the Rings) é um romance de fantasia criado pelo escritor, professor e filólogo britânico J.R.R. Tolkien" +
-                ". A história começa como seqüência de um livro anterior de Tolkien, O Hobbit (The Hobbit), e logo se desenvolve numa" +
-                " história muito maior. Foi escrito entre 1937 e 1949, com muitas partes criadas durante a Segunda Guerra Mundial. " +
-                "Embora Tolkien tenha planejado realizá-lo em volume único, foi originalmente publicado em três volumes entre 1954 e " +
-                "1955, e foi assim, em três volumes, que se tornou popular. Desde então foi reimpresso várias vezes e foi traduzido " +
-                "para mais de 40 línguas, tornando-se um dos trabalhos mais populares da literatura do século XX.","29/07/1954",1,100);
+//        Book b1 = new Book("O Senhor dos Anéis", "J. R. R. Tolkien", "Literatura Estrangeira", "O Senhor dos Anéis " +
+//                "(The Lord of the Rings) é um romance de fantasia criado pelo escritor, professor e filólogo britânico J.R.R. Tolkien" +
+//                ". A história começa como seqüência de um livro anterior de Tolkien, O Hobbit (The Hobbit), e logo se desenvolve numa" +
+//                " história muito maior. Foi escrito entre 1937 e 1949, com muitas partes criadas durante a Segunda Guerra Mundial. " +
+//                "Embora Tolkien tenha planejado realizá-lo em volume único, foi originalmente publicado em três volumes entre 1954 e " +
+//                "1955, e foi assim, em três volumes, que se tornou popular. Desde então foi reimpresso várias vezes e foi traduzido " +
+//                "para mais de 40 línguas, tornando-se um dos trabalhos mais populares da literatura do século XX.","29/07/1954",1,100);
      /*   Book b2 = new Book("Fight Club", "Chuck Palahniuk");
         Book b3 = new Book("The Da Vinci Code", "Dan Brown");
         Book b4 = new Book("Frankenstein", "Mary Shelley");
@@ -96,15 +98,11 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
 
         BookDao bookDao = new BookDao(db);
         bookDao.save(b1);
-   /*     bookDao.save(b2);
+        bookDao.save(b2);
         bookDao.save(b3);
         bookDao.save(b4);
         bookDao.save(b5);
-        bookDao.save(b6);*/
-
-
-
-        //context.deleteDatabase("ssunb");
+        bookDao.save(b6);
 
         Collaborator novoColaborador = new Collaborator("Yoda", "=]", "Dagobah", "yoda@ssunb.com", "123","1239");
         CollaboratorController novoCollaboratorControler = new CollaboratorController(this);

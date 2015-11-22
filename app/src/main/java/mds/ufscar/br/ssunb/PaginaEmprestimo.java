@@ -13,11 +13,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import mds.ufscar.br.ssunb.database.BookDao;
 import mds.ufscar.br.ssunb.database.DatabaseHandler;
 import mds.ufscar.br.ssunb.database.EmprestimoDao;
+import mds.ufscar.br.ssunb.database.UserDao;
 import mds.ufscar.br.ssunb.model.Book;
 import mds.ufscar.br.ssunb.model.Emprestimo;
 import mds.ufscar.br.ssunb.model.User;
@@ -79,8 +83,17 @@ public class PaginaEmprestimo extends AppCompatActivity {
         EditText textData = (EditText) findViewById(R.id.editTextData);
 
         // * TRANSFORMAR PARA DATA AQUI * //
-        Date data = "";
-        Emprestimo emprestimo = new Emprestimo(idSolicitante, idPortadodor, idLivro, data, "REQUISITADO");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        Date data = null;
+        try {
+            data = dateFormat.parse(textData.getText().toString());
+        } catch (ParseException e) {
+            data = null;
+        }
+        UserDao udao = new UserDao(db);
+        User solicitante = udao.findById(idSolicitante);
+        User portador = udao.findById(idPortadodor);
+        Emprestimo emprestimo = new Emprestimo(solicitante, portador, livro, data, "REQUISITADO");
 
 
         try {
