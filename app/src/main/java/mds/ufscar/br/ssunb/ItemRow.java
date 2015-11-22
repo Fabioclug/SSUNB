@@ -11,6 +11,9 @@ public class ItemRow {
     Drawable icon;
     int id;
 
+    int idSolicitante;
+    int idPortador;
+
     public ItemRow(String itemName) {
         super();
         this.itemName = itemName;
@@ -21,6 +24,14 @@ public class ItemRow {
         super();
         this.itemName = itemName;
         this.id = id;
+        //this.icon = icon;
+    }
+
+    public ItemRow(String itemName, int idSol, int idPor) {
+        super();
+        this.itemName = itemName;
+        this.idSolicitante = idSol;
+        this.idPortador = idPor;
         //this.icon = icon;
     }
 
@@ -37,6 +48,13 @@ public class ItemRow {
         this.icon = icon;
     }
     public int getId() {return this.id; }
+    public int getIdSolicitante() {
+        return idSolicitante;
+    }
+
+    public int getIdPortador() {
+        return idPortador;
+    }
 
     @Override
     public String toString() {

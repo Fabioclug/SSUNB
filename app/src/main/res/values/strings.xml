@@ -49,6 +49,8 @@
     <string name="title_activity_comfirmacao_cadastro_livro">ComfirmacaoCadastroLivro</string>
     <string name="title_activity_confirmacao_cadastro_livro">ConfirmacaoCadastroLivro</string>
     <string name="title_activity_pagina_listagem_emprestimos">PaginaListagemEmprestimos</string>
+    <string name="title_activity_pagina_conformacao">PaginaConformacao</string>
+    <string name="title_activity_pagina_confirmacao">PaginaConfirmacao</string>
 
 
 </resources>

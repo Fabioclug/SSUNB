@@ -54,7 +54,6 @@ public class PaginaListagemEmprestimos extends AppCompatActivity {
 
         TextView NomeDoUsuario = (TextView)findViewById(R.id.NameUser);
         NomeDoUsuario.setText(nome);
-        db = new DatabaseHandler(this);
 
         ListView lista = (ListView) findViewById(R.id.emprestimo_list_view);
         adaptador = new ArrayAdapter<ItemRow>(this,
@@ -66,31 +65,31 @@ public class PaginaListagemEmprestimos extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
                 ItemRow EmprestimoEscolhido = adaptador.getItem(position);
-                String nome = userEscolhido.getItemName();
-                int ident = userEscolhido.getId();
-                System.out.println("Nome Usuario " + nome);
-                Intent intent = new Intent(PaginaListagemUsuarios.this, PaginaEmprestimo.class);
+                String livroEscolhido = EmprestimoEscolhido.getItemName();
+                int idSolicitante = EmprestimoEscolhido.getIdSolicitante();
+                Intent intent = new Intent(PaginaListagemEmprestimos.this, PaginaConfirmacao.class);
                 intent.putExtra("EMAIL_USER", emailUsuarioDaSessao);
-                intent.putExtra("USER_ESCOLHIDO", ident);
+                intent.putExtra("USER_SOLICITANTE", idSolicitante);
                 intent.putExtra("LIVRO_ESCOLHIDO", livroEscolhido);
                 startActivity(intent);
                 //usuarioPortador =
             }
         });
 
+        db = new DatabaseHandler(this);
+        populaLista();
+
+
     }
 
     public void populaLista()
     {
-        //ListView lista = (ListView) findViewById(R.id.user_list_view);
-        //itemData = new ArrayList<>();
-
 
         emprestimos = new EmprestimoDao(db);
         List<Emprestimo> emprestimosSolicitados = emprestimos.listPendingByUser(atual.getId());
         for(int i=0;i<emprestimosSolicitados.size();i++)
         {
-            adaptador.add(new ItemRow(emprestimosSolicitados.get(i).getRequestedBook(), emprestimosSolicitados.get(i).get() ));
+            adaptador.add(new ItemRow(emprestimosSolicitados.get(i).getRequestedBook().getTitle(), emprestimosSolicitados.get(i).getRequester().getId(),emprestimosSolicitados.get(i).getBookOwner().getId() ));
 
         }
 
