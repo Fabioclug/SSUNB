@@ -148,4 +148,13 @@ public class UserDao implements Dao<User> {
         return u;
     }
 
+    public boolean updateUserInfo(int id, String[] fields, String[] values) {
+        ContentValues cvalues = new ContentValues();
+        for(int i = 0; i < fields.length; i++) {
+            cvalues.put(fields[i], values[i]);
+        }
+        int result = handler.getWritableDatabase().update("usuario", cvalues, "id = ?", new String[] {String.valueOf(id)});
+        return (result > 0);
+    }
+
 }
