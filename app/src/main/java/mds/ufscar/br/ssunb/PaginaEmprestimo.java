@@ -45,6 +45,8 @@ public class PaginaEmprestimo extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        context = this;
+
         if (getIntent().hasExtra("EMAIL_USER")) {
             Bundle extras = getIntent().getExtras();
             emailUsuarioDaSessao = extras.getString("EMAIL_USER");
@@ -54,6 +56,7 @@ public class PaginaEmprestimo extends AppCompatActivity {
             Log.w("EmailUser", extras.getString("EMAIL_USER"));
         }
 
+        db = new DatabaseHandler(context);
         usuarioDaSessao = new UserController(this);
         final User atual = usuarioDaSessao.findByEmail(emailUsuarioDaSessao);
         String nome = atual.getName();
@@ -76,11 +79,6 @@ public class PaginaEmprestimo extends AppCompatActivity {
 
         TextView nomeDoLivro = (TextView) findViewById(R.id.NameLivro);
         nomeDoLivro.setText(nomeDoLivroEscolhido);
-
-
-
-
-        context = this;
     }
 
 
