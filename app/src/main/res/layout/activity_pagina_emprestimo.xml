@@ -17,6 +17,6 @@
 
     <include layout="@layout/content_pagina_emprestimo" />
 
-  
+
 
 </android.support.design.widget.CoordinatorLayout>
