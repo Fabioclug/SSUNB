@@ -93,7 +93,7 @@ public class PaginaEmprestimo extends AppCompatActivity {
         EditText textData = (EditText) findViewById(R.id.editTextData);
 
         // * TRANSFORMAR PARA DATA AQUI * //
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
         Date data = null;
         try {
             data = dateFormat.parse(textData.getText().toString());

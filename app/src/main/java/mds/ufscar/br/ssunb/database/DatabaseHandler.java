@@ -10,7 +10,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final int DB_VERSION = 1;
     private static final String CREATE_USER = "CREATE TABLE usuario (id integer not null primary key, " +
             "PrimNome text not null, SobreNome text not null,cidade text not null," +
-            "email text not null, senha text not null, latitude real, longitude real)";
+            "email text unique not null, senha text not null, latitude real, longitude real)";
 
     private static final String CREATE_BOOK = "create table book(code integer not null primary key," +
             "title text not null, author text not null, category text, synopsis text, publication date, " +
@@ -20,8 +20,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             "cpf text not null, FOREIGN KEY(id) REFERENCES usuario(id))";
 
     private static final String CREATE_LENDING = "CREATE TABLE emprestimo (solicitante integer not null," +
-            "dono_livro integer not null, livro integer not null, solicitado date not null, " +
-            "retirada date not null, devolucao date not null, autorizado integer default 0, " +
+            "dono_livro integer not null, livro integer not null, " +
+            "retirada date not null, autorizado integer default 0, " +
             "FOREIGN KEY(solicitante) REFERENCES usuario(id), FOREIGN KEY(dono_livro) REFERENCES usuario(id)," +
             "FOREIGN KEY(livro) REFERENCES book(code),PRIMARY KEY(solicitante, dono_livro, livro))";
 

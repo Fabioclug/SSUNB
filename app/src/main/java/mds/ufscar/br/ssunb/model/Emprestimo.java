@@ -16,6 +16,7 @@ public class Emprestimo {
         this.requester = requester;
         this.bookOwner = bookOwner;
         this.requestedBook = requestedBook;
+        this.date = date;
         this.status = status;
     }
 

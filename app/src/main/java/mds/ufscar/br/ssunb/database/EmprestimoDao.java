@@ -24,7 +24,7 @@ public class EmprestimoDao implements Dao<Emprestimo> {
 
     public EmprestimoDao(DatabaseHandler handler) {
         this.handler = handler;
-        dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
     }
 
     @Override
@@ -40,7 +40,7 @@ public class EmprestimoDao implements Dao<Emprestimo> {
         Book requestedBook = bookDao.findById(bookId);
         Date date = null;
         try {
-            date = dateFormat.parse(cursor.getString((cursor.getColumnIndex("solicitado"))));
+            date = dateFormat.parse(cursor.getString((cursor.getColumnIndex("retirada"))));
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -57,6 +57,7 @@ public class EmprestimoDao implements Dao<Emprestimo> {
         values.put("solicitante", object.getRequester().getId());
         values.put("dono_livro", object.getBookOwner().getId());
         values.put("livro", object.getRequestedBook().getCode());
+        values.put("retirada", dateFormat.format(object.getDate()));
 //      try {
 //            values.put("solicitado", dateFormat.format(object.getRequestDate()));
 //            values.put("retirada", dateFormat.format(object.getLendDate()));
@@ -65,7 +66,9 @@ public class EmprestimoDao implements Dao<Emprestimo> {
 //          e.printStackTrace();
 //      }
 
-        int autorizado = (object.getStatus().equals("Autorizado"))? 1 : 0;
+        int autorizado = 0;
+        if(object.getStatus().equals("Autorizado"))
+            autorizado = 1;
         values.put("autorizado", autorizado);
         return ((int) db.insert("emprestimo", null, values) > 0);
     }
