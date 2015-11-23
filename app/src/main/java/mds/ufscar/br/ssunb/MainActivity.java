@@ -74,35 +74,9 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
 
         //context.deleteDatabase("ssunb");
 
-        Book b1 = new Book("Lord of The Rings", "J. R. R. Tolkien");
-        Book b2 = new Book("Fight Club", "Chuck Palahniuk");
-        Book b3 = new Book("The Da Vinci Code", "Dan Brown");
-        Book b4 = new Book("Frankenstein", "Mary Shelley");
-        Book b5 = new Book("A Game of Thrones", "George R. R. Martin");
-        Book b6 = new Book("The Divine Comedy", "Dante Alighieri");
-
-//        Book b1 = new Book("O Senhor dos Anéis", "J. R. R. Tolkien", "Literatura Estrangeira", "O Senhor dos Anéis " +
-//                "(The Lord of the Rings) é um romance de fantasia criado pelo escritor, professor e filólogo britânico J.R.R. Tolkien" +
-//                ". A história começa como seqüência de um livro anterior de Tolkien, O Hobbit (The Hobbit), e logo se desenvolve numa" +
-//                " história muito maior. Foi escrito entre 1937 e 1949, com muitas partes criadas durante a Segunda Guerra Mundial. " +
-//                "Embora Tolkien tenha planejado realizá-lo em volume único, foi originalmente publicado em três volumes entre 1954 e " +
-//                "1955, e foi assim, em três volumes, que se tornou popular. Desde então foi reimpresso várias vezes e foi traduzido " +
-//                "para mais de 40 línguas, tornando-se um dos trabalhos mais populares da literatura do século XX.","29/07/1954",1,100);
-     /*   Book b2 = new Book("Fight Club", "Chuck Palahniuk");
-        Book b3 = new Book("The Da Vinci Code", "Dan Brown");
-        Book b4 = new Book("Frankenstein", "Mary Shelley");
-        Book b5 = new Book("A Game of Thrones", "George R. R. Martin");
-        Book b6 = new Book("The Divine Comedy", "Dante Alighieri");*/
-
         DatabaseHandler db = new DatabaseHandler(context);
+        //this.populate_database();
 
-        BookDao bookDao = new BookDao(db);
-//        bookDao.save(b1);
-//        bookDao.save(b2);
-//        bookDao.save(b3);
-//        bookDao.save(b4);
-//        bookDao.save(b5);
-//        bookDao.save(b6);
 
         Collaborator novoColaborador = new Collaborator("Yoda", "=]", "Dagobah", "yoda@ssunb.com", "123","1239");
         CollaboratorController novoCollaboratorControler = new CollaboratorController(this);
@@ -326,33 +300,37 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
+    public void populate_database() {
+        DatabaseHandler db = new DatabaseHandler(context);
+        db.getWritableDatabase().execSQL("INSERT INTO usuario (PrimNome,SobreNome,cidade,email,senha, latitude, longitude) VALUES ('Fabio', 'Clug', 'Ribeirao Preto', 'fabioclug@hotmail.com', '1234', 21.32, 118.55);");
+        db.getWritableDatabase().execSQL("INSERT INTO usuario (PrimNome,SobreNome,cidade,email,senha, latitude, longitude) VALUES ('Breno', 'Silveira', 'São Carlos', 'brenosilveira@gmail.com', 'abcd', 35.18, 47.65);");
+        db.getWritableDatabase().execSQL("INSERT INTO usuario (PrimNome,SobreNome,cidade,email,senha, latitude, longitude) VALUES ('Gabriela','Mattos','São Carlos','gabrielamattos@gmail.com','semsenha', 40.98, -90.908);");
+        db.getWritableDatabase().execSQL("INSERT INTO usuario (PrimNome,SobreNome,cidade,email,senha, latitude, longitude) VALUES ('Enoc', 'Pierre', 'São Carlos', 'enoc@hotmail.com', 'ab12', 70.95, 100.25);");
+        db.getWritableDatabase().execSQL("INSERT INTO usuario (PrimNome,SobreNome,cidade,email,senha, latitude, longitude) VALUES ('Minch', 'Yoda', 'Dagobah', 'yoda@ssunb.com', '1239', 59.42, 22.55);");
+        db.getWritableDatabase().execSQL("INSERT INTO colaborador (id, cpf) VALUES(4, '406.578.829-61');");
+        db.getWritableDatabase().execSQL("INSERT INTO book (title, author, category,synopsis,publication,edition,publisher,pages,pending) " +
+                        "VALUES ('O Senhor dos Anéis', 'J. R. R. Tolkien', 'Literatura Estrangeira', 'O Senhor dos Anéis (The Lord of the Rings) é um romance" +
+                        "    de fantasia criado pelo escritor, professor e filólogo britânico J.R.R. Tolkien. A história começa como seqüência de um livro anterior de Tolkien, O Hobbit (The Hobbit), e logo se desenvolve numa " +
+                        "    história muito maior. Foi escrito entre 1937 e 1949, com muitas partes criadas durante a Segunda Guerra Mundial. Embora Tolkien tenha planejado realizá-lo em volume único, foi originalmente " +
+                        "    publicado em três volumes entre 1954 e 1955, e foi assim, em três volumes, que se tornou popular. Desde então foi reimpresso várias vezes e foi traduzido " +
+                        "    para mais de 40 línguas, tornando-se um dos trabalhos mais populares da literatura do século XX.','29/07/1954',1,'Editora Atica',250,0);");
+
+        db.getWritableDatabase().execSQL("INSERT INTO book (title, author, category,synopsis,publication,edition,publisher,pages,pending) " +
+                        "VALUES ('Clube da Luta', 'Chuck Palahniuk', 'Suspense/Drama', 'O clube da luta é idealizado por Tyler Durden, que acredita ter encontrado uma maneira de viver fora dos limites da sociedade e das regras sem sentido. " +
+                        "    Mas o que está por vir de sua mente pode piorar muito. O livro serviu de base para um filme de 1999, procurando adaptar a atmosfera do livro, o mundo caótico do personagem e o humor negro do autor.', " +
+                        "    '01/04/1996', 1, 'LEYA Brasil', 270,0);");
+        db.getWritableDatabase().execSQL("INSERT INTO book (title, author, category,synopsis,publication,edition,publisher,pages,pending) " +
+                        "VALUES ('Frankenstein', 'Mary Shelley', 'Terror/Ficção Científica', 'Frankenstein é o primeiro clássico da literatura de horror. A autora, casada com o poeta Percy Shelly, tinha dezenove anos quando o escreveu em 1818. " +
+                        "    É a história de um estudante da mesma idade - Victor Frankenstein - que constrói uma criatura horrenda. Ao despertar para o mundo, o monstro se vê rejeitado por todos. Daí sua tragédia e a terrível vingança que imporá ao seu criador.'," +
+                        "    '01/01/1818',1, 'Cia das Letras',150,0);");
+        db.getWritableDatabase().execSQL("INSERT INTO emprestimo(solicitante, dono_livro, livro, retirada, autorizado)" +
+                        "VALUES (2, 1, 2,'10/12/2015',0);");
+        db.getWritableDatabase().execSQL("INSERT INTO exemplar_livro (usuario,livro,status) " +
+                        "VALUES(1,2,'Emprestado');");
+        db.getWritableDatabase().execSQL("INSERT INTO exemplar_livro (usuario,livro,status) " +
+                        "VALUES(2, 1, 'Disponivel');");
+        db.getWritableDatabase().execSQL("INSERT INTO exemplar_livro (usuario,livro,status) VALUES(3, 2, 'Disponivel');");
+
+    }
+
 }
-
-
-
-//        DatabaseHandler db = new DatabaseHandler(this);
-//        db.getWritableDatabase().execSQL("CREATE TABLE usuario (id integer not null primary key, " +
-//                "PrimNome text not null, SobreNome text not null,cidade text not null," +
-//                "email text not null, senha text not null )");
-
-//LocationManager mlocManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-//LocationListener mlocListener = new MyLocationListener(getApplicationContext());
-//mlocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, mlocListener);
-
-//        book_list = (ListView) findViewById(R.id.book_list_view);
-//        book_list.setAdapter(new BookListAdapter(this));
-//        //findViewById(R.id.action_settings)
-//        findViewById(R.id.menu_button).setOnClickListener(new OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                PopupMenu popupMenu = new PopupMenu(MainActivity.this, v);
-//                popupMenu.setOnMenuItemClickListener(MainActivity.this);
-//                popupMenu.inflate(R.menu.menu_main);
-//                popupMenu.show();
-//            }
-//        });
-
-//usuarioController = new UserController(this);
-//colaboradorControler = new CollaboratorController(this);
-// campoLogin = (EditText) findViewById(R.id.LoginText);
-//campoSenha = (EditText) findViewById(R.id.senha);

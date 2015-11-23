@@ -3,6 +3,7 @@ package mds.ufscar.br.ssunb;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import mds.ufscar.br.ssunb.database.DatabaseHandler;
@@ -78,6 +80,23 @@ public class PaginaListagemEmprestimos extends AppCompatActivity {
                     Emprestimo emprestimo = emprestimos.findEmprestimo(idSolicitante, atual.getId(), idLivro);
                     emprestimos.confirmEmprestimo(emprestimo);
                     Toast.makeText(context, "Empréstimo confirmado!", Toast.LENGTH_SHORT).show();
+
+                    Intent calIntent = new Intent(Intent.ACTION_INSERT);
+                    calIntent.setType("vnd.android.cursor.item/event");
+                    calIntent.putExtra(CalendarContract.Events.TITLE, "Empréstimo - " + emprestimo.getRequestedBook().getTitle());
+                    calIntent.putExtra(CalendarContract.Events.DESCRIPTION, "Empréstimo do livro " + emprestimo.getRequestedBook().getTitle() +
+                    " para " + emprestimo.getRequester().getName() + " " + emprestimo.getRequester().getSurname());
+
+                    int dia = emprestimo.getDate().getDay();
+                    int mes = emprestimo.getDate().getMonth();
+                    int ano = emprestimo.getDate().getYear();
+                    GregorianCalendar calDate = new GregorianCalendar(dia, mes, ano);
+                    calIntent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, true);
+                    calIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME,
+                            calDate.getTimeInMillis());
+                    calIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME,
+                            calDate.getTimeInMillis());
+                    startActivity(calIntent);
 
                 }catch(Exception e)
                 {
