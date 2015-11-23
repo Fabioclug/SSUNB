@@ -45,10 +45,6 @@
                 android:layout_marginTop="10dp"
                 />
 
-
-
-
-
         </android.support.v7.widget.Toolbar>
 
 
@@ -59,50 +55,72 @@
             android:orientation="vertical"
             android:weightSum="1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:layout_gravity="center"
+            android:gravity="center">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nomeportaor"
-                android:id="@+id/NamePortador"
-                android:textColor="#000000"
-                android:textSize="30dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                />
-
-
-
-            <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="NomeLivro"
                 android:id="@+id/NameLivro"
+                style="@style/TextoNomeLivro"
                 android:textColor="#000000"
                 android:textSize="30dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                />
+                android:layout_margin="15dp"
+                android:layout_gravity="center"
+                android:gravity="center" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Data desejada"
-                android:id="@+id/dataDesejada"
-                android:textColor="#000000"
-                android:textSize="30dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-            />
-
-            <EditText
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="date"
-                android:ems="10"
-                android:id="@+id/editTextData"
-                android:layout_gravity="center_horizontal" />
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nome Portador: "
+                    style="@style/TextoLabel"
+                    android:id="@+id/textView" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nomeportaor"
+                    android:id="@+id/NamePortador"
+                    style="@style/TextoResp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Data desejada"
+                    android:id="@+id/dataDesejada"
+                    style="@style/TextoLabel"
+                    android:layout_gravity="bottom" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="date"
+                    android:ems="10"
+                    android:id="@+id/editTextData"
+                    android:layout_gravity="center_horizontal|bottom" />
+
+
+            </LinearLayout>
+
+
 
             <com.beardedhen.androidbootstrap.BootstrapButton
                 android:id="@+id/buttonRequisicao"
@@ -112,16 +130,13 @@
                 app:bootstrapSize="lg"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="15dp" />
-
-
+                android:layout_margin="5dp"
+                android:gravity="center" />
 
         </LinearLayout>
-
-
 
 
     </LinearLayout>

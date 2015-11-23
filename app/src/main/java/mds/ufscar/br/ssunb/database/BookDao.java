@@ -195,7 +195,7 @@ public class BookDao implements Dao<Book> {
         values.put("usuario",id_user);
         values.put("livro", id_book);
         values.put("nota", stars);
-        values.put("data_avaliacao", dateFormat.format(new Date()));
+       // values.put("data_avaliacao", dateFormat.format(new Date()));
         SQLiteDatabase db = handler.getWritableDatabase();
         int result = (int) db.insert("avaliacoes", null, values);
         return (result > 0);

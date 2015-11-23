@@ -21,14 +21,14 @@
     <string name="search_title">Procurar Obras Literárias</string>
     <string name="NomeLivro">Nome do livro</string>
     <string name="AutorLivro">Nome do autor</string>
-    <string name="facebook_app_id">172774966403083</string>
+    <string name="facebook_app_id">1037149776349622</string>
 
     <string-array name="itensMenuUser">
         <item>Procurar Livros</item>
         <item>Meus Livros</item>
         <item>Meus Empréstimos</item>
-        <item>Minhas Informações Pessoais</item>
         <item>Enviar sugestão de novo livro</item>
+        <item>Sair da minha conta</item>
     </string-array>
 
     <string-array name="itensMenuColaborador">

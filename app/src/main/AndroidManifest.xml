@@ -108,11 +108,6 @@
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
-            android:name=".PaginaConformacao"
-            android:label="@string/title_activity_pagina_conformacao"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
-        <activity
             android:name=".PaginaConfirmacao"
             android:label="@string/title_activity_pagina_confirmacao"
             android:theme="@style/AppTheme.NoActionBar" >

@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -60,6 +61,7 @@ public class LivroActivity extends AppCompatActivity{
         usuarioDaSessao = new UserController(this);
         User atual = usuarioDaSessao.findByEmail(emailUsuarioDaSessao);
         String nome = atual.getName();
+        final int codigoUsuario = atual.getId();
 
 
         TextView NomeDoUsuario = (TextView)findViewById(R.id.NameUser);
@@ -68,7 +70,7 @@ public class LivroActivity extends AppCompatActivity{
 
         db = new DatabaseHandler(this);
         BD = new BookDao(db);
-        Book livro = BD.findByTitle(livroEscolhido);
+        final Book livro = BD.findByTitle(livroEscolhido);
         System.out.println("Encontrou o livro:");
         int idLivro = livro.getCode();
 
@@ -80,6 +82,7 @@ public class LivroActivity extends AppCompatActivity{
         TextView textPgs = (TextView)findViewById(R.id.nomePaginas);
         TextView textPublicacao = (TextView)findViewById(R.id.nomePublicacao);
         TextView textResumo = (TextView)findViewById(R.id.nomeResumo);
+        RatingBar rating = (RatingBar)findViewById(R.id.ratingBar);
 
         textLivro.setText(livro.getTitle());
         textAutor.setText(livro.getAuthor());
@@ -88,7 +91,16 @@ public class LivroActivity extends AppCompatActivity{
         textPgs.setText(Integer.toString(livro.getPages()));
         textPublicacao.setText(livro.getPublication());
         textResumo.setText(livro.getSynopsis());
+        rating.setRating((float) livro.getRating());
 
+        rating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
 
+                livro.setRating((double) rating);
+                System.out.println("Avaliou: " + livro.getRating());
+                BD.rateBook(codigoUsuario, livro.getCode(), (double)rating);
+
+            }
+        });
     }
 }

@@ -31,7 +31,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             "PRIMARY KEY(usuario, livro))";
 
     private static final String CREATE_EVALUATION = "CREATE TABLE avaliacoes (usuario integer not null, " +
-            "livro integer not null, nota real not null, data_avaliacao date not null, " +
+            "livro integer not null, nota real not null, " +
             "FOREIGN KEY(usuario) REFERENCES usuario(id), FOREIGN KEY(livro) REFERENCES book(code), " +
             "PRIMARY KEY(usuario, livro))";
 

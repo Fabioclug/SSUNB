@@ -91,11 +91,13 @@ public class HomeUsuarioActivity extends AppCompatActivity implements AdapterVie
                 startActivity(emprestimos);
                 break;
             case 3:
-                break;
-            case 4:
                 Intent intent = new Intent(HomeUsuarioActivity.this, SugestaoCadastroLivro.class);
                 intent.putExtra("EMAIL_USER", emailUsuarioDaSessao);
                 startActivity(intent);
+                break;
+            case 4:
+                Intent intentSair = new Intent(HomeUsuarioActivity.this, MainActivity.class);
+                startActivity(intentSair);
                 break;
 
 

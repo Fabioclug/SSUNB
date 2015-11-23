@@ -68,14 +68,15 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
         FacebookSdk.sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
 
+
         setContentView(R.layout.activity_main);
         context = this;
 
 
         //context.deleteDatabase("ssunb");
 
-        DatabaseHandler db = new DatabaseHandler(context);
-        //this.populate_database();
+     DatabaseHandler db = new DatabaseHandler(context);
+     //this.populate_database();
 
 
         Collaborator novoColaborador = new Collaborator("Yoda", "=]", "Dagobah", "yoda@ssunb.com", "123","1239");
@@ -87,7 +88,6 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
         {
             System.out.println(e.toString());
         }
-
 
         LoginManager.getInstance().registerCallback(callbackManager,
                 new FacebookCallback<LoginResult>() {
@@ -109,31 +109,29 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
                                                 String jsonresult = String.valueOf(json);
                                                 System.out.println("JSON Result" + jsonresult);
 
-                                                String str_email = json.getString("email");
                                                 String str_id = json.getString("id");
-                                                String str_firstname = json.getString("first_name");
-                                                String str_lastname = json.getString("last_name");
-                                                String str_localizacao = json.getString("locale");
-                                                String str_senha = json.getString("password");
+                                                String str_firstname = json.getString("name");
+                                                String str_lastname = json.getString("name");
+                                                String str_localizacao = json.getString("name");
+                                                String str_senha = json.getString("name");
+                                                String str_email = json.getString("name");
 
-
-                                                User novoUsuario = new User(str_firstname, str_lastname, str_localizacao, str_email, str_senha);
-                                                UserController novoUserControler = new UserController(context);
-                                                emailUserSecao = str_email;
 
                                                 try {
 
+                                                    User novoUsuario = new User(str_firstname, str_lastname, str_localizacao, str_email, str_senha);
+                                                    UserController novoUserControler = new UserController(context);
+                                                    emailUserSecao = str_email;
                                                     novoUserControler.insert(novoUsuario);
                                                     Intent intent = new Intent(MainActivity.this, HomeUsuarioActivity.class);
                                                     intent.putExtra("EMAIL_USER", emailUserSecao);
+                                                    System.out.println("Informacoes User: " + str_email);
                                                     startActivity(intent);
 
                                                 } catch (Exception e) {
                                                     System.out.println("Falha ao inserir usuario no BD");
                                                 }
 
-
-                                                System.out.println("Informacoes User: ");
 
                                             } catch (JSONException e) {
                                                 e.printStackTrace();
@@ -154,8 +152,6 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
                         // App code
                     }
                 });
-        //context.deleteDatabase("ssunb");
-
 
         findViewById(R.id.loginButton).setOnClickListener(new OnClickListener() {
             @Override
