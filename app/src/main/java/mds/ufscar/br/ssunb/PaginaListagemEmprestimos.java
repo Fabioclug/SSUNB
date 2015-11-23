@@ -1,5 +1,6 @@
 package mds.ufscar.br.ssunb;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -13,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +34,7 @@ public class PaginaListagemEmprestimos extends AppCompatActivity {
     EmprestimoDao emprestimos;
     private ArrayAdapter<ItemRow> adaptador = null;
     User atual;
+    private Context context;
 
 
     @Override
@@ -40,6 +43,7 @@ public class PaginaListagemEmprestimos extends AppCompatActivity {
         setContentView(R.layout.activity_pagina_listagem_emprestimos);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        context = this;
 
         if(getIntent().hasExtra("EMAIL_USER")){
             Bundle extras = getIntent().getExtras();
@@ -73,10 +77,11 @@ public class PaginaListagemEmprestimos extends AppCompatActivity {
 
                     Emprestimo emprestimo = emprestimos.findEmprestimo(idSolicitante, atual.getId(), idLivro);
                     emprestimos.confirmEmprestimo(emprestimo);
+                    Toast.makeText(context, "Empréstimo confirmado!", Toast.LENGTH_SHORT).show();
 
                 }catch(Exception e)
                 {
-
+                    Toast.makeText(context, "Falha ao confirmar!", Toast.LENGTH_SHORT).show();
                 }
 
 
