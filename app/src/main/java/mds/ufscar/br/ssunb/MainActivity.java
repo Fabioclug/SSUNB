@@ -97,12 +97,12 @@ public class MainActivity extends Activity implements PopupMenu.OnMenuItemClickL
         DatabaseHandler db = new DatabaseHandler(context);
 
         BookDao bookDao = new BookDao(db);
-        bookDao.save(b1);
-        bookDao.save(b2);
-        bookDao.save(b3);
-        bookDao.save(b4);
-        bookDao.save(b5);
-        bookDao.save(b6);
+//        bookDao.save(b1);
+//        bookDao.save(b2);
+//        bookDao.save(b3);
+//        bookDao.save(b4);
+//        bookDao.save(b5);
+//        bookDao.save(b6);
 
         Collaborator novoColaborador = new Collaborator("Yoda", "=]", "Dagobah", "yoda@ssunb.com", "123","1239");
         CollaboratorController novoCollaboratorControler = new CollaboratorController(this);
