@@ -30,6 +30,8 @@ public class ConfirmacaoCadastroLivro extends AppCompatActivity {
     private int cod_livro;
     Context context;
     DatabaseHandler db;
+    Book livro;
+    BookDao bookDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +60,7 @@ public class ConfirmacaoCadastroLivro extends AppCompatActivity {
         {
             Bundle extras = getIntent().getExtras();
             cod_livro = extras.getInt("ID_LIVRO");
+            System.out.println("AEOOAOOS "+cod_livro);
 
         }
 
@@ -68,16 +71,27 @@ public class ConfirmacaoCadastroLivro extends AppCompatActivity {
         TextView NomeDoColaborador = (TextView)findViewById(R.id.NameCollaborator);
         NomeDoColaborador.setText(nome);
 
+        db = new DatabaseHandler(context);
+        bookDao = new BookDao(db);
+
+        livro = bookDao.findById(cod_livro);
+        System.out.println("Nome do livro " + livro.getTitle());
+
+        EditText campoNomeLivro = (EditText) findViewById(R.id.editTextNomeLivro);
+        EditText campoAutor = (EditText) findViewById(R.id.editTextAutor);
+
+        campoNomeLivro.setHint(livro.getTitle());
+        campoAutor.setHint(livro.getAuthor());
+
+
+
     }
 
     public void EfetuarCadastro(View view) {
 
         // Recuperamos os valores dos campos da tela
 
-        db = new DatabaseHandler(context);
-        BookDao bookDao = new BookDao(db);
 
-        Book livro = bookDao.findById(cod_livro);
 
         EditText campoNomeLivro = (EditText) findViewById(R.id.editTextNomeLivro);
         EditText campoAutor = (EditText) findViewById(R.id.editTextAutor);
@@ -88,8 +102,7 @@ public class ConfirmacaoCadastroLivro extends AppCompatActivity {
         EditText campoDataPublicacao = (EditText) findViewById(R.id.editDataPublicacao);
 
 
-        campoNomeLivro.setHint(livro.getTitle());
-        campoAutor.setHint(livro.getAuthor());
+
 
 
         String nome = campoNomeLivro.getText().toString();
