@@ -27,11 +27,12 @@ public class ItemRow {
         //this.icon = icon;
     }
 
-    public ItemRow(String itemName, int idSol, int idPor) {
+    public ItemRow(String itemName,int idLivro, int idSol, int idPor) {
         super();
         this.itemName = itemName;
         this.idSolicitante = idSol;
         this.idPortador = idPor;
+        this.id = idLivro;
         //this.icon = icon;
     }
 

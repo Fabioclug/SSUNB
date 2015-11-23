@@ -66,12 +66,25 @@ public class PaginaListagemEmprestimos extends AppCompatActivity {
                                     long id) {
                 ItemRow EmprestimoEscolhido = adaptador.getItem(position);
                 String livroEscolhido = EmprestimoEscolhido.getItemName();
+                int idLivro = EmprestimoEscolhido.getId();
                 int idSolicitante = EmprestimoEscolhido.getIdSolicitante();
-                Intent intent = new Intent(PaginaListagemEmprestimos.this, PaginaConfirmacao.class);
-                intent.putExtra("EMAIL_USER", emailUsuarioDaSessao);
-                intent.putExtra("USER_SOLICITANTE", idSolicitante);
-                intent.putExtra("LIVRO_ESCOLHIDO", livroEscolhido);
-                startActivity(intent);
+
+                try{
+
+                    Emprestimo emprestimo = emprestimos.findEmprestimo(idSolicitante, atual.getId(), idLivro);
+                    emprestimos.confirmEmprestimo(emprestimo);
+
+                }catch(Exception e)
+                {
+
+                }
+
+
+//                Intent intent = new Intent(PaginaListagemEmprestimos.this, PaginaConfirmacao.class);
+//                intent.putExtra("EMAIL_USER", emailUsuarioDaSessao);
+//                intent.putExtra("USER_SOLICITANTE", idSolicitante);
+//                intent.putExtra("LIVRO_ESCOLHIDO", livroEscolhido);
+//                startActivity(intent);
                 //usuarioPortador =
             }
         });
@@ -89,7 +102,8 @@ public class PaginaListagemEmprestimos extends AppCompatActivity {
         List<Emprestimo> emprestimosSolicitados = emprestimos.listPendingByUser(atual.getId());
         for(int i=0;i<emprestimosSolicitados.size();i++)
         {
-            adaptador.add(new ItemRow(emprestimosSolicitados.get(i).getRequestedBook().getTitle(), emprestimosSolicitados.get(i).getRequester().getId(),emprestimosSolicitados.get(i).getBookOwner().getId() ));
+            adaptador.add(new ItemRow(emprestimosSolicitados.get(i).getRequestedBook().getTitle(), emprestimosSolicitados.get(i).getRequestedBook().getCode(),
+                    emprestimosSolicitados.get(i).getRequester().getId(),emprestimosSolicitados.get(i).getBookOwner().getId() ));
 
         }
 
